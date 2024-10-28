@@ -1,0 +1,16 @@
+{
+    "answer": "The average performance rating by department is 3.054, with Finance at 2.994, HR at 3.024, IT at 3.075, Marketing at 3.145, and Operations at 3.043.",
+    "followup": "What factors contribute to the differences in performance ratings among departments?",
+    "header": "Performance ratings vary significantly by department",
+    "indicator": "None of the indicators are triggered, but the performance rating disparity suggests a need for further investigation.",
+    "insight": "The average performance rating across departments shows Finance with the lowest score of 2.994, while Marketing leads with 3.145, indicating a potential disparity in employee satisfaction or performance across departments, which could be concerning for retention strategies.",
+    "output_folder": "static/users/guest/human_resources/insight_card_7",
+    "plot_image": "static/users/guest/human_resources/insight_card_7/plot.jpg",
+    "question": "What is the average performance rating by department?",
+    "score": "75",
+    "severity": "medium",
+    "time_elapsed": {
+        "code_gen": 2.169071674346924,
+        "insight_gen": 2.3869314193725586
+    }
+}

@@ -1,0 +1,1 @@
+How many cases have breached SLAs, and what is their distribution across different impact levels?

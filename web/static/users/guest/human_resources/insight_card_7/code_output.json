@@ -1,0 +1,201 @@
+{
+    "code": "```python\n# Import necessary libraries\nimport pandas as pd\nfrom agentpoirot.tools import func_tools\n\n# Load the dataset into a DataFrame\ndf = pd.read_csv('/mnt/home/projects/agent-poirot/web/static/users/guest/human_resources/dataset.csv')\n\n# Stage 1: Data Manipulation\n# Group by department and calculate the average performance rating\ndf = df.groupby('department', as_index=False).agg({'performance_rating': 'mean'})\n\n# Stage 2: Plotting\n# Create a bar plot for average performance rating by department\nfunc_tools.plot_bar(df=df, plot_column='department', count_column='performance_rating', plot_title='Average Performance Rating by Department')\n```",
+    "code_output": "",
+    "code_time": 2.169071674346924,
+    "message": "",
+    "meta_dict": {
+        "dataset_name": "HR management",
+        "description": "The HR dataset is a comprehensive collection of employee-related data gathered over time to help the HR team make informed decisions about workforce management, recruitment, retention, and performance improvement. This dataset captures various aspects of an employee\u2019s lifecycle within the organization, from hiring to exit, and includes key metrics and performance indicators.",
+        "goal": "Reduce Employee Turnover and Improve Retention Strategies.",
+        "indicator_list": [
+            {
+                "description": "Any missing values in critical fields like assigned_group, assignee, resolved_date, or requester should be flagged.",
+                "name": "missing_inconsistent_data",
+                "threshold": "Rows with over 5% missing critical fields should be excluded or revisited."
+            },
+            {
+                "description": "Identify instances where SLA (Service Level Agreement) breaches occur, particularly in high-priority tickets.",
+                "name": "sla_breach_analysis",
+                "threshold": "More than 10% of high-priority tickets should be reviewed for SLA compliance."
+            },
+            {
+                "description": "Check for inconsistencies in the status field, such as tickets marked as 'resolved' but still have open issues.",
+                "name": "status_discrepancies",
+                "threshold": "Any tickets with status 'resolved' but unresolved dates should be flagged for review."
+            },
+            {
+                "description": "Analyze the time_to_resolution for outliers that significantly exceed the average resolution time.",
+                "name": "time_to_resolution_outliers",
+                "threshold": "Tickets with time_to_resolution greater than 2 standard deviations from the mean should be investigated."
+            },
+            {
+                "description": "Examine the distribution of request types across different priority levels to ensure balanced handling.",
+                "name": "priority_distribution",
+                "threshold": "Any priority level with less than 5% of total tickets should be flagged for potential review."
+            },
+            {
+                "description": "Identify tickets where the category does not align with the subcategory assigned.",
+                "name": "category_subcategory_mismatch",
+                "threshold": "Any tickets with mismatched category and subcategory should be reviewed for accuracy."
+            },
+            {
+                "description": "Monitor the distribution of tickets among assignees to identify potential workload imbalances.",
+                "name": "assignee workload imbalance",
+                "threshold": "Any assignee with more than 20% of total tickets should be flagged for workload review."
+            },
+            {
+                "description": "Evaluate the impact ratings assigned to tickets to ensure they are consistent with the request type and priority.",
+                "name": "impact assessment",
+                "threshold": "Any tickets with high impact but low priority should be reviewed for potential misclassification."
+            },
+            {
+                "description": "Check for completeness and clarity in the resolution_description field to ensure proper documentation.",
+                "name": "resolution_description completeness",
+                "threshold": "Any tickets with resolution descriptions shorter than 10 words should be flagged for review."
+            },
+            {
+                "description": "Analyze the frequency of requests from each requester to identify potential patterns or engagement issues.",
+                "name": "requester engagement",
+                "threshold": "Requesters with more than 5 open tickets should be flagged for follow-up."
+            }
+        ],
+        "persona": "HR Data Analyst."
+    },
+    "n_retries": 0,
+    "output_folder": "static/users/guest/human_resources/insight_card_7",
+    "plot": {
+        "name": "static/users/guest/human_resources/insight_card_7/plot.jpg",
+        "type": "plot"
+    },
+    "prompt": "Given the following meta information:\\n\n<description>The HR dataset is a comprehensive collection of employee-related data gathered over time to help the HR team make informed decisions about workforce management, recruitment, retention, and performance improvement. This dataset captures various aspects of an employee\u2019s lifecycle within the organization, from hiring to exit, and includes key metrics and performance indicators.</description>\n<goal>Reduce Employee Turnover and Improve Retention Strategies.</goal>\n<persona>HR Data Analyst.</persona>\n<dataset_name>HR management</dataset_name>\n<indicator_list>[{'name': 'missing_inconsistent_data', 'description': 'Any missing values in critical fields like assigned_group, assignee, resolved_date, or requester should be flagged.', 'threshold': 'Rows with over 5% missing critical fields should be excluded or revisited.'}, {'name': 'sla_breach_analysis', 'description': 'Identify instances where SLA (Service Level Agreement) breaches occur, particularly in high-priority tickets.', 'threshold': 'More than 10% of high-priority tickets should be reviewed for SLA compliance.'}, {'name': 'status_discrepancies', 'description': \"Check for inconsistencies in the status field, such as tickets marked as 'resolved' but still have open issues.\", 'threshold': \"Any tickets with status 'resolved' but unresolved dates should be flagged for review.\"}, {'name': 'time_to_resolution_outliers', 'description': 'Analyze the time_to_resolution for outliers that significantly exceed the average resolution time.', 'threshold': 'Tickets with time_to_resolution greater than 2 standard deviations from the mean should be investigated.'}, {'name': 'priority_distribution', 'description': 'Examine the distribution of request types across different priority levels to ensure balanced handling.', 'threshold': 'Any priority level with less than 5% of total tickets should be flagged for potential review.'}, {'name': 'category_subcategory_mismatch', 'description': 'Identify tickets where the category does not align with the subcategory assigned.', 'threshold': 'Any tickets with mismatched category and subcategory should be reviewed for accuracy.'}, {'name': 'assignee workload imbalance', 'description': 'Monitor the distribution of tickets among assignees to identify potential workload imbalances.', 'threshold': 'Any assignee with more than 20% of total tickets should be flagged for workload review.'}, {'name': 'impact assessment', 'description': 'Evaluate the impact ratings assigned to tickets to ensure they are consistent with the request type and priority.', 'threshold': 'Any tickets with high impact but low priority should be reviewed for potential misclassification.'}, {'name': 'resolution_description completeness', 'description': 'Check for completeness and clarity in the resolution_description field to ensure proper documentation.', 'threshold': 'Any tickets with resolution descriptions shorter than 10 words should be flagged for review.'}, {'name': 'requester engagement', 'description': 'Analyze the frequency of requests from each requester to identify potential patterns or engagement issues.', 'threshold': 'Requesters with more than 5 open tickets should be flagged for follow-up.'}]</indicator_list>\n\nGiven the schema:\\n\nColumn: employee_id (float64)\n  missing_count: 0\n  unique_count: 8000\n  min: 1.0\n  max: 8000.0\n  mean: 4000.5\n  std: 2309.5454098155333\nColumn: first_name (object)\n  missing_count: 0\n  unique_count: 649\n  top5_unique_values: ['Michael', 'Jennifer', 'Christopher', 'David', 'James']\nColumn: last_name (object)\n  missing_count: 0\n  unique_count: 970\n  top5_unique_values: ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown']\nColumn: department (object)\n  missing_count: 0\n  unique_count: 6\n  top5_unique_values: ['Operations', 'Sales', 'Finance', 'Marketing', 'HR']\nColumn: job_title (object)\n  missing_count: 0\n  unique_count: 6\n  top5_unique_values: ['Manager', 'Sales Associate', 'Senior Developer', 'HR Specialist', 'Data Analyst']\nColumn: hire_date (object)\n  missing_count: 0\n  unique_count: 3238\n  min: 2014-09-11\n  max: 2025-01-01\nColumn: employment_status (object)\n  missing_count: 0\n  unique_count: 4\n  top5_unique_values: ['Terminated', 'On Leave', 'Active', 'Inactive']\nColumn: salary (float64)\n  missing_count: 0\n  unique_count: 7836\n  min: 30003.83\n  max: 226186.23327000003\n  mean: 78428.6240554\n  std: 33278.686665664914\nColumn: gender (object)\n  missing_count: 0\n  unique_count: 3\n  top5_unique_values: ['Male', 'Non-binary', 'Female']\nColumn: age (float64)\n  missing_count: 0\n  unique_count: 39\n  min: 22.0\n  max: 60.0\n  mean: 41.095875\n  std: 11.264081983332725\nColumn: performance_rating (float64)\n  missing_count: 0\n  unique_count: 5\n  min: 1.0\n  max: 5.0\n  mean: 3.05475\n  std: 1.4277630233713028\nColumn: years_at_company (float64)\n  missing_count: 0\n  unique_count: 11\n  min: 0.0\n  max: 10.0\n  mean: 4.578\n  std: 2.8702692914996173\n\n\nColumn 'employee_id' examples\n    1.0\n    2.0\n\nColumn 'first_name' examples\n    Ian\n    Juan\n\nColumn 'last_name' examples\n    Rodriguez\n    Cruz\n\nColumn 'department' examples\n    HR\n    Sales\n\nColumn 'job_title' examples\n    Senior Developer\n\nColumn 'hire_date' examples\n    2015-06-21\n    2019-04-20\n\nColumn 'employment_status' examples\n    Terminated\n\nColumn 'salary' examples\n    45913.36\n    80292.01\n\nColumn 'gender' examples\n    Non-binary\n\nColumn 'age' examples\n    36.0\n    38.0\n\nColumn 'performance_rating' examples\n    3.0\n    1.0\n\nColumn 'years_at_company' examples\n    9.0\n    5.0\n\n\n\nGiven the data path:\\n\n/mnt/home/projects/agent-poirot/web/static/users/guest/human_resources/dataset.csv\n\nGiven the list of predefined functions in poirot.tools module and their example usage:\\n\\n\nplot_bar(df: pandas.core.frame.DataFrame, plot_column: str, count_column: str, plot_title: str) -> None:\nCreates a bar plot with `plot_column` on x-axis and `count_column` on y-axis using Seaborn.\n\nThis plot is useful for answering questions like:\n- \"What are the counts of each category in the dataset?\"\n- \"How does the frequency of categories compare?\"\n\nArgs:\n    df (pd.DataFrame): DataFrame containing the data.\n    plot_column (str): Column name for x-axis (categorical data).\n    count_column (str): Column name for y-axis (numerical counts).\n    plot_title (str): Title of the plot.\n====================\n\nplot_boxplot(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, plot_title: str) -> None:\nGenerates a box plot using Seaborn to show the distribution of `y_column` values across different categories in `x_column`.\n\nThis plot is useful for answering questions like:\n- \"How does the distribution of values differ between categories?\"\n- \"Are there any outliers or variations in the data?\"\n\nArgs:\n    df (pd.DataFrame): DataFrame containing the data.\n    x_column (str): Column name for x-axis (categories).\n    y_column (str): Column name for y-axis (numerical values).\n    plot_title (str): Title of the plot.\n====================\n\nplot_correlation_matrix(df: pandas.core.frame.DataFrame, plot_title: str) -> None:\nCreates a heatmap for the correlation matrix of numeric columns using Seaborn.\n\nThis plot is useful for answering questions like:\n- \"What is the correlation between different variables in the dataset?\"\n- \"Are there any strong relationships or dependencies between variables?\"\n\nArgs:\n    df (pd.DataFrame): DataFrame containing the data.\n    plot_title (str): Title of the plot.\n====================\n\nplot_density_plot(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, plot_title: str) -> None:\nGenerates a density plot showing the distribution of values in a 2D space defined by `x_column` and `y_column` using Seaborn.\n\nThis plot is useful for answering questions like:\n- \"How are two variables distributed relative to each other?\"\n- \"Where are the data points concentrated in the 2D space?\"\n\nArgs:\n    df (pd.DataFrame): DataFrame containing the data.\n    x_column (str): Column name for x-axis.\n    y_column (str): Column name for y-axis.\n    plot_title (str): Title of the plot.\n====================\n\nplot_heatmap(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, z_column: str, plot_title: str) -> None:\nCreates a heatmap showing the density of values across `x_column` and `y_column` with `z_column` as intensity using Seaborn.\n\nThis plot is useful for answering questions like:\n- \"How do values vary between two dimensions?\"\n- \"Where are the hotspots or patterns in the data?\"\n\nArgs:\n    df (pd.DataFrame): DataFrame containing the data.\n    x_column (str): Column name for x-axis.\n    y_column (str): Column name for y-axis.\n    z_column (str): Column name for intensity values (color scale).\n    plot_title (str): Title of the plot.\n====================\n\n\nGive me the python code required to answer this question \"What is the average performance rating by department?\" and put a comment on top of each variable.\\n\\n\n\n* Make a single code block for starting with ```python\n* Do not produce code blocks for languages other than Python.\n* Do \"from agentpoirot.tools import func_tools\" at the beginning of the code. \n* Make sure to import all needed libraries\n* Then you must load the dataframe as df using the pd.read_csv function.\n* There are two main steps you need to do, highlight them with \"# Stage Name\" in the code.\n    - Data Manipulation: \n        * You can add additional columns to the df to get what you need for the plot.\n        * You can aggregate or group data to create summary statistics or new data structures.\n        * You can subset the data to get only the columns you need.\n        * You must not create any additional variables that is not needed for the plot and is not part of the df\n        * Each line here should start with 'df ...'\n        * never filter the number of rows in the df\n        * Use the conditions given by the question to create a new column that satisfies those conditions\n        * if you use the count_column, it has to be numeric, and it should be a column in the df and you can create one if needed\n\n    - Plotting: \n        * You must use exactly only one of the predefined plot functions mentioned above as 'func_tools.' to make and save the plot and its stats. It should be exactly one line of code\n        * Make sure you use the plotting function signature well  with keyword matching and the correct order of arguments \n        * look at the column types from the schema (like object, int, and so on) and make sure you are using the appropriate column types for the plotting function arguments\n        * make sure you use every required argument for the plotting function\n        * the function should look like 'func_tools.*(df=df, plot_column=plot_column, ....)'\n\n* End your code with ```.\n* Avoid these common errors\n    - AttributeError: 'DataFrame' object has no attribute 'tolist'\n\nOutput code:\\n",
+    "question": "What is the average performance rating by department?",
+    "stat": {
+        "columns": [
+            {
+                "column_name": "department",
+                "column_stats": {
+                    "most_frequent": "Finance",
+                    "unique_values": 6
+                },
+                "column_values": [
+                    "Finance",
+                    "Finance",
+                    "Finance",
+                    "Finance",
+                    "Finance",
+                    "Finance",
+                    "Finance",
+                    "Finance",
+                    "Finance",
+                    "Finance",
+                    "HR",
+                    "HR",
+                    "HR",
+                    "HR",
+                    "HR",
+                    "HR",
+                    "HR",
+                    "HR",
+                    "HR",
+                    "HR",
+                    "IT",
+                    "IT",
+                    "IT",
+                    "IT",
+                    "IT",
+                    "IT",
+                    "IT",
+                    "IT",
+                    "IT",
+                    "IT",
+                    "Marketing",
+                    "Marketing",
+                    "Marketing",
+                    "Marketing",
+                    "Marketing",
+                    "Marketing",
+                    "Marketing",
+                    "Marketing",
+                    "Marketing",
+                    "Marketing",
+                    "Operations",
+                    "Operations",
+                    "Operations",
+                    "Operations",
+                    "Operations",
+                    "Operations",
+                    "Operations",
+                    "Operations",
+                    "Operations",
+                    "Sales"
+                ]
+            },
+            {
+                "column_name": "performance_rating",
+                "column_stats": {
+                    "max": 3.145440844009043,
+                    "mean": 3.054967388892308,
+                    "median": 3.046151818661044,
+                    "min": 2.9939759036144578,
+                    "quantile_25": 3.0283948940793044,
+                    "quantile_50": 3.046151818661044,
+                    "quantile_75": 3.0682439765574125,
+                    "std": 0.05186518576261926
+                },
+                "column_values": [
+                    "2.9939759036144578",
+                    "2.9939759036144578",
+                    "2.9939759036144578",
+                    "2.9939759036144578",
+                    "2.9939759036144578",
+                    "2.9939759036144578",
+                    "2.9939759036144578",
+                    "2.9939759036144578",
+                    "2.9939759036144578",
+                    "2.9939759036144578",
+                    "3.023574144486692",
+                    "3.023574144486692",
+                    "3.023574144486692",
+                    "3.023574144486692",
+                    "3.023574144486692",
+                    "3.023574144486692",
+                    "3.023574144486692",
+                    "3.023574144486692",
+                    "3.023574144486692",
+                    "3.023574144486692",
+                    "3.074509803921569",
+                    "3.074509803921569",
+                    "3.074509803921569",
+                    "3.074509803921569",
+                    "3.074509803921569",
+                    "3.074509803921569",
+                    "3.074509803921569",
+                    "3.074509803921569",
+                    "3.074509803921569",
+                    "3.074509803921569",
+                    "3.145440844009043",
+                    "3.145440844009043",
+                    "3.145440844009043",
+                    "3.145440844009043",
+                    "3.145440844009043",
+                    "3.145440844009043",
+                    "3.145440844009043",
+                    "3.145440844009043",
+                    "3.145440844009043",
+                    "3.145440844009043",
+                    "3.0428571428571427",
+                    "3.0428571428571427",
+                    "3.0428571428571427",
+                    "3.0428571428571427",
+                    "3.0428571428571427",
+                    "3.0428571428571427",
+                    "3.0428571428571427",
+                    "3.0428571428571427",
+                    "3.0428571428571427",
+                    "3.0494464944649446"
+                ]
+            }
+        ],
+        "extra_stats": null
+    }
+}

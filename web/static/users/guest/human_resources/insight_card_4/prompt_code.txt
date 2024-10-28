@@ -1,0 +1,226 @@
+Given the following meta information:\n
+<description>The HR dataset is a comprehensive collection of employee-related data gathered over time to help the HR team make informed decisions about workforce management, recruitment, retention, and performance improvement. This dataset captures various aspects of an employee’s lifecycle within the organization, from hiring to exit, and includes key metrics and performance indicators.</description>
+<goal>Reduce Employee Turnover and Improve Retention Strategies.</goal>
+<persona>HR Data Analyst.</persona>
+<dataset_name>HR management</dataset_name>
+<indicator_list>[{'name': 'missing_inconsistent_data', 'description': 'Any missing values in critical fields like assigned_group, assignee, resolved_date, or requester should be flagged.', 'threshold': 'Rows with over 5% missing critical fields should be excluded or revisited.'}, {'name': 'sla_breach_analysis', 'description': 'Identify instances where SLA (Service Level Agreement) breaches occur, particularly in high-priority tickets.', 'threshold': 'More than 10% of high-priority tickets should be reviewed for SLA compliance.'}, {'name': 'status_discrepancies', 'description': "Check for inconsistencies in the status field, such as tickets marked as 'resolved' but still have open issues.", 'threshold': "Any tickets with status 'resolved' but unresolved dates should be flagged for review."}, {'name': 'time_to_resolution_outliers', 'description': 'Analyze the time_to_resolution for outliers that significantly exceed the average resolution time.', 'threshold': 'Tickets with time_to_resolution greater than 2 standard deviations from the mean should be investigated.'}, {'name': 'priority_distribution', 'description': 'Examine the distribution of request types across different priority levels to ensure balanced handling.', 'threshold': 'Any priority level with less than 5% of total tickets should be flagged for potential review.'}, {'name': 'category_subcategory_mismatch', 'description': 'Identify tickets where the category does not align with the subcategory assigned.', 'threshold': 'Any tickets with mismatched category and subcategory should be reviewed for accuracy.'}, {'name': 'assignee workload imbalance', 'description': 'Monitor the distribution of tickets among assignees to identify potential workload imbalances.', 'threshold': 'Any assignee with more than 20% of total tickets should be flagged for workload review.'}, {'name': 'impact assessment', 'description': 'Evaluate the impact ratings assigned to tickets to ensure they are consistent with the request type and priority.', 'threshold': 'Any tickets with high impact but low priority should be reviewed for potential misclassification.'}, {'name': 'resolution_description completeness', 'description': 'Check for completeness and clarity in the resolution_description field to ensure proper documentation.', 'threshold': 'Any tickets with resolution descriptions shorter than 10 words should be flagged for review.'}, {'name': 'requester engagement', 'description': 'Analyze the frequency of requests from each requester to identify potential patterns or engagement issues.', 'threshold': 'Requesters with more than 5 open tickets should be flagged for follow-up.'}]</indicator_list>
+
+Given the schema:\n
+Column: employee_id (float64)
+  missing_count: 0
+  unique_count: 8000
+  min: 1.0
+  max: 8000.0
+  mean: 4000.5
+  std: 2309.5454098155333
+Column: first_name (object)
+  missing_count: 0
+  unique_count: 649
+  top5_unique_values: ['Michael', 'Jennifer', 'Christopher', 'David', 'James']
+Column: last_name (object)
+  missing_count: 0
+  unique_count: 970
+  top5_unique_values: ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown']
+Column: department (object)
+  missing_count: 0
+  unique_count: 6
+  top5_unique_values: ['Operations', 'Sales', 'Finance', 'Marketing', 'HR']
+Column: job_title (object)
+  missing_count: 0
+  unique_count: 6
+  top5_unique_values: ['Manager', 'Sales Associate', 'Senior Developer', 'HR Specialist', 'Data Analyst']
+Column: hire_date (object)
+  missing_count: 0
+  unique_count: 3238
+  min: 2014-09-11
+  max: 2025-01-01
+Column: employment_status (object)
+  missing_count: 0
+  unique_count: 4
+  top5_unique_values: ['Terminated', 'On Leave', 'Active', 'Inactive']
+Column: salary (float64)
+  missing_count: 0
+  unique_count: 7836
+  min: 30003.83
+  max: 226186.23327000003
+  mean: 78428.6240554
+  std: 33278.686665664914
+Column: gender (object)
+  missing_count: 0
+  unique_count: 3
+  top5_unique_values: ['Male', 'Non-binary', 'Female']
+Column: age (float64)
+  missing_count: 0
+  unique_count: 39
+  min: 22.0
+  max: 60.0
+  mean: 41.095875
+  std: 11.264081983332725
+Column: performance_rating (float64)
+  missing_count: 0
+  unique_count: 5
+  min: 1.0
+  max: 5.0
+  mean: 3.05475
+  std: 1.4277630233713028
+Column: years_at_company (float64)
+  missing_count: 0
+  unique_count: 11
+  min: 0.0
+  max: 10.0
+  mean: 4.578
+  std: 2.8702692914996173
+
+
+Column 'employee_id' examples
+    1.0
+    2.0
+
+Column 'first_name' examples
+    Ian
+    Juan
+
+Column 'last_name' examples
+    Rodriguez
+    Cruz
+
+Column 'department' examples
+    HR
+    Sales
+
+Column 'job_title' examples
+    Senior Developer
+
+Column 'hire_date' examples
+    2015-06-21
+    2019-04-20
+
+Column 'employment_status' examples
+    Terminated
+
+Column 'salary' examples
+    45913.36
+    80292.01
+
+Column 'gender' examples
+    Non-binary
+
+Column 'age' examples
+    36.0
+    38.0
+
+Column 'performance_rating' examples
+    3.0
+    1.0
+
+Column 'years_at_company' examples
+    9.0
+    5.0
+
+
+
+Given the data path:\n
+/mnt/home/projects/agent-poirot/web/static/users/guest/human_resources/dataset.csv
+
+Given the list of predefined functions in poirot.tools module and their example usage:\n\n
+plot_bar(df: pandas.core.frame.DataFrame, plot_column: str, count_column: str, plot_title: str) -> None:
+Creates a bar plot with `plot_column` on x-axis and `count_column` on y-axis using Seaborn.
+
+This plot is useful for answering questions like:
+- "What are the counts of each category in the dataset?"
+- "How does the frequency of categories compare?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    plot_column (str): Column name for x-axis (categorical data).
+    count_column (str): Column name for y-axis (numerical counts).
+    plot_title (str): Title of the plot.
+====================
+
+plot_boxplot(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, plot_title: str) -> None:
+Generates a box plot using Seaborn to show the distribution of `y_column` values across different categories in `x_column`.
+
+This plot is useful for answering questions like:
+- "How does the distribution of values differ between categories?"
+- "Are there any outliers or variations in the data?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    x_column (str): Column name for x-axis (categories).
+    y_column (str): Column name for y-axis (numerical values).
+    plot_title (str): Title of the plot.
+====================
+
+plot_correlation_matrix(df: pandas.core.frame.DataFrame, plot_title: str) -> None:
+Creates a heatmap for the correlation matrix of numeric columns using Seaborn.
+
+This plot is useful for answering questions like:
+- "What is the correlation between different variables in the dataset?"
+- "Are there any strong relationships or dependencies between variables?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    plot_title (str): Title of the plot.
+====================
+
+plot_density_plot(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, plot_title: str) -> None:
+Generates a density plot showing the distribution of values in a 2D space defined by `x_column` and `y_column` using Seaborn.
+
+This plot is useful for answering questions like:
+- "How are two variables distributed relative to each other?"
+- "Where are the data points concentrated in the 2D space?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    x_column (str): Column name for x-axis.
+    y_column (str): Column name for y-axis.
+    plot_title (str): Title of the plot.
+====================
+
+plot_heatmap(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, z_column: str, plot_title: str) -> None:
+Creates a heatmap showing the density of values across `x_column` and `y_column` with `z_column` as intensity using Seaborn.
+
+This plot is useful for answering questions like:
+- "How do values vary between two dimensions?"
+- "Where are the hotspots or patterns in the data?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    x_column (str): Column name for x-axis.
+    y_column (str): Column name for y-axis.
+    z_column (str): Column name for intensity values (color scale).
+    plot_title (str): Title of the plot.
+====================
+
+
+Give me the python code required to answer this question "What is the turnover rate by department and how does it correlate with performance ratings?
+" and put a comment on top of each variable.\n\n
+
+* Make a single code block for starting with ```python
+* Do not produce code blocks for languages other than Python.
+* Do "from agentpoirot.tools import func_tools" at the beginning of the code. 
+* Make sure to import all needed libraries
+* Then you must load the dataframe as df using the pd.read_csv function.
+* There are two main steps you need to do, highlight them with "# Stage Name" in the code.
+    - Data Manipulation: 
+        * You can add additional columns to the df to get what you need for the plot.
+        * You can aggregate or group data to create summary statistics or new data structures.
+        * You can subset the data to get only the columns you need.
+        * You must not create any additional variables that is not needed for the plot and is not part of the df
+        * Each line here should start with 'df ...'
+        * never filter the number of rows in the df
+        * Use the conditions given by the question to create a new column that satisfies those conditions
+        * if you use the count_column, it has to be numeric, and it should be a column in the df and you can create one if needed
+
+    - Plotting: 
+        * You must use exactly only one of the predefined plot functions mentioned above as 'func_tools.' to make and save the plot and its stats. It should be exactly one line of code
+        * Make sure you use the plotting function signature well  with keyword matching and the correct order of arguments 
+        * look at the column types from the schema (like object, int, and so on) and make sure you are using the appropriate column types for the plotting function arguments
+        * make sure you use every required argument for the plotting function
+        * the function should look like 'func_tools.*(df=df, plot_column=plot_column, ....)'
+
+* End your code with ```.
+* Avoid these common errors
+    - AttributeError: 'DataFrame' object has no attribute 'tolist'
+
+Output code:\n

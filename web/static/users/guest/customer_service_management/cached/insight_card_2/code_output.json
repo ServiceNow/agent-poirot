@@ -1,0 +1,201 @@
+{
+    "code": "```python\nfrom agentpoirot.tools import func_tools\nimport pandas as pd\n\n# Load the dataset into a DataFrame\ndf = pd.read_csv('/mnt/home/projects/research-skilled-poirot/web/static/users/issam.laradji@servicenow.com/customer_service_management/dataset.csv')\n\n# Data Manipulation\n# Create a new column to categorize case resolution times based on priority\ndf['priority_case_duration'] = df['rpt_case_resolve_duration']  # Use resolution duration for analysis\n# Create a new column to identify high and low priority cases\ndf['priority_category'] = df['priority'].apply(lambda x: 'High' if x == 'High' else 'Low')  # Categorize based on priority\n\n# Stage Name: Plotting\n# Use the plot_boxplot function to visualize case resolution times for high-priority vs low-priority cases\nfunc_tools.plot_boxplot(df=df, x_column='priority_category', y_column='priority_case_duration', plot_title='Case Resolution Times for High vs Low Priority Cases')\n```",
+    "code_output": "",
+    "code_time": 5.864840984344482,
+    "message": "",
+    "meta_dict": {
+        "dataset_name": "Customer Support Management (CSM)",
+        "description": "The dataset captures customer service management cases, including details on case durations, assignments, escalations, and SLAs. Potential trends include case resolution efficiency, SLA compliance, and the impact of escalations, priority, and outages on service performance.",
+        "goal": "Optimize service efficiency and resolution times.",
+        "indicator_list": [
+            {
+                "description": "Any missing values in critical fields like assigned_to, resolved_by, closed_at, or number should be flagged.",
+                "name": "missing_inconsistent_data",
+                "threshold": "Rows with over 5% missing critical fields should be excluded or revisited."
+            },
+            {
+                "description": "Any case where rpt_case_duration or rpt_case_resolve_duration is 3x greater than the average duration.",
+                "name": "case_duration_metrics",
+                "threshold": "Investigate all cases with durations exceeding the average by a factor of 3 or more."
+            },
+            {
+                "description": "More than 2 escalations or 3 reassignments.",
+                "name": "escalation_and_reassignment_patterns",
+                "threshold": "Escalations or reassignments beyond these thresholds should be reviewed."
+            },
+            {
+                "description": "Any case where made_sla == False should be flagged.",
+                "name": "sla_met_or_breached",
+                "threshold": "Cross-check SLA breaches with high-priority cases or urgent cases."
+            },
+            {
+                "description": "High impact cases with a low or medium priority.",
+                "name": "impact_priority_mismatch",
+                "threshold": "Any mismatch between impact and priority should be investigated."
+            },
+            {
+                "description": "If outage_duration is greater than 24 hours or if the gap between outage_start_time and resolved_at exceeds 12 hours for critical services.",
+                "name": "outage_duration_resolution_timing",
+                "threshold": "Cases exceeding these thresholds should be reviewed."
+            },
+            {
+                "description": "A gap of more than 48 hours between resolved_at and closed_at.",
+                "name": "resolution_timeliness_and_closed_cases",
+                "threshold": "Any case that takes more than 48 hours to close after resolution should be flagged."
+            },
+            {
+                "description": "Categories or subcategories that account for more than 20% of the total cases.",
+                "name": "frequent_categories_subcategories",
+                "threshold": "High-frequency categories or subcategories should be reviewed."
+            },
+            {
+                "description": "Locations or languages that account for more than 15% of total cases but show a 50% higher case duration than average.",
+                "name": "language_location_analysis",
+                "threshold": "Any such location or language group should be reviewed."
+            },
+            {
+                "description": "Cases where escalated == True and escalation_count > 1 in less than 24 hours after being opened.",
+                "name": "escalation_triggers",
+                "threshold": "These cases may indicate that initial assignments are going to unqualified teams."
+            }
+        ],
+        "persona": "CSM efficiency and performance evaluator."
+    },
+    "n_retries": 0,
+    "output_folder": "static/users/issam.laradji@servicenow.com/customer_service_management/insight_card_2",
+    "plot": {
+        "name": "static/users/issam.laradji@servicenow.com/customer_service_management/insight_card_2/plot.jpg",
+        "type": "plot"
+    },
+    "prompt": "Given the following meta information:\\n\n<description>The dataset captures customer service management cases, including details on case durations, assignments, escalations, and SLAs. Potential trends include case resolution efficiency, SLA compliance, and the impact of escalations, priority, and outages on service performance.</description>\n<goal>Optimize service efficiency and resolution times.</goal>\n<persona>CSM efficiency and performance evaluator.</persona>\n<dataset_name>Customer Support Management (CSM)</dataset_name>\n<indicator_list>[{'name': 'missing_inconsistent_data', 'description': 'Any missing values in critical fields like assigned_to, resolved_by, closed_at, or number should be flagged.', 'threshold': 'Rows with over 5% missing critical fields should be excluded or revisited.'}, {'name': 'case_duration_metrics', 'description': 'Any case where rpt_case_duration or rpt_case_resolve_duration is 3x greater than the average duration.', 'threshold': 'Investigate all cases with durations exceeding the average by a factor of 3 or more.'}, {'name': 'escalation_and_reassignment_patterns', 'description': 'More than 2 escalations or 3 reassignments.', 'threshold': 'Escalations or reassignments beyond these thresholds should be reviewed.'}, {'name': 'sla_met_or_breached', 'description': 'Any case where made_sla == False should be flagged.', 'threshold': 'Cross-check SLA breaches with high-priority cases or urgent cases.'}, {'name': 'impact_priority_mismatch', 'description': 'High impact cases with a low or medium priority.', 'threshold': 'Any mismatch between impact and priority should be investigated.'}, {'name': 'outage_duration_resolution_timing', 'description': 'If outage_duration is greater than 24 hours or if the gap between outage_start_time and resolved_at exceeds 12 hours for critical services.', 'threshold': 'Cases exceeding these thresholds should be reviewed.'}, {'name': 'resolution_timeliness_and_closed_cases', 'description': 'A gap of more than 48 hours between resolved_at and closed_at.', 'threshold': 'Any case that takes more than 48 hours to close after resolution should be flagged.'}, {'name': 'frequent_categories_subcategories', 'description': 'Categories or subcategories that account for more than 20% of the total cases.', 'threshold': 'High-frequency categories or subcategories should be reviewed.'}, {'name': 'language_location_analysis', 'description': 'Locations or languages that account for more than 15% of total cases but show a 50% higher case duration than average.', 'threshold': 'Any such location or language group should be reviewed.'}, {'name': 'escalation_triggers', 'description': 'Cases where escalated == True and escalation_count > 1 in less than 24 hours after being opened.', 'threshold': 'These cases may indicate that initial assignments are going to unqualified teams.'}]</indicator_list>\n\nGiven the schema:\\n\nColumn: active (float64)\n  missing_count: 0\n  unique_count: 2\n  min: 0.0\n  max: 1.0\n  mean: 0.480125\n  std: 0.4996360564437002\nColumn: description (object)\n  missing_count: 0\n  unique_count: 8000\n  top5_unique_values: ['Travel ask third number within table.', 'Head area but might ago letter.', 'Help without never order.', 'Involve fact again use main attorney agree.', 'Remember career leader task argue start.']\nColumn: account (object)\n  missing_count: 0\n  unique_count: 15\n  top5_unique_values: ['Garcia, Gomez and Carroll', 'Hogan-Blanchard', 'Houston, Powell and Johnson', 'Campbell LLC', 'Johnson, Barrera and Martin']\nColumn: rpt_case_duration (float64)\n  missing_count: 0\n  unique_count: 366\n  min: 1.0\n  max: 987.9983504795036\n  mean: 69.98085237553393\n  std: 111.19262634842607\nColumn: rpt_case_resolve_duration (float64)\n  missing_count: 0\n  unique_count: 366\n  min: 1.0\n  max: 990.2823713258292\n  mean: 70.0915315947914\n  std: 111.59610858466287\nColumn: assignment_group (object)\n  missing_count: 0\n  unique_count: 10\n  top5_unique_values: ['Office manager', 'Television floor manager', 'Actor', 'IT trainer', 'Editor, film/video']\nColumn: assigned_on (object)\n  missing_count: 0\n  unique_count: 8000\n  min: 2024-01-01 01:34:42.385277\n  max: 2024-09-20 13:54:06.341084\nColumn: assigned_to (object)\n  missing_count: 0\n  unique_count: 10\n  top5_unique_values: ['David Cruz', 'Ray Dennis', 'David Nelson', 'Craig Murphy', 'Ann Alexander']\nColumn: case_category (object)\n  missing_count: 0\n  unique_count: 5\n  top5_unique_values: ['behind', 'side', 'of', 'whole', 'bill']\nColumn: case_type (object)\n  missing_count: 0\n  unique_count: 5\n  top5_unique_values: ['seat', 'scientist', 'machine', 'worry', 'play']\nColumn: category (object)\n  missing_count: 0\n  unique_count: 5\n  top5_unique_values: ['present', 'citizen', 'wrong', 'economic', 'nothing']\nColumn: category_changed (float64)\n  missing_count: 0\n  unique_count: 2\n  min: 0.0\n  max: 1.0\n  mean: 0.502625\n  std: 0.5000243618268039\nColumn: category_predicted (float64)\n  missing_count: 0\n  unique_count: 2\n  min: 0.0\n  max: 1.0\n  mean: 0.495\n  std: 0.5000062507422759\nColumn: closed_at (object)\n  missing_count: 0\n  unique_count: 8000\n  min: 2024-01-02 09:37:15.597907\n  max: 2024-09-08 03:41:02.645696\nColumn: closed_by (object)\n  missing_count: 0\n  unique_count: 10\n  top5_unique_values: ['Stephen Meyer', 'Mrs. Madison Long', 'David Cruz', 'Ray Dennis', 'Ann Alexander']\nColumn: sys_created_on (object)\n  missing_count: 0\n  unique_count: 8000\n  min: 2024-01-01 00:21:48.972155\n  max: 2024-09-01 04:49:47.033681\nColumn: sys_created_by (object)\n  missing_count: 0\n  unique_count: 10\n  top5_unique_values: ['Stephen Meyer', 'Brian Keller', 'Ann Alexander', 'Samantha Jones', 'Mrs. Madison Long']\nColumn: calendar_duration (float64)\n  missing_count: 0\n  unique_count: 500\n  min: 1.0\n  max: 500.0\n  mean: 250.815875\n  std: 145.10559233572033\nColumn: escalation (float64)\n  missing_count: 0\n  unique_count: 2\n  min: 0.0\n  max: 1.0\n  mean: 0.5045\n  std: 0.5000110012541443\nColumn: escalated (float64)\n  missing_count: 0\n  unique_count: 2\n  min: 0.0\n  max: 1.0\n  mean: 0.49375\n  std: 0.49999218646226407\nColumn: escalation_count (float64)\n  missing_count: 0\n  unique_count: 8\n  min: 0.0\n  max: 7.0\n  mean: 2.601375\n  std: 1.7640470776417838\nColumn: estimated_cost (float64)\n  missing_count: 0\n  unique_count: 7715\n  min: 1006.0\n  max: 99984.0\n  mean: 50583.93625\n  std: 28489.943546032046\nColumn: change (object)\n  missing_count: 0\n  unique_count: 971\n  top5_unique_values: ['answer', 'second', 'citizen', 'between', 'teach']\nColumn: impact (object)\n  missing_count: 0\n  unique_count: 3\n  top5_unique_values: ['Medium', 'Low', 'High']\nColumn: outage_duration (float64)\n  missing_count: 0\n  unique_count: 121\n  min: 0.0\n  max: 120.0\n  mean: 51.017375\n  std: 29.690579556884334\nColumn: outage_end_time (object)\n  missing_count: 0\n  unique_count: 8000\n  min: 2024-01-01 00:06:03.480874\n  max: 2024-09-03 17:46:38.942917\nColumn: outage_start_time (object)\n  missing_count: 0\n  unique_count: 8000\n  min: 2024-01-01 00:06:03.480874\n  max: 2024-09-02 03:24:28.133601\nColumn: task_count (float64)\n  missing_count: 0\n  unique_count: 10\n  min: 1.0\n  max: 10.0\n  mean: 5.55025\n  std: 2.8705408790186677\nColumn: language (object)\n  missing_count: 0\n  unique_count: 182\n  top5_unique_values: ['Burmese', 'Luba-Katanga', 'Bambara', 'Bengali', 'Vietnamese']\nColumn: location (object)\n  missing_count: 0\n  unique_count: 10\n  top5_unique_values: ['New Lindashire', 'Kristenbury', 'Hunterview', 'Durhammouth', 'Jasmineborough']\nColumn: made_sla (float64)\n  missing_count: 0\n  unique_count: 2\n  min: 0.0\n  max: 1.0\n  mean: 0.486375\n  std: 0.49984556622396803\nColumn: opened_at (object)\n  missing_count: 0\n  unique_count: 8000\n  min: 2024-01-01 00:17:27.418491\n  max: 2024-09-01 01:48:43.365054\nColumn: opened_by (object)\n  missing_count: 0\n  unique_count: 10\n  top5_unique_values: ['Samantha Jones', 'Stephen Meyer', 'Ann Alexander', 'Mrs. Madison Long', 'David Nelson']\nColumn: outage_type (object)\n  missing_count: 0\n  unique_count: 970\n  top5_unique_values: ['size', 'life', 'yard', 'per', 'either']\nColumn: p1_assist (float64)\n  missing_count: 0\n  unique_count: 2\n  min: 0.0\n  max: 1.0\n  mean: 0.505125\n  std: 0.5000049849732747\nColumn: potentially_caused_by_upgrade (float64)\n  missing_count: 0\n  unique_count: 2\n  min: 0.0\n  max: 1.0\n  mean: 0.495\n  std: 0.5000062507422759\nColumn: reassignment_count (float64)\n  missing_count: 0\n  unique_count: 13\n  min: 0.0\n  max: 12.0\n  mean: 2.7285\n  std: 1.8945940028946773\nColumn: incident (object)\n  missing_count: 0\n  unique_count: 971\n  top5_unique_values: ['draw', 'price', 'inside', 'miss', 'name']\nColumn: resolved_at (object)\n  missing_count: 0\n  unique_count: 8000\n  min: 2024-01-01 00:29:11.044701\n  max: 2024-09-03 19:36:05.339610\nColumn: resolved_by (object)\n  missing_count: 0\n  unique_count: 10\n  top5_unique_values: ['Stephen Meyer', 'Ann Alexander', 'Ray Dennis', 'David Cruz', 'Kenneth Daniels Jr.']\nColumn: subcategory (object)\n  missing_count: 0\n  unique_count: 5\n  top5_unique_values: ['present', 'nothing', 'wrong', 'citizen', 'economic']\nColumn: time_worked (float64)\n  missing_count: 0\n  unique_count: 500\n  min: 1.0\n  max: 500.0\n  mean: 252.2945\n  std: 143.3750268336154\nColumn: urgency (float64)\n  missing_count: 0\n  unique_count: 3\n  min: 1.0\n  max: 3.0\n  mean: 2.0045\n  std: 0.8194898995484526\nColumn: state (object)\n  missing_count: 0\n  unique_count: 4\n  top5_unique_values: ['In Progress', 'Closed', 'Open', 'Reopened']\nColumn: priority (object)\n  missing_count: 0\n  unique_count: 3\n  top5_unique_values: ['Low', 'Medium', 'High']\nColumn: number (object)\n  missing_count: 0\n  unique_count: 8000\n  top5_unique_values: ['6042f8ae-03ec-4d3e-ac3f-690d765d58f2', '9ade9079-81e3-4838-a833-b9b7ae1a8fde', '2e35f683-7f51-48b5-bc22-e0ffc686cc15', '0ef2d983-6d23-4c38-8d57-f1968f0d47a4', 'd6dbcac0-3962-48b0-ab28-42081e1e6709']\n\n\nColumn 'active' examples\n    1.0\n    0.0\n\nColumn 'description' examples\n    Travel ask third number within table.\n    Brother during reduce job style.\n\nColumn 'account' examples\n    Robertson, Cardenas and Morgan\n    Cohen-Ramirez\n\nColumn 'rpt_case_duration' examples\n    22.0\n    41.0\n\nColumn 'rpt_case_resolve_duration' examples\n    82.0\n    5.0\n\nColumn 'assignment_group' examples\n    Chartered certified accountant\n\nColumn 'assigned_on' examples\n    2024-04-19 09:25:31.237050\n    2024-09-02 13:16:37.334193\n\nColumn 'assigned_to' examples\n    Stephen Meyer\n    Ann Alexander\n\nColumn 'case_category' examples\n    bill\n    behind\n\nColumn 'case_type' examples\n    scientist\n    machine\n\nColumn 'category' examples\n    wrong\n    present\n\nColumn 'category_changed' examples\n    0.0\n\nColumn 'category_predicted' examples\n    0.0\n\nColumn 'closed_at' examples\n    2024-07-28 04:29:19.473964\n    2024-06-22 17:14:39.994126\n\nColumn 'closed_by' examples\n    David Nelson\n\nColumn 'sys_created_on' examples\n    2024-04-19 09:25:31.237050\n    2024-02-04 19:34:18.321759\n\nColumn 'sys_created_by' examples\n    David Cruz\n    Craig Murphy\n\nColumn 'calendar_duration' examples\n    192.0\n    247.0\n\nColumn 'escalation' examples\n    1.0\n    0.0\n\nColumn 'escalated' examples\n    0.0\n\nColumn 'escalation_count' examples\n    5.0\n    4.0\n\nColumn 'estimated_cost' examples\n    44568.0\n    93123.0\n\nColumn 'change' examples\n    hour\n    medical\n\nColumn 'impact' examples\n    Medium\n    Low\n\nColumn 'outage_duration' examples\n    72.0\n    7.0\n\nColumn 'outage_end_time' examples\n    2024-06-03 14:32:27.742737\n    2024-05-05 14:48:52.833753\n\nColumn 'outage_start_time' examples\n    2024-04-16 15:46:05.998465\n    2024-05-05 14:48:52.833753\n\nColumn 'task_count' examples\n    1.0\n    7.0\n\nColumn 'language' examples\n    Nepali\n    Russian\n\nColumn 'location' examples\n    Saramouth\n    Loweryton\n\nColumn 'made_sla' examples\n    0.0\n    1.0\n\nColumn 'opened_at' examples\n    2024-07-13 16:09:50.537440\n    2024-03-09 07:53:42.150540\n\nColumn 'opened_by' examples\n    Kenneth Daniels Jr.\n    Stephen Meyer\n\nColumn 'outage_type' examples\n    develop\n    former\n\nColumn 'p1_assist' examples\n    0.0\n\nColumn 'potentially_caused_by_upgrade' examples\n    0.0\n\nColumn 'reassignment_count' examples\n    2.0\n    5.0\n\nColumn 'incident' examples\n    charge\n    art\n\nColumn 'resolved_at' examples\n    2024-03-03 17:17:00.997916\n    2024-08-12 06:06:12.562499\n\nColumn 'resolved_by' examples\n    Mrs. Madison Long\n\nColumn 'subcategory' examples\n    citizen\n    present\n\nColumn 'time_worked' examples\n    190.0\n    199.0\n\nColumn 'urgency' examples\n    2.0\n    1.0\n\nColumn 'state' examples\n    Closed\n\nColumn 'priority' examples\n    Low\n    Medium\n\nColumn 'number' examples\n    6042f8ae-03ec-4d3e-ac3f-690d765d58f2\n    9874aea8-00db-44d4-8b87-ad466f4dabdf\n\n\n\nGiven the data path:\\n\n/mnt/home/projects/research-skilled-poirot/web/static/users/issam.laradji@servicenow.com/customer_service_management/dataset.csv\n\nGiven the list of predefined functions in poirot.tools module and their example usage:\\n\\n\nplot_bar(df: pandas.core.frame.DataFrame, plot_column: str, count_column: str, plot_title: str) -> None:\nCreates a bar plot with `plot_column` on x-axis and `count_column` on y-axis using Seaborn.\n\nThis plot is useful for answering questions like:\n- \"What are the counts of each category in the dataset?\"\n- \"How does the frequency of categories compare?\"\n\nArgs:\n    df (pd.DataFrame): DataFrame containing the data.\n    plot_column (str): Column name for x-axis (categorical data).\n    count_column (str): Column name for y-axis (numerical counts).\n    plot_title (str): Title of the plot.\n====================\n\nplot_boxplot(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, plot_title: str) -> None:\nGenerates a box plot using Seaborn to show the distribution of `y_column` values across different categories in `x_column`.\n\nThis plot is useful for answering questions like:\n- \"How does the distribution of values differ between categories?\"\n- \"Are there any outliers or variations in the data?\"\n\nArgs:\n    df (pd.DataFrame): DataFrame containing the data.\n    x_column (str): Column name for x-axis (categories).\n    y_column (str): Column name for y-axis (numerical values).\n    plot_title (str): Title of the plot.\n====================\n\nplot_correlation_matrix(df: pandas.core.frame.DataFrame, plot_title: str) -> None:\nCreates a heatmap for the correlation matrix of numeric columns using Seaborn.\n\nThis plot is useful for answering questions like:\n- \"What is the correlation between different variables in the dataset?\"\n- \"Are there any strong relationships or dependencies between variables?\"\n\nArgs:\n    df (pd.DataFrame): DataFrame containing the data.\n    plot_title (str): Title of the plot.\n====================\n\nplot_density_plot(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, plot_title: str) -> None:\nGenerates a density plot showing the distribution of values in a 2D space defined by `x_column` and `y_column` using Seaborn.\n\nThis plot is useful for answering questions like:\n- \"How are two variables distributed relative to each other?\"\n- \"Where are the data points concentrated in the 2D space?\"\n\nArgs:\n    df (pd.DataFrame): DataFrame containing the data.\n    x_column (str): Column name for x-axis.\n    y_column (str): Column name for y-axis.\n    plot_title (str): Title of the plot.\n====================\n\nplot_heatmap(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, z_column: str, plot_title: str) -> None:\nCreates a heatmap showing the density of values across `x_column` and `y_column` with `z_column` as intensity using Seaborn.\n\nThis plot is useful for answering questions like:\n- \"How do values vary between two dimensions?\"\n- \"Where are the hotspots or patterns in the data?\"\n\nArgs:\n    df (pd.DataFrame): DataFrame containing the data.\n    x_column (str): Column name for x-axis.\n    y_column (str): Column name for y-axis.\n    z_column (str): Column name for intensity values (color scale).\n    plot_title (str): Title of the plot.\n====================\n\n\nGive me the python code required to answer this question \"What are the case resolution times for high-priority cases compared to low-priority cases?\" and put a comment on top of each variable.\\n\\n\n\n* Make a single code block for starting with ```python\n* Do not produce code blocks for languages other than Python.\n* Do \"from agentpoirot.tools import func_tools\" at the beginning of the code. \n* Make sure to import all needed libraries\n* Then you must load the dataframe as df using the pd.read_csv function.\n* There are two main steps you need to do, highlight them with \"# Stage Name\" in the code.\n    - Data Manipulation: \n        * You can add additional columns to the df to get what you need for the plot.\n        * You can aggregate or group data to create summary statistics or new data structures.\n        * You can subset the data to get only the columns you need.\n        * You must not create any additional variables that is not needed for the plot and is not part of the df\n        * Each line here should start with 'df ...'\n        * never filter the number of rows in the df\n        * Use the conditions given by the question to create a new column that satisfies those conditions\n        * if you use the count_column, it has to be numeric, and it should be a column in the df and you can create one if needed\n\n    - Plotting: \n        * You must use exactly only one of the predefined plot functions mentioned above as 'func_tools.' to make and save the plot and its stats. It should be exactly one line of code\n        * Make sure you use the plotting function signature well  with keyword matching and the correct order of arguments \n        * look at the column types from the schema (like object, int, and so on) and make sure you are using the appropriate column types for the plotting function arguments\n        * make sure you use every required argument for the plotting function\n        * the function should look like 'func_tools.*(df=df, plot_column=plot_column, ....)'\n\n* End your code with ```.\n* Avoid these common errors\n    - AttributeError: 'DataFrame' object has no attribute 'tolist'\n\nOutput code:\\n",
+    "question": "What are the case resolution times for high-priority cases compared to low-priority cases?",
+    "stat": {
+        "columns": [
+            {
+                "column_name": "priority_category",
+                "column_stats": {
+                    "most_frequent": "Low",
+                    "unique_values": 2
+                },
+                "column_values": [
+                    "Low",
+                    "Low",
+                    "High",
+                    "Low",
+                    "Low",
+                    "High",
+                    "High",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "High",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "High",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "High",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "High",
+                    "High",
+                    "High",
+                    "Low",
+                    "High",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "Low",
+                    "High",
+                    "Low",
+                    "High"
+                ]
+            },
+            {
+                "column_name": "priority_case_duration",
+                "column_stats": {
+                    "max": 990.2823713258292,
+                    "mean": 70.0915315947914,
+                    "median": 53.0,
+                    "min": 1.0,
+                    "quantile_25": 27.0,
+                    "quantile_50": 53.0,
+                    "quantile_75": 78.0,
+                    "std": 111.59610858466287
+                },
+                "column_values": [
+                    "82.0",
+                    "16.0",
+                    "48.0",
+                    "12.0",
+                    "81.0",
+                    "12.0",
+                    "18.0",
+                    "14.0",
+                    "615.6216659675324",
+                    "12.0",
+                    "21.0",
+                    "86.0",
+                    "22.0",
+                    "82.0",
+                    "26.0",
+                    "64.0",
+                    "76.0",
+                    "21.0",
+                    "52.0",
+                    "20.0",
+                    "43.0",
+                    "27.0",
+                    "53.0",
+                    "42.0",
+                    "72.0",
+                    "13.0",
+                    "79.0",
+                    "63.0",
+                    "36.0",
+                    "42.0",
+                    "93.0",
+                    "27.0",
+                    "30.0",
+                    "83.0",
+                    "49.0",
+                    "33.0",
+                    "28.0",
+                    "78.0",
+                    "65.0",
+                    "66.0",
+                    "69.0",
+                    "92.0",
+                    "49.0",
+                    "41.0",
+                    "29.0",
+                    "39.0",
+                    "89.0",
+                    "6.0",
+                    "34.0",
+                    "99.0"
+                ]
+            }
+        ],
+        "extra_stats": null
+    }
+}

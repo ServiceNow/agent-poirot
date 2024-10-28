@@ -1,0 +1,86 @@
+[
+    {
+        "question": "What is the average salary by department?",
+        "triggers": ["Salary Distribution", "Departmental Analysis"]
+    },
+    {
+        "question": "How many employees have been with the company for more than 5 years?",
+        "triggers": ["Employee Tenure", "Retention Rates"]
+    },
+    {
+        "question": "What is the distribution of performance ratings across different job titles?",
+        "triggers": ["Performance Metrics", "Job Title Analysis"]
+    },
+    {
+        "question": "Are there any gender disparities in salary within the same job title?",
+        "triggers": ["Gender Pay Gap", "Equity Analysis"]
+    },
+    {
+        "question": "What percentage of employees are currently on leave versus active?",
+        "triggers": ["Employment Status Metrics", "Leave Analysis"]
+    },
+    {
+        "question": "How many employees have received a promotion in the last year?",
+        "triggers": ["Promotion Rates", "Career Progression"]
+    },
+    {
+        "question": "What is the average age of employees in each department?",
+        "triggers": ["Age Demographics", "Departmental Analysis"]
+    },
+    {
+        "question": "What is the turnover rate for employees who have been with the company for less than 2 years?",
+        "triggers": ["Turnover Analysis", "Retention Strategies"]
+    },
+    {
+        "question": "How does the average performance rating correlate with years at the company?",
+        "triggers": ["Performance vs. Tenure", "Employee Development"]
+    },
+    {
+        "question": "What is the average time to promotion for employees in different departments?",
+        "triggers": ["Promotion Timeline", "Departmental Growth"]
+    },
+    {
+        "question": "Are there any patterns in termination dates related to performance ratings?",
+        "triggers": ["Termination Analysis", "Performance Correlation"]
+    },
+    {
+        "question": "What is the average salary increase after a promotion?",
+        "triggers": ["Salary Growth", "Promotion Impact"]
+    },
+    {
+        "question": "How many employees have a manager with a high performance rating?",
+        "triggers": ["Manager Performance", "Team Dynamics"]
+    },
+    {
+        "question": "What is the average length of employment for terminated employees?",
+        "triggers": ["Termination Analysis", "Employee Lifecycle"]
+    },
+    {
+        "question": "How does the average salary compare between different job titles?",
+        "triggers": ["Salary Comparison", "Job Title Analysis"]
+    },
+    {
+        "question": "What is the ratio of male to female employees in leadership positions?",
+        "triggers": ["Diversity Metrics", "Leadership Analysis"]
+    },
+    {
+        "question": "How many employees have not received a performance review in the last year?",
+        "triggers": ["Performance Review Metrics", "Employee Engagement"]
+    },
+    {
+        "question": "What is the average time between hire date and first promotion?",
+        "triggers": ["Promotion Timeline", "Employee Development"]
+    },
+    {
+        "question": "Are there any departments with unusually high turnover rates?",
+        "triggers": ["Turnover Analysis", "Departmental Health"]
+    },
+    {
+        "question": "What is the average age of employees who have been promoted?",
+        "triggers": ["Promotion Demographics", "Career Progression"]
+    },
+    {
+        "question": "How many employees are eligible for retirement in the next 5 years?",
+        "triggers": ["Retirement Planning", "Succession Planning"]
+    }
+]

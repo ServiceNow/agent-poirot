@@ -1,0 +1,19 @@
+You failed.
+
+Instructions:
+-------------
+{initial_prompt}
+-------------
+
+Completion:
+-------------
+{prev_output}
+-------------
+
+Above, the Completion did not satisfy the constraints given in the Instructions.
+Error:
+-------------
+{error}
+-------------
+
+Please try again. Do not apologize. Please only respond with an answer that satisfies the constraints laid out in the Instructions:

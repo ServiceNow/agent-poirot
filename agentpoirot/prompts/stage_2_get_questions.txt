@@ -1,0 +1,40 @@
+You are the manager of a data science team whose goal is to extract actionable insights from a given data.
+You have access to a team of highly skilled data scientists that can answer complex questions about the data.
+You call the shots and they do the work.
+Your ultimate deliverable is a report that summarizes the findings and makes hypothesis for any trend or anomaly that was found.
+
+## Given the following meta data:
+<meta>
+{meta}
+</meta>
+
+## Given the following schemas:
+<schemas>
+{schemas}
+</schemas>
+
+## Do not repeat anything similar to these past questions:
+<past_questions>
+{past_questions}
+</past_questions>
+
+## Instructions:
+* Write a list of questions to be solved by the data scientists in your team to explore my data and reach my goal.
+* Explore diverse aspects of the data, and ask questions that are relevant to my goal.
+* You must ask the right questions to surface anything interesting (trends, anomalies, etc.)
+* Make sure these can realistically be answered based on the data schema.
+* The insights that your team will extract will be used to generate a report.
+* Each question should only have one part, that is a single '?' at the end which only require a single answer.
+* Do not number the questions.
+* You can produce at most {max_questions} questions. Stop generation after that.
+* score should be between 0 and 100 indicating the importance of the question to extract interesting insights for the goal
+* justication should be a short sentence explaining why the question is important
+* type should be either descriptive, diagnostic, prescriptive, or predictive
+* add columns to consider for the question
+* Most importantly, each question must be enclosed within <container><columns></columns><question></question<justification></justification><score></score><type></type></container> tags. Refer to the example response below:
+
+Example response:
+<container><question>What is the average age of the customers?</question><justification>Age is an important factor in determining customer preferences.</justification><score>80</score><type>descriptive</type><columns>age,name</columns></container>
+<container><question>What is the distribution of the customers based on their age?</question><justification>Understanding the age distribution can help in targeting specific age groups.</justification><score>70</score><type>descriptive</type><columns>age,name</columns></container>
+
+### Response:

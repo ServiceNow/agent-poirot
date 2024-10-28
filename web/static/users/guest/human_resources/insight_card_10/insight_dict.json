@@ -1,0 +1,16 @@
+{
+    "answer": "The average performance rating by department is highest in Sales at 3.145, followed closely by IT at 3.074, while Finance has the lowest average at 2.994.",
+    "followup": "What specific factors contribute to the higher performance ratings in the Sales department compared to Finance?",
+    "header": "Sales Department Leads in Performance Ratings",
+    "indicator": "Performance ratings across departments show a clear disparity, with Finance needing attention as it falls below the overall average.",
+    "insight": "Interestingly, the Sales department has the highest average performance rating of 3.145, which is 2.5% above the overall average of 3.055, while Finance lags behind with an average of 2.994, indicating a potential area for improvement in employee performance within that department.",
+    "output_folder": "static/users/guest/human_resources/insight_card_10",
+    "plot_image": "static/users/guest/human_resources/insight_card_10/plot.jpg",
+    "question": "What is the average performance rating by department?",
+    "score": "75",
+    "severity": "medium",
+    "time_elapsed": {
+        "code_gen": 2.362708806991577,
+        "insight_gen": 2.867368698120117
+    }
+}

@@ -1,0 +1,89 @@
+{
+    "questions": [
+        "What is a major issue highlighted in the space utilization data?",
+        "Can you provide insights on critical cases?",
+        "What is the predominant sentiment observed in the feedback?",
+        "What is the trend in meeting room occupancy rates across different countries?"
+    ],
+    "insights": [
+        {
+                "id": 1,
+                "short_description": "Space Utilization Issues",
+                "description": "Space categorization constitutes 34% of all cases, making it the most common issue reported. Resolving these cases takes an average of 56 hours, which is 64% longer than other categories.",
+                "justification": {
+                    "relevance": "The most frequently reported category, accounting for 34% of all cases, is critical for optimizing space usage.",
+                    "novelty": "The new insight reveals that space categorization takes 56 hours to resolve on average, 64% higher than others.",
+                    "impact": "This highlights the need for efficiency improvements in space management.",
+                    "actionability": "Targeting space utilization processes to reduce resolution time can enhance overall operational efficiency."
+                },
+                "plot_path": "/static/assets/category.png",
+
+            "plot_path_link":  "/static/assets/plotly.html",
+                "question": "What is a major issue highlighted in the space utilization data?"
+           
+        },
+        {
+                "id": 2,
+                "short_description": "Increase in P1 Cases",
+                "description": "Critical cases rose by 33% last month, with the majority linked to overbooking (26%) and maintenance issues (12%).",
+                "justification": {
+                    "relevance": "This insight addresses the 33% increase in critical P1 cases, primarily from overbooking (26%) and maintenance (12%).",
+                    "novelty": "It reveals a significant recent rise in critical cases.",
+                    "impact": "Indicates an urgent need to mitigate these issues to prevent disruptions.",
+                    "actionability": "Implementing strategies to manage overbooking and maintenance effectively is essential."
+                },
+                "plot_path": "/static/assets/cases.png",
+
+            "plot_path_link":  "/static/assets/plotly.html",
+                "question": "Can you provide insights on critical cases?"
+          
+        },
+        {
+                "id": 3,
+                "short_description": "Only Neutral Sentiment in Feedback",
+                "description": "The neutral sentiment is likely due to the cases being related to routine maintenance and minor issues, which do not evoke strong emotions.",
+                "justification": {
+                    "relevance": "This insight provides understanding of sentiment trends related to cases, crucial for customer service improvement.",
+                    "novelty": "It uncovers that neutral sentiment is driven by routine maintenance and minor issues.",
+                    "impact": "Focusing on more emotionally engaging case handling is suggested.",
+                    "actionability": "Enhancing communication and service for routine maintenance can improve overall customer satisfaction."
+                },
+                "plot_path": "/static/assets/sentiment.png",
+                
+            "plot_path_link":  "/static/assets/plotly.html",
+                "question": "What is the predominant sentiment observed in the feedback?"
+         
+        },
+        {
+            "id": 4,
+            "short_description": "Meeting Room Occupancy Rates",
+            "description": "The United Kingdom has the highest average meeting room occupancy rate at 80%, while Brazil and India have the lowest at 55%.",
+            "justification": {
+                "relevance": "Understanding the average occupancy rates for meeting rooms over the last month is critical for optimizing resource allocation and space management in global offices.",
+                "novelty": "The new insight reveals significant variation in meeting room utilization across different countries, with the UK having the highest rate and Brazil and India the lowest.",
+                "impact": "This highlights the potential need for different space management strategies tailored to each country, ensuring efficient use of meeting rooms and improving overall operational effectiveness.",
+                "actionability": "By targeting countries with lower occupancy rates, companies can implement measures to increase room utilization. Conversely, for countries with higher rates, additional resources or alternative meeting solutions may be necessary to meet demand."
+            },
+            "plot_path": "/static/assets/plotly.png",
+            "plot_path_link":  "/static/assets/plotly.html",
+            "question": "What is the trend in meeting room occupancy rates across different countries?"
+        }
+    ],
+    "action": {
+        "description": "Create more collaborative spaces.",
+        "justification": [
+            "<strong>Based on Insight 1</strong>, creating more collaborative spaces can distribute usage more evenly and potentially reduce resolution times, optimizing space utilization.",
+            "<strong>Based on Insight 2</strong>, this can also alleviate overbooking issues by providing flexible areas, improving overall resource management and enhancing user sentiment."
+        ]
+    },
+    "summary": [
+            "<strong>Insight 1: Space Utilization Issues</strong><br>Space categorization accounts for 34% of all cases and takes 56 hours to resolve on average, 64% higher than others.",
+            "<strong>Insight 2: Increase in P1 Cases</strong><br> The number of critical cases increased by 33% last month, primarily due to overbooking (26%) and maintenance (12%).",
+        "<strong>Insight 3: Neutral Sentiment in Feedback</strong><br> Neutral sentiment is prevalent due to routine maintenance and minor issues, lacking strong emotional triggers."
+        ],
+    "meta": {
+        "persona": "The user is an Operations Manager responsible for optimizing facility space utilization.",
+        "goal": "Reduce the average resolution time for space utilization cases and improve overall space management efficiency.",
+        "kpi": "Track the frequency and resolution time of space utilization cases to identify areas for improvement."
+    }
+}

@@ -1,0 +1,23 @@
+<h2>Meta Information</h2>
+
+<p class='header2'>User Goal</p>
+<p>{{ goal }}</p>
+
+<p class='header2'>User Persona</p>
+<p>{{ persona }}</p>
+
+<hr>
+<!-- <p class='header2'>Indicator List</p> -->
+    {% for indicator in indicators %}
+        <div class='indicator'>
+            <p class='header2'>Indicator {{ loop.index }}: {{ indicator.name }}</p>
+            <ul>
+            <li><strong>Description:</strong> {{ indicator.description }}</li>
+            <li><strong>Threshold:</strong> {{ indicator.threshold }}</li>
+            </ul>
+        </div>
+    {% endfor %}
+
+<style>
+        .header2 { font-weight: bold; margin-bottom: -5px; }
+    </style>

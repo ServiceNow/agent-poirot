@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentPoirot's Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+</head>
+<body>
+<div class="banner" onclick="window.location.href='/'">
+<div class="banner-left">AgentPoirot</div>
+<div class="banner-center">
+<img src="/static/assets/agent.webp" alt="Icon" class="banner-icon">
+<span class="banner-text">Data Analytics Dashboard</span>
+</div>
+</div>
+<div style="display: flex; width: 100%;height: 100%;justify-content: center;padding: 8px">
+<div class="overlay" style="flex:1;max-width: 1200px;">
+<div class="header">
+<p id="title"></p>
+</div>
+<div class="tabs-main">
+    <button class="tablink active" onclick="openTab(event, 'Insights')">Insights</button>
+    <button class="tablink" onclick="openTab(event, 'UserInfo')">Persona, Goals & Indicators</button>
+    <!-- <button class="tablink" onclick="openTab(event, 'Summary')">Summary</button> -->
+    <!-- <button class="tablink" onclick="openTab(event, 'DatasetSummary')">Dataset Stats</button> -->
+    <button class="tablink" onclick="openTab(event, 'Dataset')">Dataset</button>
+    <!-- <button class="tablink" onclick="openTab(event, 'Enlarged')">Enlarged</button> New Tab -->
+</div>
+<div class="content">
+    <div class="tabcontent-main" id="UserInfo">
+        <div class="question-container">
+            <div class="metadata-blob" id="meta-data"></div>
+            <!-- <textarea id="meta-data-edit" style="display:none; width:100%; height:200px;"></textarea> -->
+        </div>
+        <!-- <button id="editMetadataButton" onclick="editMetadata()">Edit User Info</button> -->
+        <!-- <button id="saveMetadataButton" onclick="saveMetadata()" style="display:none;">Save</button> -->
+    </div>
+
+    <div class="tabcontent-main" id="Insights">
+        <!-- <h3>Insight Cards (Total <span id="count">1</span>) - Ask Poirot for More</h3> -->
+        <div class="question-container" id="questions-section">
+            <div class="insight-blobs" id="insight-blobs"></div>
+        </div>
+    </div>
+    <div class="tabcontent-main" id="Summary">
+        <div class="insight-blobs">
+        
+            <div class="summary-blob" id="summary-data"></div>
+            <div class="action-blob" id="action-data"></div>
+        </div>
+    </div>
+    <div class="tabcontent-main" id="DatasetSummary">
+        <div class="dataset-blobs">
+            <h2>Booking Data Summary</h2>
+            <h3>Description</h3>
+            <p>This dataset contains information about room bookings including details such as room size, capacity, booking duration, and resolution time. The feedback sentiment varies across bookings, indicating diverse user experiences.</p>
+            
+            <h3>Summary</h3>
+            
+            <div class="table-frame2" id="table-frame-stats"></div>
+        </div>
+    </div>
+
+    <div class="tabcontent-main" id="Dataset">
+        <div class="dataset-blobs">
+            <div class="table-frame" id="table-frame"></div>
+        </div>
+    </div>
+        <!-- Other tab contents -->
+</div>
+</div>
+            
+    <div class="chat-pane" id="chatPane">
+        <!-- <p style="font-size: 1.2rem;">Hello {{ user }}<br>Chat with Poirot</p> -->
+        
+        <p style="font-size: 1.2rem;text-align: center;"><span id="greeting" style="font-size: 1.2rem;">Loading...</span><br>Chat with Poirot</p>
+        <div class="chatbot-messages" id="chatbotMessages"></div>
+
+        <div class="chatbot-input">
+            <textarea id="userInput" placeholder="Type a message..." rows="1"></textarea>
+
+    <script>
+    const textarea = document.getElementById('userInput');
+    
+    textarea.addEventListener('input', function () {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+    </script>
+    <style>
+    #userInput {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+        resize: none; /* Disable manual resizing */
+    }
+    </style>
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+    <div class="chat-pane hidden" id="feedbackPane">
+        <!-- <h3>Feedback Form</h3> -->
+        <form id="feedbackForm">
+            {% include 'fragments/feedback_form.html' %}
+            <br>
+            <button type="button" id="submitFeedback" class="button-analyze">Submit Feedback</button>
+        </form>
+    </div>
+</div>
+    <script src="{{ url_for('static', filename='js/main_scripts.js') }}"></script>
+    <script src="{{url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

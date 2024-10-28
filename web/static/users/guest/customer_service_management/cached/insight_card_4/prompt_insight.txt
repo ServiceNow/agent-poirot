@@ -1,0 +1,47 @@
+### Instruction:
+You are trying to answer a question based on information provided by a data scientist.
+
+Given the meta information:
+<meta>
+    <description>The dataset captures customer service management cases, including details on case durations, assignments, escalations, and SLAs. Potential trends include case resolution efficiency, SLA compliance, and the impact of escalations, priority, and outages on service performance.</description>
+<goal>Optimize service efficiency and resolution times.</goal>
+<persona>CSM efficiency and performance evaluator.</persona>
+<dataset_name>Customer Support Management (CSM)</dataset_name>
+<indicator_list>[{'name': 'missing_inconsistent_data', 'description': 'Any missing values in critical fields like assigned_to, resolved_by, closed_at, or number should be flagged.', 'threshold': 'Rows with over 5% missing critical fields should be excluded or revisited.'}, {'name': 'case_duration_metrics', 'description': 'Any case where rpt_case_duration or rpt_case_resolve_duration is 3x greater than the average duration.', 'threshold': 'Investigate all cases with durations exceeding the average by a factor of 3 or more.'}, {'name': 'escalation_and_reassignment_patterns', 'description': 'More than 2 escalations or 3 reassignments.', 'threshold': 'Escalations or reassignments beyond these thresholds should be reviewed.'}, {'name': 'sla_met_or_breached', 'description': 'Any case where made_sla == False should be flagged.', 'threshold': 'Cross-check SLA breaches with high-priority cases or urgent cases.'}, {'name': 'impact_priority_mismatch', 'description': 'High impact cases with a low or medium priority.', 'threshold': 'Any mismatch between impact and priority should be investigated.'}, {'name': 'outage_duration_resolution_timing', 'description': 'If outage_duration is greater than 24 hours or if the gap between outage_start_time and resolved_at exceeds 12 hours for critical services.', 'threshold': 'Cases exceeding these thresholds should be reviewed.'}, {'name': 'resolution_timeliness_and_closed_cases', 'description': 'A gap of more than 48 hours between resolved_at and closed_at.', 'threshold': 'Any case that takes more than 48 hours to close after resolution should be flagged.'}, {'name': 'frequent_categories_subcategories', 'description': 'Categories or subcategories that account for more than 20% of the total cases.', 'threshold': 'High-frequency categories or subcategories should be reviewed.'}, {'name': 'language_location_analysis', 'description': 'Locations or languages that account for more than 15% of total cases but show a 50% higher case duration than average.', 'threshold': 'Any such location or language group should be reviewed.'}, {'name': 'escalation_triggers', 'description': 'Cases where escalated == True and escalation_count > 1 in less than 24 hours after being opened.', 'threshold': 'These cases may indicate that initial assignments are going to unqualified teams.'}]</indicator_list>
+</meta>
+
+
+Given the question:
+<question>How many customer support cases are resolved within the first 24 hours?</question>
+
+Given the code analysis:
+<analysis>
+    {'columns': [{'column_name': 'resolved_within_24_hours', 'column_values': ['True', 'False', 'False', 'True', 'True', 'True', 'False', 'False', 'True', 'True', 'True', 'False', 'False', 'False', 'True', 'False', 'False', 'True', 'False', 'False', 'True', 'False', 'True', 'True', 'False', 'True', 'False', 'True', 'False', 'False', 'False', 'False', 'False', 'False', 'False', 'False', 'False', 'False', 'False', 'False', 'True', 'False', 'False', 'True', 'True', 'True', 'True', 'True', 'True', 'False'], 'column_stats': {'mean': 0.341375, 'median': 0.0, 'std': 0.4742006090803833, 'min': 0.0, 'max': 1.0, 'quantile_25': 0.0, 'quantile_50': 0.0, 'quantile_75': 1.0}}, {'column_name': 'resolution_time', 'column_values': ['-3166.8804276455558', '1817.8666956497223', '4779.977548243612', '-2982.9177225375', '-2595.086962185', '-1131.8188045475', '750.4656427216667', '1499.379455264722', '-412.1823546147222', '-314.7315602088889', '-834.9002943366667', '2399.1922744963886', '922.9372376222221', '3779.699614698889', '-2078.379450859722', '4133.234782936111', '1950.2716768244445', '-676.4764958430555', '4766.696348626667', '465.5980819066667', '-96.0', '160.6846754225', '-72.0', '-395.40115183333336', '499.2983976975', '-72.0', '2331.085280066389', '-549.1056010455555', '3084.4786394019447', '2407.454432385', '955.2540760999999', '861.0949295741666', '1303.7290270311112', '3797.0301998241666', '997.4351351577778', '953.1474041672221', '2184.557496674722', '2680.6194023633334', '1121.5412472927778', '2827.8589189286113', '-921.4670710866667', '1736.8469970883334', '636.5794584105556', '-1412.5419415711112', '-3346.960502101111', '-2572.636586963056', '-4142.142356348333', '-424.48744288055553', '-2663.5891859044445', '4343.150983405'], 'column_stats': {'mean': 987.8837852111858, 'median': 961.43940879125, 'std': 2196.6282948364733, 'min': -5709.3006140025, 'max': 5858.930211201668, 'quantile_25': -455.83728520902775, 'quantile_50': 961.43940879125, 'quantile_75': 2624.4638804954166}}], 'extra_stats': None}
+</analysis>
+
+Instructions:
+* Based on the analysis and other information provided above, write an answer to the question enclosed with <question></question> tags.
+* The answer should be a single sentence, but it should not be too high level and should include the key details from justification.
+* Write your answer in HTML-like tags using all the tags in the example response below.
+* Refer to the following example response for the format of the answer and justification.
+* make sure to use the descriptions provided in the Example response below
+* Each of the tags should be in a new line and should only contain one sentence
+* Make sure all generated text easy to read and understand so it should be in laymans terms
+* Make sure all generated text is concise
+* Make sure you are very quantitative in your responses
+* For the severity, whether it is clear, low, medium, or high, it depends on how far the insight is from a dangerous threshold
+* The output for the <insight> tag should explain an interesting discovery from the plot_summary that is grounded by the meta data, the question and the indicators and include any potential concerns if there are, otherwise say how it is not concerning
+* The output for the <insight> tag should not offer any advice on what to do next
+* The output for the <insight> tag should be very specific and should use as many numbers as possible
+* The output for the <header> should summarize the biggest takeaway from the insight
+
+Example response:
+<answer>This contains a direct answer to the given question</answer>
+<header>A 7 word max header that summarizes the insight's concern or lack thereof and it should be a meaningful statement</header>
+<plot_summary>This contains a summary of the plot</plot_summary>
+<insight>This should contain the answer and also explain an interesting discovery from the plot_summary that is grounded by the meta data, the question and the indicators and explain why is it concerning or why is it not concerning. Do not offer advice on what to do next</insight>
+<indicator>Specify which indicator has been triggered or almost triggered by this plot summary or answer and give a one line explanation</indicator>
+<score>a score between 0 and 100 about how interesting and actionable this insight is</score>
+<followup>this should contain a follow up question to explore the insight further and should be easily answerable from the dataset through basic data analytics</followup>
+<severity>this should be a single word which is one of these (clear, low, medium, high)</severity>
+### Response:

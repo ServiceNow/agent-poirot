@@ -1,0 +1,12 @@
+[
+    "What percentage of cases meet the SLA requirements?",
+    "How do case durations vary by priority level?",
+    "What is the average number of escalations per case, and how does it relate to case duration?",
+    "Are there specific categories or subcategories that frequently exceed average case durations?",
+    "What is the trend of case resolution times over the reporting period?",
+    "How does the reassignment count impact case resolution times?",
+    "What is the distribution of case durations for cases with outages compared to those without?",
+    "Are there any correlations between the assigned group and case resolution efficiency?",
+    "What is the average time taken to close cases after they have been resolved?",
+    "How do case durations differ across various locations and languages?"
+]

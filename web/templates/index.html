@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentPoirot's Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main_styles.css') }}">
+
+</head>
+<body>
+    <div class="banner" onclick="window.location.href='/'">
+        <div class="banner-left">AgentPoirot</div>
+        <div class="banner-center">
+            <img src="/static/assets/agent.webp" alt="Icon" class="banner-icon">
+            <span class="banner-text">Data Analytics Dashboard</span>
+        </div>
+    </div>
+
+    <div class="overlay">
+        <div class="small-blob">
+            <img src="/static/assets/agent.webp" alt="Small Blob">
+        </div>
+        <div class="header" style="justify-content: center;display: flex;">
+            <p style="font-size: 1.7rem;">Discover Key Insights for Your Data</p>
+        </div>
+
+        <div class="horizontal-line"></div>
+ <!-- <div class="sub-header" style="font-size:1.4rem"><span style="font-size: 0.8rem;">
+                        Enter your Email First</span></div> -->
+                      
+                            
+        
+        
+        <div class="form-container">
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="dataset-input">Select Dataset:</label>
+                    <div class="select-wrapper">
+                        <select id="dataset-input" class="custom-input">
+                            <option value="house_prices">house_prices</option>
+                            <option value="human_resources" selected>human_resources</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="email-input">Write your Email:</label>
+                    <input type="email" id="email-input" class="custom-input" placeholder="Enter your email" value="guest">
+                </div>
+            </div>
+           
+            <button id="login-button" style="font-size: 18px;font-weight: bold;" onclick="handleLogin()">Get Insights</button>
+        </div>
+
+        <!-- Tabs -->
+        
+        <div id="tabs" class="tabs hidden">
+            <div class="tablink" onclick="showTab('example-datasets')">Main</div>
+            <div class="tablink " onclick="showTab('arcade')">Evaluate</div>
+            <div class="tablink hidden" onclick="showTab('searchbar')">URL</div>
+            <div class="tablink hidden" onclick="showTab('upload')">Upload</div>
+        </div>
+
+        <!-- Tab Content for Evaluations -->
+        <div id="arcade" class="tabcontent hidden">
+            <div class="container">
+                <div class="blob-group">
+                   
+                    <div class="blob-group-horizontal">
+                        <div>
+                            <div class="blob-yes" onclick="evals()">
+                                <img src="/static/assets/yes.webp" alt="yes">
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content for Example Datasets -->
+        <div id="example-datasets" class="tabcontent hidden">
+            <div class="container">
+                <div class="blob-group">
+                    <div class="sub-header-main">Choose an Example Dataset</div>
+                    <div class="blob-group-horizontal">
+                        <div >
+                            <div class="blob" onclick="toggleSelection(this)" data-topic="csm">
+                                <img src="/static/assets/csm.webp">
+                            </div>
+                            <div class="blob-text">CSM</div>
+                        </div>
+
+                        <!-- <div>
+                            <div class="blob" onclick="toggleSelection(this)" data-topic="itsm">
+                                <img src="/static/assets/office.webp">
+                            </div>
+                            <div class="blob-text">IT Service Management</div>
+                        </div> -->
+                        <!-- <div>
+                            <div class="blob" onclick="toggleSelection(this)" data-topic="hr">
+                                <img src="/static/assets/hr.webp">
+                            </div>
+                            <div class="blob-text">Human Resources</div>
+                        </div> -->
+                        <!-- <div>
+                            <div class="blob" onclick="toggleSelection(this)" data-topic="csm">
+                                <img src="/static/assets/csm.webp" alt="Customer Service">
+                            </div>
+                            <div class="blob-text">Customer Service</div>
+                        </div> -->
+                    </div>
+                    <button class="button-analyze" onclick="analyzeSelectedDatasets()">Analyze</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content for URL Input -->
+        <div id="searchbar" class="tabcontent">
+            <div class="search-bar">
+                <div class="sub-header" style="text-align: left;">Provide URL to a Table</div>
+                <input type="text" placeholder="Link here...">
+                <button class="button-analyze" onclick="analyzeData()">Analyze</button>
+                <br>
+                <strong><p style="text-align: left;font-size:1.25rem">Examples: </p></strong>
+                <ul class="example-list">
+                    <li><p style="width:120%"><strong>Titanic:</strong> https://raw.githubusercontent.com/pandas-dev/pandas/main/doc/data/titanic.csv</p></li>
+                    <li><p style="width:120%"><strong>Incident Table:</strong> https://dev239759.service-now.com/api/now/ui/meta/incident</p></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tab Content for File Upload -->
+        <div id="upload" class="tabcontent">
+            <div class="sub-header">Upload your Dataset</div>
+            <div>
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <div class="blob2" onclick="document.getElementById('csvFileInput').click()">
+                        <img src="/static/assets/upload.png" alt="Upload Data">
+                    </div>
+                    <input type="file" id="csvFileInput" name="file" accept=".csv" onchange="this.form.submit()" style="display: none;">
+                    <div class="blob-text">Supports .csv for now</div>
+                </form>
+            </div>
+        </div>
+
+
+        
+    </div>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>

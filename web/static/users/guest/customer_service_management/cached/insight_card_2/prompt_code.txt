@@ -1,0 +1,536 @@
+Given the following meta information:\n
+<description>The dataset captures customer service management cases, including details on case durations, assignments, escalations, and SLAs. Potential trends include case resolution efficiency, SLA compliance, and the impact of escalations, priority, and outages on service performance.</description>
+<goal>Optimize service efficiency and resolution times.</goal>
+<persona>CSM efficiency and performance evaluator.</persona>
+<dataset_name>Customer Support Management (CSM)</dataset_name>
+<indicator_list>[{'name': 'missing_inconsistent_data', 'description': 'Any missing values in critical fields like assigned_to, resolved_by, closed_at, or number should be flagged.', 'threshold': 'Rows with over 5% missing critical fields should be excluded or revisited.'}, {'name': 'case_duration_metrics', 'description': 'Any case where rpt_case_duration or rpt_case_resolve_duration is 3x greater than the average duration.', 'threshold': 'Investigate all cases with durations exceeding the average by a factor of 3 or more.'}, {'name': 'escalation_and_reassignment_patterns', 'description': 'More than 2 escalations or 3 reassignments.', 'threshold': 'Escalations or reassignments beyond these thresholds should be reviewed.'}, {'name': 'sla_met_or_breached', 'description': 'Any case where made_sla == False should be flagged.', 'threshold': 'Cross-check SLA breaches with high-priority cases or urgent cases.'}, {'name': 'impact_priority_mismatch', 'description': 'High impact cases with a low or medium priority.', 'threshold': 'Any mismatch between impact and priority should be investigated.'}, {'name': 'outage_duration_resolution_timing', 'description': 'If outage_duration is greater than 24 hours or if the gap between outage_start_time and resolved_at exceeds 12 hours for critical services.', 'threshold': 'Cases exceeding these thresholds should be reviewed.'}, {'name': 'resolution_timeliness_and_closed_cases', 'description': 'A gap of more than 48 hours between resolved_at and closed_at.', 'threshold': 'Any case that takes more than 48 hours to close after resolution should be flagged.'}, {'name': 'frequent_categories_subcategories', 'description': 'Categories or subcategories that account for more than 20% of the total cases.', 'threshold': 'High-frequency categories or subcategories should be reviewed.'}, {'name': 'language_location_analysis', 'description': 'Locations or languages that account for more than 15% of total cases but show a 50% higher case duration than average.', 'threshold': 'Any such location or language group should be reviewed.'}, {'name': 'escalation_triggers', 'description': 'Cases where escalated == True and escalation_count > 1 in less than 24 hours after being opened.', 'threshold': 'These cases may indicate that initial assignments are going to unqualified teams.'}]</indicator_list>
+
+Given the schema:\n
+Column: active (float64)
+  missing_count: 0
+  unique_count: 2
+  min: 0.0
+  max: 1.0
+  mean: 0.480125
+  std: 0.4996360564437002
+Column: description (object)
+  missing_count: 0
+  unique_count: 8000
+  top5_unique_values: ['Travel ask third number within table.', 'Head area but might ago letter.', 'Help without never order.', 'Involve fact again use main attorney agree.', 'Remember career leader task argue start.']
+Column: account (object)
+  missing_count: 0
+  unique_count: 15
+  top5_unique_values: ['Garcia, Gomez and Carroll', 'Hogan-Blanchard', 'Houston, Powell and Johnson', 'Campbell LLC', 'Johnson, Barrera and Martin']
+Column: rpt_case_duration (float64)
+  missing_count: 0
+  unique_count: 366
+  min: 1.0
+  max: 987.9983504795036
+  mean: 69.98085237553393
+  std: 111.19262634842607
+Column: rpt_case_resolve_duration (float64)
+  missing_count: 0
+  unique_count: 366
+  min: 1.0
+  max: 990.2823713258292
+  mean: 70.0915315947914
+  std: 111.59610858466287
+Column: assignment_group (object)
+  missing_count: 0
+  unique_count: 10
+  top5_unique_values: ['Office manager', 'Television floor manager', 'Actor', 'IT trainer', 'Editor, film/video']
+Column: assigned_on (object)
+  missing_count: 0
+  unique_count: 8000
+  min: 2024-01-01 01:34:42.385277
+  max: 2024-09-20 13:54:06.341084
+Column: assigned_to (object)
+  missing_count: 0
+  unique_count: 10
+  top5_unique_values: ['David Cruz', 'Ray Dennis', 'David Nelson', 'Craig Murphy', 'Ann Alexander']
+Column: case_category (object)
+  missing_count: 0
+  unique_count: 5
+  top5_unique_values: ['behind', 'side', 'of', 'whole', 'bill']
+Column: case_type (object)
+  missing_count: 0
+  unique_count: 5
+  top5_unique_values: ['seat', 'scientist', 'machine', 'worry', 'play']
+Column: category (object)
+  missing_count: 0
+  unique_count: 5
+  top5_unique_values: ['present', 'citizen', 'wrong', 'economic', 'nothing']
+Column: category_changed (float64)
+  missing_count: 0
+  unique_count: 2
+  min: 0.0
+  max: 1.0
+  mean: 0.502625
+  std: 0.5000243618268039
+Column: category_predicted (float64)
+  missing_count: 0
+  unique_count: 2
+  min: 0.0
+  max: 1.0
+  mean: 0.495
+  std: 0.5000062507422759
+Column: closed_at (object)
+  missing_count: 0
+  unique_count: 8000
+  min: 2024-01-02 09:37:15.597907
+  max: 2024-09-08 03:41:02.645696
+Column: closed_by (object)
+  missing_count: 0
+  unique_count: 10
+  top5_unique_values: ['Stephen Meyer', 'Mrs. Madison Long', 'David Cruz', 'Ray Dennis', 'Ann Alexander']
+Column: sys_created_on (object)
+  missing_count: 0
+  unique_count: 8000
+  min: 2024-01-01 00:21:48.972155
+  max: 2024-09-01 04:49:47.033681
+Column: sys_created_by (object)
+  missing_count: 0
+  unique_count: 10
+  top5_unique_values: ['Stephen Meyer', 'Brian Keller', 'Ann Alexander', 'Samantha Jones', 'Mrs. Madison Long']
+Column: calendar_duration (float64)
+  missing_count: 0
+  unique_count: 500
+  min: 1.0
+  max: 500.0
+  mean: 250.815875
+  std: 145.10559233572033
+Column: escalation (float64)
+  missing_count: 0
+  unique_count: 2
+  min: 0.0
+  max: 1.0
+  mean: 0.5045
+  std: 0.5000110012541443
+Column: escalated (float64)
+  missing_count: 0
+  unique_count: 2
+  min: 0.0
+  max: 1.0
+  mean: 0.49375
+  std: 0.49999218646226407
+Column: escalation_count (float64)
+  missing_count: 0
+  unique_count: 8
+  min: 0.0
+  max: 7.0
+  mean: 2.601375
+  std: 1.7640470776417838
+Column: estimated_cost (float64)
+  missing_count: 0
+  unique_count: 7715
+  min: 1006.0
+  max: 99984.0
+  mean: 50583.93625
+  std: 28489.943546032046
+Column: change (object)
+  missing_count: 0
+  unique_count: 971
+  top5_unique_values: ['answer', 'second', 'citizen', 'between', 'teach']
+Column: impact (object)
+  missing_count: 0
+  unique_count: 3
+  top5_unique_values: ['Medium', 'Low', 'High']
+Column: outage_duration (float64)
+  missing_count: 0
+  unique_count: 121
+  min: 0.0
+  max: 120.0
+  mean: 51.017375
+  std: 29.690579556884334
+Column: outage_end_time (object)
+  missing_count: 0
+  unique_count: 8000
+  min: 2024-01-01 00:06:03.480874
+  max: 2024-09-03 17:46:38.942917
+Column: outage_start_time (object)
+  missing_count: 0
+  unique_count: 8000
+  min: 2024-01-01 00:06:03.480874
+  max: 2024-09-02 03:24:28.133601
+Column: task_count (float64)
+  missing_count: 0
+  unique_count: 10
+  min: 1.0
+  max: 10.0
+  mean: 5.55025
+  std: 2.8705408790186677
+Column: language (object)
+  missing_count: 0
+  unique_count: 182
+  top5_unique_values: ['Burmese', 'Luba-Katanga', 'Bambara', 'Bengali', 'Vietnamese']
+Column: location (object)
+  missing_count: 0
+  unique_count: 10
+  top5_unique_values: ['New Lindashire', 'Kristenbury', 'Hunterview', 'Durhammouth', 'Jasmineborough']
+Column: made_sla (float64)
+  missing_count: 0
+  unique_count: 2
+  min: 0.0
+  max: 1.0
+  mean: 0.486375
+  std: 0.49984556622396803
+Column: opened_at (object)
+  missing_count: 0
+  unique_count: 8000
+  min: 2024-01-01 00:17:27.418491
+  max: 2024-09-01 01:48:43.365054
+Column: opened_by (object)
+  missing_count: 0
+  unique_count: 10
+  top5_unique_values: ['Samantha Jones', 'Stephen Meyer', 'Ann Alexander', 'Mrs. Madison Long', 'David Nelson']
+Column: outage_type (object)
+  missing_count: 0
+  unique_count: 970
+  top5_unique_values: ['size', 'life', 'yard', 'per', 'either']
+Column: p1_assist (float64)
+  missing_count: 0
+  unique_count: 2
+  min: 0.0
+  max: 1.0
+  mean: 0.505125
+  std: 0.5000049849732747
+Column: potentially_caused_by_upgrade (float64)
+  missing_count: 0
+  unique_count: 2
+  min: 0.0
+  max: 1.0
+  mean: 0.495
+  std: 0.5000062507422759
+Column: reassignment_count (float64)
+  missing_count: 0
+  unique_count: 13
+  min: 0.0
+  max: 12.0
+  mean: 2.7285
+  std: 1.8945940028946773
+Column: incident (object)
+  missing_count: 0
+  unique_count: 971
+  top5_unique_values: ['draw', 'price', 'inside', 'miss', 'name']
+Column: resolved_at (object)
+  missing_count: 0
+  unique_count: 8000
+  min: 2024-01-01 00:29:11.044701
+  max: 2024-09-03 19:36:05.339610
+Column: resolved_by (object)
+  missing_count: 0
+  unique_count: 10
+  top5_unique_values: ['Stephen Meyer', 'Ann Alexander', 'Ray Dennis', 'David Cruz', 'Kenneth Daniels Jr.']
+Column: subcategory (object)
+  missing_count: 0
+  unique_count: 5
+  top5_unique_values: ['present', 'nothing', 'wrong', 'citizen', 'economic']
+Column: time_worked (float64)
+  missing_count: 0
+  unique_count: 500
+  min: 1.0
+  max: 500.0
+  mean: 252.2945
+  std: 143.3750268336154
+Column: urgency (float64)
+  missing_count: 0
+  unique_count: 3
+  min: 1.0
+  max: 3.0
+  mean: 2.0045
+  std: 0.8194898995484526
+Column: state (object)
+  missing_count: 0
+  unique_count: 4
+  top5_unique_values: ['In Progress', 'Closed', 'Open', 'Reopened']
+Column: priority (object)
+  missing_count: 0
+  unique_count: 3
+  top5_unique_values: ['Low', 'Medium', 'High']
+Column: number (object)
+  missing_count: 0
+  unique_count: 8000
+  top5_unique_values: ['6042f8ae-03ec-4d3e-ac3f-690d765d58f2', '9ade9079-81e3-4838-a833-b9b7ae1a8fde', '2e35f683-7f51-48b5-bc22-e0ffc686cc15', '0ef2d983-6d23-4c38-8d57-f1968f0d47a4', 'd6dbcac0-3962-48b0-ab28-42081e1e6709']
+
+
+Column 'active' examples
+    1.0
+    0.0
+
+Column 'description' examples
+    Travel ask third number within table.
+    Brother during reduce job style.
+
+Column 'account' examples
+    Robertson, Cardenas and Morgan
+    Cohen-Ramirez
+
+Column 'rpt_case_duration' examples
+    22.0
+    41.0
+
+Column 'rpt_case_resolve_duration' examples
+    82.0
+    5.0
+
+Column 'assignment_group' examples
+    Chartered certified accountant
+
+Column 'assigned_on' examples
+    2024-04-19 09:25:31.237050
+    2024-09-02 13:16:37.334193
+
+Column 'assigned_to' examples
+    Stephen Meyer
+    Ann Alexander
+
+Column 'case_category' examples
+    bill
+    behind
+
+Column 'case_type' examples
+    scientist
+    machine
+
+Column 'category' examples
+    wrong
+    present
+
+Column 'category_changed' examples
+    0.0
+
+Column 'category_predicted' examples
+    0.0
+
+Column 'closed_at' examples
+    2024-07-28 04:29:19.473964
+    2024-06-22 17:14:39.994126
+
+Column 'closed_by' examples
+    David Nelson
+
+Column 'sys_created_on' examples
+    2024-04-19 09:25:31.237050
+    2024-02-04 19:34:18.321759
+
+Column 'sys_created_by' examples
+    David Cruz
+    Craig Murphy
+
+Column 'calendar_duration' examples
+    192.0
+    247.0
+
+Column 'escalation' examples
+    1.0
+    0.0
+
+Column 'escalated' examples
+    0.0
+
+Column 'escalation_count' examples
+    5.0
+    4.0
+
+Column 'estimated_cost' examples
+    44568.0
+    93123.0
+
+Column 'change' examples
+    hour
+    medical
+
+Column 'impact' examples
+    Medium
+    Low
+
+Column 'outage_duration' examples
+    72.0
+    7.0
+
+Column 'outage_end_time' examples
+    2024-06-03 14:32:27.742737
+    2024-05-05 14:48:52.833753
+
+Column 'outage_start_time' examples
+    2024-04-16 15:46:05.998465
+    2024-05-05 14:48:52.833753
+
+Column 'task_count' examples
+    1.0
+    7.0
+
+Column 'language' examples
+    Nepali
+    Russian
+
+Column 'location' examples
+    Saramouth
+    Loweryton
+
+Column 'made_sla' examples
+    0.0
+    1.0
+
+Column 'opened_at' examples
+    2024-07-13 16:09:50.537440
+    2024-03-09 07:53:42.150540
+
+Column 'opened_by' examples
+    Kenneth Daniels Jr.
+    Stephen Meyer
+
+Column 'outage_type' examples
+    develop
+    former
+
+Column 'p1_assist' examples
+    0.0
+
+Column 'potentially_caused_by_upgrade' examples
+    0.0
+
+Column 'reassignment_count' examples
+    2.0
+    5.0
+
+Column 'incident' examples
+    charge
+    art
+
+Column 'resolved_at' examples
+    2024-03-03 17:17:00.997916
+    2024-08-12 06:06:12.562499
+
+Column 'resolved_by' examples
+    Mrs. Madison Long
+
+Column 'subcategory' examples
+    citizen
+    present
+
+Column 'time_worked' examples
+    190.0
+    199.0
+
+Column 'urgency' examples
+    2.0
+    1.0
+
+Column 'state' examples
+    Closed
+
+Column 'priority' examples
+    Low
+    Medium
+
+Column 'number' examples
+    6042f8ae-03ec-4d3e-ac3f-690d765d58f2
+    9874aea8-00db-44d4-8b87-ad466f4dabdf
+
+
+
+Given the data path:\n
+/mnt/home/projects/research-skilled-poirot/web/static/users/issam.laradji@servicenow.com/customer_service_management/dataset.csv
+
+Given the list of predefined functions in poirot.tools module and their example usage:\n\n
+plot_bar(df: pandas.core.frame.DataFrame, plot_column: str, count_column: str, plot_title: str) -> None:
+Creates a bar plot with `plot_column` on x-axis and `count_column` on y-axis using Seaborn.
+
+This plot is useful for answering questions like:
+- "What are the counts of each category in the dataset?"
+- "How does the frequency of categories compare?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    plot_column (str): Column name for x-axis (categorical data).
+    count_column (str): Column name for y-axis (numerical counts).
+    plot_title (str): Title of the plot.
+====================
+
+plot_boxplot(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, plot_title: str) -> None:
+Generates a box plot using Seaborn to show the distribution of `y_column` values across different categories in `x_column`.
+
+This plot is useful for answering questions like:
+- "How does the distribution of values differ between categories?"
+- "Are there any outliers or variations in the data?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    x_column (str): Column name for x-axis (categories).
+    y_column (str): Column name for y-axis (numerical values).
+    plot_title (str): Title of the plot.
+====================
+
+plot_correlation_matrix(df: pandas.core.frame.DataFrame, plot_title: str) -> None:
+Creates a heatmap for the correlation matrix of numeric columns using Seaborn.
+
+This plot is useful for answering questions like:
+- "What is the correlation between different variables in the dataset?"
+- "Are there any strong relationships or dependencies between variables?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    plot_title (str): Title of the plot.
+====================
+
+plot_density_plot(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, plot_title: str) -> None:
+Generates a density plot showing the distribution of values in a 2D space defined by `x_column` and `y_column` using Seaborn.
+
+This plot is useful for answering questions like:
+- "How are two variables distributed relative to each other?"
+- "Where are the data points concentrated in the 2D space?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    x_column (str): Column name for x-axis.
+    y_column (str): Column name for y-axis.
+    plot_title (str): Title of the plot.
+====================
+
+plot_heatmap(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, z_column: str, plot_title: str) -> None:
+Creates a heatmap showing the density of values across `x_column` and `y_column` with `z_column` as intensity using Seaborn.
+
+This plot is useful for answering questions like:
+- "How do values vary between two dimensions?"
+- "Where are the hotspots or patterns in the data?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    x_column (str): Column name for x-axis.
+    y_column (str): Column name for y-axis.
+    z_column (str): Column name for intensity values (color scale).
+    plot_title (str): Title of the plot.
+====================
+
+
+Give me the python code required to answer this question "What are the case resolution times for high-priority cases compared to low-priority cases?" and put a comment on top of each variable.\n\n
+
+* Make a single code block for starting with ```python
+* Do not produce code blocks for languages other than Python.
+* Do "from agentpoirot.tools import func_tools" at the beginning of the code. 
+* Make sure to import all needed libraries
+* Then you must load the dataframe as df using the pd.read_csv function.
+* There are two main steps you need to do, highlight them with "# Stage Name" in the code.
+    - Data Manipulation: 
+        * You can add additional columns to the df to get what you need for the plot.
+        * You can aggregate or group data to create summary statistics or new data structures.
+        * You can subset the data to get only the columns you need.
+        * You must not create any additional variables that is not needed for the plot and is not part of the df
+        * Each line here should start with 'df ...'
+        * never filter the number of rows in the df
+        * Use the conditions given by the question to create a new column that satisfies those conditions
+        * if you use the count_column, it has to be numeric, and it should be a column in the df and you can create one if needed
+
+    - Plotting: 
+        * You must use exactly only one of the predefined plot functions mentioned above as 'func_tools.' to make and save the plot and its stats. It should be exactly one line of code
+        * Make sure you use the plotting function signature well  with keyword matching and the correct order of arguments 
+        * look at the column types from the schema (like object, int, and so on) and make sure you are using the appropriate column types for the plotting function arguments
+        * make sure you use every required argument for the plotting function
+        * the function should look like 'func_tools.*(df=df, plot_column=plot_column, ....)'
+
+* End your code with ```.
+* Avoid these common errors
+    - AttributeError: 'DataFrame' object has no attribute 'tolist'
+
+Output code:\n

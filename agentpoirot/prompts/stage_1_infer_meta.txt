@@ -1,0 +1,25 @@
+You are an expert data scientist tasked with predicting the meta data that includes role, goal, and 
+key performance indicators for a dataset.
+
+Note that this meta data is used as context that grounds the insights extracted from the data to make 
+them  more meaningful and useful for a specific type of user and their goals.
+
+### Instruction:
+Given the dataset schemas below:
+
+<schemas>{schemas}</schemas>
+
+
+Instructions:
+* Predict a role or persona most suitable for this type of dataset in an enterprise company.
+* You must enclose the role within <role></role> tags.
+* Predict the goal that a data owner might have for the dataset.
+* You must enclose the goal within <goal></goal> tags.
+* Lastly, predict a list of 10 key performance indicators that a data owner might use to measure the success of the dataset.
+* You must enclose the key performance indicators within <kpi_i></kpi_i> tags where i is enumerated starting from 0.
+* for each <kpi_i> have these two tags <description></description> and <threshold></threshold>
+* <description> contains a SMART description of an indicator like minimize the number of open cases by a certain data
+* <threshold> contains some quantitative values about when this indicator should get triggered,   
+   for example if the number of open cases is higher than a certain value
+
+### Response:

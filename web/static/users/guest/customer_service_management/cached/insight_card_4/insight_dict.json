@@ -1,0 +1,17 @@
+{
+    "answer": "We forecast a decline in the resolution rate to approximately 42% by the end of the month if no actions are taken.",
+    "followup": "How can we reduce unresolved cases at month-end, based on insights from a similar dataset?",
+    "header": "Resolution rate projected to fall to 42% by month-end",
+    "indicator": "The customer support case resolution rate is forecasted to decline from 65% to 42% by month-end without intervention, missing the 80% target and impacting customer satisfaction.",
+    "insight": "Without intervention, the resolution rate is expected to drop by over 20 percentage points, from the current 65% to 42%. This decline will likely increase the backlog and reduce customer satisfaction due to slower response times.",
+    "output_folder": "static/users/issam.laradji@servicenow.com/customer_service_management/insight_card_3",
+    "plot_image": "plot.jpg",
+    "plot_summary": "Resolution rates are forecasted to decline to 42% by month-end, indicating the need for action to meet the 80% target and prevent backlog growth.",
+    "question": "Can we predict the end-of-month resolution rate if no changes are made to current processes?",
+    "score": "90",
+    "severity": "high",
+    "time_elapsed": {
+        "code_gen": 7.0,
+        "insight_gen": 5.0
+    }
+}

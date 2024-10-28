@@ -1,0 +1,47 @@
+### Instruction:
+You are trying to answer a question based on information provided by a data scientist.
+
+Given the meta information:
+<meta>
+    <description>The dataset captures customer service management cases, including details on case durations, assignments, escalations, and SLAs. Potential trends include case resolution efficiency, SLA compliance, and the impact of escalations, priority, and outages on service performance.</description>
+<goal>Optimize service efficiency and resolution times.</goal>
+<persona>CSM efficiency and performance evaluator.</persona>
+<dataset_name>Customer Support Management (CSM)</dataset_name>
+<indicator_list>[{'name': 'missing_inconsistent_data', 'description': 'Any missing values in critical fields like assigned_to, resolved_by, closed_at, or number should be flagged.', 'threshold': 'Rows with over 5% missing critical fields should be excluded or revisited.'}, {'name': 'case_duration_metrics', 'description': 'Any case where rpt_case_duration or rpt_case_resolve_duration is 3x greater than the average duration.', 'threshold': 'Investigate all cases with durations exceeding the average by a factor of 3 or more.'}, {'name': 'escalation_and_reassignment_patterns', 'description': 'More than 2 escalations or 3 reassignments.', 'threshold': 'Escalations or reassignments beyond these thresholds should be reviewed.'}, {'name': 'sla_met_or_breached', 'description': 'Any case where made_sla == False should be flagged.', 'threshold': 'Cross-check SLA breaches with high-priority cases or urgent cases.'}, {'name': 'impact_priority_mismatch', 'description': 'High impact cases with a low or medium priority.', 'threshold': 'Any mismatch between impact and priority should be investigated.'}, {'name': 'outage_duration_resolution_timing', 'description': 'If outage_duration is greater than 24 hours or if the gap between outage_start_time and resolved_at exceeds 12 hours for critical services.', 'threshold': 'Cases exceeding these thresholds should be reviewed.'}, {'name': 'resolution_timeliness_and_closed_cases', 'description': 'A gap of more than 48 hours between resolved_at and closed_at.', 'threshold': 'Any case that takes more than 48 hours to close after resolution should be flagged.'}, {'name': 'frequent_categories_subcategories', 'description': 'Categories or subcategories that account for more than 20% of the total cases.', 'threshold': 'High-frequency categories or subcategories should be reviewed.'}, {'name': 'language_location_analysis', 'description': 'Locations or languages that account for more than 15% of total cases but show a 50% higher case duration than average.', 'threshold': 'Any such location or language group should be reviewed.'}, {'name': 'escalation_triggers', 'description': 'Cases where escalated == True and escalation_count > 1 in less than 24 hours after being opened.', 'threshold': 'These cases may indicate that initial assignments are going to unqualified teams.'}]</indicator_list>
+</meta>
+
+
+Given the question:
+<question>How many cases have breached SLAs, and what is their distribution across different impact levels?</question>
+
+Given the code analysis:
+<analysis>
+    {'columns': [{'column_name': 'impact', 'column_values': ['Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Medium', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'Low', 'High'], 'column_stats': {'unique_values': 3, 'most_frequent': 'High'}}, {'column_name': 'sla_breach_count', 'column_values': ['1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1413', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1390', '1306'], 'column_stats': {'mean': 1369.6666666666667, 'median': 1390.0, 'std': 56.32347053700911, 'min': 1306.0, 'max': 1413.0, 'quantile_25': 1348.0, 'quantile_50': 1390.0, 'quantile_75': 1401.5}}], 'extra_stats': None}
+</analysis>
+
+Instructions:
+* Based on the analysis and other information provided above, write an answer to the question enclosed with <question></question> tags.
+* The answer should be a single sentence, but it should not be too high level and should include the key details from justification.
+* Write your answer in HTML-like tags using all the tags in the example response below.
+* Refer to the following example response for the format of the answer and justification.
+* make sure to use the descriptions provided in the Example response below
+* Each of the tags should be in a new line and should only contain one sentence
+* Make sure all generated text easy to read and understand so it should be in laymans terms
+* Make sure all generated text is concise
+* Make sure you are very quantitative in your responses
+* For the severity, whether it is clear, low, medium, or high, it depends on how far the insight is from a dangerous threshold
+* The output for the <insight> tag should explain an interesting discovery from the plot_summary that is grounded by the meta data, the question and the indicators and include any potential concerns if there are, otherwise say how it is not concerning
+* The output for the <insight> tag should not offer any advice on what to do next
+* The output for the <insight> tag should be very specific and should use as many numbers as possible
+* The output for the <header> should summarize the biggest takeaway from the insight
+
+Example response:
+<answer>This contains a direct answer to the given question</answer>
+<header>A 7 word max header that summarizes the insight's concern or lack thereof and it should be a meaningful statement</header>
+<plot_summary>This contains a summary of the plot</plot_summary>
+<insight>This should contain the answer and also explain an interesting discovery from the plot_summary that is grounded by the meta data, the question and the indicators and explain why is it concerning or why is it not concerning. Do not offer advice on what to do next</insight>
+<indicator>Specify which indicator has been triggered or almost triggered by this plot summary or answer and give a one line explanation</indicator>
+<score>a score between 0 and 100 about how interesting and actionable this insight is</score>
+<followup>this should contain a follow up question to explore the insight further and should be easily answerable from the dataset through basic data analytics</followup>
+<severity>this should be a single word which is one of these (clear, low, medium, high)</severity>
+### Response:

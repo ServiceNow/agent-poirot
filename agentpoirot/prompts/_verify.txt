@@ -1,0 +1,45 @@
+# Question-Schema Relatability Assessment
+
+<schema>
+{schema}
+</schema>
+
+<question>{question}</question>
+
+Instructions:
+1. Review the provided schema carefully.
+2. Analyze the given question.
+3. Assess how closely the question relates to the information in the schema.
+4. Consider the following criteria:
+   - Does the question reference any entities, attributes, or concepts present in the dataset schema?
+   - Is the question asking about a topic that could be explored using the data described in the dataset schema?
+   - Even if not directly answerable, does the question relate to the domain or subject matter of the dataset schema?
+
+5. Provide a verification result in the following format:
+   <verification>
+   result: [RELATED/UNRELATED]
+   explanation: [Brief explanation of why the question is related or unrelated to the schema in one sentence]
+   score: [Relatability score from 0 to 100, where 0 is completely unrelated and 100 is highly related]
+   </verification>
+
+6. The explanation should be in simple plain english, and it should start as 'This question is related because...' or 'This question is unrelated because...'.
+
+
+Example:
+<schema>
+- incident_id: unique identifier for each incident
+- location: country where the incident occurred (Australia, UK, India, United States, Canada)
+- timestamp: date and time of the incident
+- state: current state of the incident (Open, Closed, Resolved)
+- severity: severity level of the incident (Low, Medium, High, Critical)
+</schema>
+
+<question>What is the average state of incidents across locations?</question>
+
+<verification>
+result: RELATED
+explanation: The question is related to the schema as it references "incidents," "state," and "locations," which are all present in the schema. While the concept of "average state" is not directly defined, the question is exploring relationships between elements in the schema.
+score: 75
+</verification>
+
+Remember: Your task is to assess the relatability of the question to the given schema, not to determine if it's directly answerable. Provide a relatability score based on how closely the question aligns with the schema's content and domain.

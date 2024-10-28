@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentPoirot's Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+</head>
+<body>
+    <div class="banner" onclick="window.location.href='/'">
+        <div class="banner-left">AgentPoirot</div>
+        <div class="banner-center">
+            <img src="/static/assets/agent.webp" alt="Icon" class="banner-icon">
+            <span id="banner-text" class="banner-text">Data Analytics Dashboard</span>
+        </div>
+    </div>
+    <div style="height:100vh; display: flex; width: 100vw;">
+        <div id="compare-viewport" class="compare-page">
+            
+            <div class="compare-columns">
+                <div class="flex1 content shadow">
+                    <button class="button-analyze" onclick="runPrompt(event, 'Insights')">Run Prompt</button>
+                    <div class="insight-blobs" id="insight-blob1">
+                    </div>
+                </div>
+
+             
+
+                <div class="flex1 content shadow">
+                    <div class="insight-blobs" id="insight-blob2">
+                    </div>
+                </div>
+            </div>
+
+            
+            
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/xray.js') }}"></script>
+</body>
+</html>

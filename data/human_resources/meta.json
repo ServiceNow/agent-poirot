@@ -1,0 +1,56 @@
+{"description": "The HR dataset is a comprehensive collection of employee-related data gathered over time to help the HR team make informed decisions about workforce management, recruitment, retention, and performance improvement. This dataset captures various aspects of an employee’s lifecycle within the organization, from hiring to exit, and includes key metrics and performance indicators.",
+"goal":"Reduce Employee Turnover and Improve Retention Strategies.",
+"persona":"HR Data Analyst.",
+"dataset_name": "HR management",
+"indicator_list":[
+    {
+        "name": "missing_inconsistent_data",
+        "description": "Any missing values in critical fields like assigned_group, assignee, resolved_date, or requester should be flagged.",
+        "threshold": "Rows with over 5% missing critical fields should be excluded or revisited."
+    },
+    {
+        "name": "sla_breach_analysis",
+        "description": "Identify instances where SLA (Service Level Agreement) breaches occur, particularly in high-priority tickets.",
+        "threshold": "More than 10% of high-priority tickets should be reviewed for SLA compliance."
+    },
+    {
+        "name": "status_discrepancies",
+        "description": "Check for inconsistencies in the status field, such as tickets marked as 'resolved' but still have open issues.",
+        "threshold": "Any tickets with status 'resolved' but unresolved dates should be flagged for review."
+    },
+    {
+        "name": "time_to_resolution_outliers",
+        "description": "Analyze the time_to_resolution for outliers that significantly exceed the average resolution time.",
+        "threshold": "Tickets with time_to_resolution greater than 2 standard deviations from the mean should be investigated."
+    },
+    {
+        "name": "priority_distribution",
+        "description": "Examine the distribution of request types across different priority levels to ensure balanced handling.",
+        "threshold": "Any priority level with less than 5% of total tickets should be flagged for potential review."
+    },
+    {
+        "name": "category_subcategory_mismatch",
+        "description": "Identify tickets where the category does not align with the subcategory assigned.",
+        "threshold": "Any tickets with mismatched category and subcategory should be reviewed for accuracy."
+    },
+    {
+        "name": "assignee workload imbalance",
+        "description": "Monitor the distribution of tickets among assignees to identify potential workload imbalances.",
+        "threshold": "Any assignee with more than 20% of total tickets should be flagged for workload review."
+    },
+    {
+        "name": "impact assessment",
+        "description": "Evaluate the impact ratings assigned to tickets to ensure they are consistent with the request type and priority.",
+        "threshold": "Any tickets with high impact but low priority should be reviewed for potential misclassification."
+    },
+    {
+        "name": "resolution_description completeness",
+        "description": "Check for completeness and clarity in the resolution_description field to ensure proper documentation.",
+        "threshold": "Any tickets with resolution descriptions shorter than 10 words should be flagged for review."
+    },
+    {
+        "name": "requester engagement",
+        "description": "Analyze the frequency of requests from each requester to identify potential patterns or engagement issues.",
+        "threshold": "Requesters with more than 5 open tickets should be flagged for follow-up."
+    }
+]}

@@ -1,0 +1,120 @@
+<br>
+<div class="ab-indicator">{{ab}}</div>
+
+<div class="insight-blob-eval" id="insight-card" style="position: relative;">
+    <!-- Insight 1/1 Box -->
+    <div style="position: absolute; top: -5px; left: 20px; color:white;background-color: #2c3e50; padding: 5px 10px; border-radius: 5px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); transform: translateY(-50%);">
+        <p style="margin: 0; font-size: 14px; font-weight: bold;">Insight Card {{insight_dict.id}}</p>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 id="insight-header">{{insight_dict.header}}</h3>        
+    </div>
+    <p style="margin-top:-10px; font-weight: 200px; font-style: italic;font-size: 0.8rem;color:rgb(93, 93, 93)" id="insight-desc">Question: {{insight_dict.question}}</p>
+    <p style="margin-top:-10px; font-weight: 200px; font-style: italic;font-size: 0.8rem;color:rgb(93, 93, 93)" id="insight-desc">Answer: {{insight_dict.answer}}</p>
+    
+    <div style="display: flex;flex-direction: column;">
+        <!-- Description on the left -->
+        <div id="insight-answer" style="flex: 1;">
+            <!-- <div>
+                <p><strong>Answer:</strong></p>
+                <p style="margin-top: -10px;">{{insight_dict.answer}}</p>
+            </div> -->
+             <!-- <hr> -->
+            <div style="margin-top: 10px;">
+                <p><strong>Insight:</strong></p>
+                <p style="margin-top: -10px;">{{insight_dict.insight}}</p>
+            </div>
+            <div style="margin-top: 10px;">
+                <p><strong>Indicator(s) Triggered:</strong></p>
+                <p style="margin-top: -10px;">{{insight_dict.indicator}}</p>
+            </div>
+
+
+    <!-- Example for Low Severity -->
+    <div class="bar-container">
+        <div class="label">Criticality:</div>
+        <div class="bar-wrapper">
+            <div class="bar {{insight_dict.severity}}">{{insight_dict.severity}}</div>
+        </div>
+    </div>
+    
+            <hr>
+            <!-- <div style="margin-top: 10px;">
+                <p><strong>Recommended Action:</strong></p>
+                <p style="margin-top: -10px;">{{insight_dict.action}}</p>
+            </div> -->
+        </div>
+        
+        <!-- Plot on the right -->
+        <div id="insight-plot" style="flex: 1;">
+            <a href="{{insight_dict.plot_html}}" target="_blank">
+                <img src="{{insight_dict.plot_image}}" style="max-width:95%" alt="Plot Image">
+                 <!-- <iframe src="{{insight_dict.plot_html}}" style="width: 100%; height:400px" frameborder="1"></iframe> -->
+            </a>
+            <br>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<style>
+        
+
+        .bar-container {
+            width: 80%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        .label {
+            font-weight: 700;
+            /* color: #333; */
+            margin-bottom: 5px; /* Space between label and bar */
+            text-align: left;
+        }
+
+        .bar-wrapper {
+            display: flex;
+            align-items: center;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 30px;
+        }
+
+        .bar {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding-left: 10px; /* Space for the text inside the bar */
+            color: #fff;
+            font-weight: 700;
+            transition: width 0.3s ease;
+        }
+
+        .low {
+            background-color: #4caf50; /* Green */
+            width: 33%; /* Example width for low severity */
+        }
+
+        .medium {
+            background-color: #ff9800; /* Orange */
+            width: 66%; /* Example width for medium severity */
+        }
+
+        .high {
+            background-color: #f44336; /* Red */
+            width: 100%; /* Example width for high severity */
+        }
+
+        .clear {
+            background-color: #e0e0e0; /* Gray */
+            width: 0%; /* No width for clear severity */
+            color: #333; /* Gray text color */
+        }
+    </style>
+

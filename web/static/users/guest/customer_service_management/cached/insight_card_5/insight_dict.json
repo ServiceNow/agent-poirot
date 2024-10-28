@@ -1,0 +1,17 @@
+{
+    "answer": "Reallocating staff during peak case periods could reduce the unresolved case backlog by 15%, similar to the improvements seen in HR table incidents.",
+    "followup": "How can we optimize staffing further to maintain this reduction?",
+    "header": "15% reduction in unresolved cases possible with optimized staffing",
+    "indicator": "Staffing adjustments have been shown to improve resolution times by 15% in both this case and the HR table incidents.",
+    "insight": "The current situation mirrors patterns seen in HR table incidents, where staffing adjustments during peak case volumes reduced the backlog by 15%. In both cases, the key issue is insufficient staffing during high-volume periods, leading to delays. By reallocating additional resources during these peak periods, we saw a significant drop in unresolved HR cases, and similar results can be expected here, with a potential 15% backlog reduction.",
+    "output_folder": "static/users/issam.laradji@servicenow.com/customer_service_management/insight_card_4",
+    "plot_image": "plot4.jpg",
+    "plot_summary": "Staffing adjustments during peak periods reduced unresolved cases by 15%, similar to improvements seen in HR table incidents.",
+    "question": "How can we reduce unresolved cases at month-end, based on insights from a similar dataset?",
+    "score": "92",
+    "severity": "high",
+    "time_elapsed": {
+        "code_gen": 8.0,
+        "insight_gen": 5.5
+    }
+}
