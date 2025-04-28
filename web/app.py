@@ -4,6 +4,11 @@ import sys, os
 path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(path)
 
+# Set Matplotlib to use a non-interactive backend before any other imports
+import matplotlib
+
+matplotlib.use("Agg")  # Use the 'Agg' backend which doesn't require a GUI
+
 import utils as ut
 from flask import Flask, request, render_template, jsonify, session
 import os, re
