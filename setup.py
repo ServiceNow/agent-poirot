@@ -14,4 +14,7 @@ setup(
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/ServiceNow/research-skilled-poirot",
+    package_data={"agentpoirot": ["prompts/*.txt"]},
+    include_package_data=True,
 )
+
