@@ -340,6 +340,97 @@ document.addEventListener('DOMContentLoaded', function() {
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
             
         });
+
+    // Get the dataset from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const dataset = urlParams.get('dataset');
+    
+    // Fetch and populate the table
+    fetch(`/get_dataframe?dataset=${dataset}`)
+        .then(response => response.json())
+        .then(data => {
+            const tableFrame = document.getElementById('table-frame');
+            const tabsMain = document.querySelector('.tabs-main');
+            
+            // Set table frame width to match tabs-main
+            if (tabsMain) {
+                tableFrame.style.width = tabsMain.offsetWidth + 'px';
+            }
+            
+            // Create table element
+            const table = document.createElement('table');
+            table.className = 'display nowrap';
+            
+            // Create header with all columns
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            
+            // Ensure all columns are included
+            const expectedColumns = [
+                'employee_id', 'name', 'age', 'department', 'job_level',
+                'location', 'salary', 'years_with_company', 'last_performance_rating',
+                'is_remote', 'promotion_last_2_years', 'left_company', 'gender'
+            ];
+            
+            expectedColumns.forEach(column => {
+                const th = document.createElement('th');
+                // Format the header text properly
+                th.textContent = column
+                    .split('_')
+                    .map(word => word.toUpperCase())
+                    .join(' ');
+                
+                // Add specific classes for width control
+                th.className = column.replace(/_/g, '-');
+                
+                // Set minimum width for specific columns
+                if (column === 'years_with_company' || column === 'last_performance_rating') {
+                    th.style.minWidth = column === 'years_with_company' ? '180px' : '200px';
+                }
+                
+                headerRow.appendChild(th);
+            });
+            
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+            
+            // Create body ensuring all columns are populated
+            const tbody = document.createElement('tbody');
+            data.data.forEach(row => {
+                const tr = document.createElement('tr');
+                // Map the data to match expected columns
+                expectedColumns.forEach((column, index) => {
+                    const td = document.createElement('td');
+                    td.textContent = row[index] !== undefined ? row[index] : '';
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+            
+            // Clear and add table to frame
+            tableFrame.innerHTML = '';
+            tableFrame.appendChild(table);
+            
+            // Initialize DataTable
+            $(table).DataTable({
+                paging: false,
+                searching: false,
+                info: false,
+                ordering: false,
+                scrollX: true,
+                autoWidth: false,
+                scrollCollapse: true,
+                fixedHeader: true
+            });
+
+            // Adjust table wrapper width
+            const tableWrapper = tableFrame.querySelector('.dataTables_wrapper');
+            if (tableWrapper) {
+                tableWrapper.style.width = '100%';
+            }
+        })
+        .catch(error => console.error('Error loading table:', error));
 });
 
 function send_bubble(question) {

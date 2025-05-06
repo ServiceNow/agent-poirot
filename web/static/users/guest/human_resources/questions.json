@@ -1,12 +1,17 @@
 [
-    "What are the key factors that correlate with employees leaving the company?",
-    "Which departments have the highest turnover rates?",
-    "Is there a particular job level that experiences higher turnover?",
-    "How does salary impact employee turnover?",
-    "Does the length of service with the company affect the likelihood of leaving?",
-    "Is there a relationship between recent promotions and employee turnover?",
-    "How does performance rating correlate with employee turnover?",
-    "Does working remotely affect employee turnover rates?",
-    "Are there specific locations with higher employee turnover?",
-    "Is there a particular age group that is more likely to leave the company?"
+  "Do remote employees have different attrition rates compared to on-site employees?",
+  "Do performance ratings differ significantly between genders, and does this affect salary or promotion?",
+  "What is the average salary and attrition rate for each location?",
+  "Are there geographic differences in salary, promotions, or attrition?",
+  "Are promotion rates in the last 2 years different between male and female employees?",
+  "Can we predict employee attrition using variables like salary, tenure, and performance rating?",
+  "How many employees have negative salary or tenure values, and what departments are they in?",
+  "Are there inconsistencies between job level and salary (e.g., Interns with unusually high salaries)?",
+  "Are there any departments with unusually high turnover rates?",
+  "What is the distribution of salaries across departments and does it align with job levels?",
+  "Is there any relationship between age and the likelihood of leaving the company?",
+  "Are there any departments where employees with poor performance ratings are still getting promotions?",
+  "Do employees promoted in the last 2 years tend to have higher performance ratings?",
+  "How does tenure influence promotion likelihood?",
+  "Are older employees more likely to be categorized at lower job levels, and does that affect their salary?"
 ]

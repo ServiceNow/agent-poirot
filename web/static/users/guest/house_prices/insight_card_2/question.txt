@@ -1,1 +1,0 @@
-Are there properties where the price is more than 30% above or below the neighborhood average?

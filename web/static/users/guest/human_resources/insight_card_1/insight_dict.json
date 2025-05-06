@@ -1,6 +1,6 @@
 {
     "action": "Ask Poirot to give you a top insight, to answer one of its recommended questions or ask your own question.",
-    "answer": "The dataset has 1000 rows and 12 columns (6 numerical).",
+    "answer": "The dataset has 1000 rows and 13 columns (6 numerical).",
     "followup": "What is a top insight for this dataset?",
     "highlight": "Stats for column",
     "id": 1,

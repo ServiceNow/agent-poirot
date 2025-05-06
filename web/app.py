@@ -695,9 +695,9 @@ def get_dataframe():
         # Get dataset name from URL parameters
         dataset_name = request.args.get("dataset", "human_resources")  # default dataset
 
-        # Load the CSV file
+        # Load the CSV file and get only the first few rows
         fname = f"{app.config['DATA_FOLDER']}/{dataset_name}/data.csv"
-        df = pd.read_csv(fname)
+        df = pd.read_csv(fname).head(5)  # Explicitly get first 5 rows
 
         # Convert DataFrame to dictionary format suitable for DataTables
         data = {

@@ -520,45 +520,111 @@ overflow-y: auto;
 /* DataTables styling */
 /* Style for the table-frame to make it nice and scrollable */
 .table-frame-container {
-    overflow-x: auto; /* For horizontal scroll */
+    overflow-x: auto;
     max-width: 100%;
+    margin: 20px 0;
 }
 
 .table-frame {
-    /* border-collapse: collapse; */
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(44,62,80,0.08), 0 1.5px 4px rgba(44,62,80,0.04);
+    overflow-x: auto;
+    margin: 24px 0;
+    padding: 24px 24px 16px 24px;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s;
+}
+
+/* Table styling */
+.table-frame table {
     width: 100%;
-    display: table;
-    min-width: 600px; /* Adjust based on your table content */
-    /* border: 1px solid #ddd;
-    background-color: #f9f9f9; */
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 1rem;
+    background: transparent;
 }
 
-.table-frame th, .table-frame td {
-    /* border: 1px solid #ddd; */
-    padding: 8px;
-    text-align: left;
-}
-
-.table-frame th {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.table-frame tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.table-frame tr:hover {
-    background-color: #ddd;
-}
-
+/* Header styling */
 .table-frame thead th {
-    position: -webkit-sticky; /* For Safari */
+    background: linear-gradient(90deg, #34495e 80%, #2c3e50 100%);
+    color: #fff;
+    font-weight: 600;
+    padding: 16px 12px;
+    border-bottom: 2px solid #2c3e50;
+    text-align: left;
+    white-space: nowrap;
     position: sticky;
     top: 0;
-    z-index: 1;
-    background-color: #34495e;
-    color: white;
+    z-index: 2;
+    letter-spacing: 0.03em;
+    font-size: 1.05rem;
+    border-right: 1px solid #3d566e;
+}
+
+/* Specific width adjustments for certain columns */
+.table-frame thead th.years-with-company {
+    min-width: 180px; /* Adjust based on content */
+}
+
+.table-frame thead th.last-performance-rating {
+    min-width: 200px; /* Adjust based on content */
+}
+
+.table-frame thead th:last-child {
+    border-right: none; /* Remove border from last header */
+}
+
+/* Cell styling */
+.table-frame td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #e3e8ee;
+    font-size: 0.98rem;
+    color: #2c3e50;
+    vertical-align: middle;
+    transition: background 0.15s;
+}
+
+/* DataTables wrapper adjustments */
+.dataTables_wrapper {
+    width: auto !important;   /* Let it size to content */
+    margin: 0 !important;
+}
+
+.dataTables_scrollBody {
+    width: 100% !important;
+}
+
+/* Row styling */
+.table-frame tbody tr {
+    transition: background 0.15s;
+}
+
+.table-frame tbody tr:nth-child(even) {
+    background: #f7fafd;
+}
+
+.table-frame tbody tr:nth-child(odd) {
+    background: #fdfdfd;
+}
+
+.table-frame tbody tr:hover {
+    background: #eaf3fb;
+}
+
+/* Ensure header text is centered vertically */
+.table-frame th {
+    line-height: 1.2;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* Remove DataTables default styling */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+    display: none;
 }
 
 .success-message {
@@ -1651,4 +1717,31 @@ select.custom-input {
 
 .dataTables_wrapper .dt-button:hover {
     background-color: #e9ecef;
+}
+
+/* DataTables wrapper adjustments */
+.dataTables_wrapper {
+    width: auto !important;   /* Let it size to content */
+    margin: 0 !important;
+}
+
+/* Ensure the scrollable area doesn't show unnecessary scrollbars */
+.dataTables_scroll {
+    overflow: visible;
+}
+
+.dataTables_scrollBody {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+}
+
+/* Scrollbar styling for modern look */
+.table-frame::-webkit-scrollbar {
+    height: 10px;
+    background: #f0f0f0;
+    border-radius: 8px;
+}
+.table-frame::-webkit-scrollbar-thumb {
+    background: #cfd8dc;
+    border-radius: 8px;
 }
