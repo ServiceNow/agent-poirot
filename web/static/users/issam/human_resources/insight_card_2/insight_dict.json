@@ -1,0 +1,16 @@
+{
+    "answer": "Employee turnover varies by location, with Tokyo having the highest rate and Remote the lowest.",
+    "followup": "What factors contribute to Tokyo's high turnover rate?",
+    "header": "Tokyo Leads in Turnover Rate",
+    "indicator": "Turnover Rate Indicator: Tokyo's high turnover rate is notable.",
+    "insight": "(1) Tokyo's turnover rate is 0.547, the highest among all locations. (2) Remote work has the lowest turnover rate at 0.416, indicating stability. (3) Bangalore is the most frequent location but not the highest in turnover.",
+    "output_folder": "static/users/issam/human_resources/insight_card_2",
+    "plot_image": "static/users/issam/human_resources/insight_card_2/plot.jpg",
+    "question": "How does employee turnover vary by location?",
+    "score": "85",
+    "severity": "medium",
+    "time_elapsed": {
+        "code_gen": 4.918782949447632,
+        "insight_gen": 5.971544027328491
+    }
+}

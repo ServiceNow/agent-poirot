@@ -1,0 +1,166 @@
+{
+    "code": "```python\nfrom agentpoirot.tools import func_tools\nfrom agentpoirot.utils import save_stats_fig\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\n\n# Load the dataset\ndf = pd.read_csv('/Users/issam.laradji/projects/agent-poirot/web/static/users/issam/human_resources/dataset.csv')\n\n# Data Manipulation\n# Create a new column to categorize employees based on their performance and promotion status\ndf['performance_promotion_category'] = df.apply(\n    lambda row: 'High Performer & Promoted' if row['last_performance_rating'] >= 4 and row['promotion_last_2_years'] == 1 else\n                'High Performer & Not Promoted' if row['last_performance_rating'] >= 4 else\n                'Low Performer & Promoted' if row['last_performance_rating'] < 4 and row['promotion_last_2_years'] == 1 else\n                'Low Performer & Not Promoted',\n    axis=1\n)\n\n# Plotting\n# Create a count plot to visualize the distribution of performance and promotion categories\nplt.figure(figsize=(10, 6))\nsns.set_palette(\"pastel\")\nax = sns.countplot(data=df, x='performance_promotion_category', order=[\n    'High Performer & Promoted', \n    'High Performer & Not Promoted', \n    'Low Performer & Promoted', \n    'Low Performer & Not Promoted'\n])\nax.set_title('Distribution of Performance and Promotion Categories')\nax.set_xlabel('Performance and Promotion Category')\nax.set_ylabel('Number of Employees')\nplt.xticks(rotation=45)\nplt.tight_layout()\n\n# Save the plot and its stats\nsave_stats_fig(df, fig=ax.get_figure())\n```",
+    "code_output": "",
+    "code_time": 8.653329133987427,
+    "message": "",
+    "meta_dict": {
+        "dataset_name": "HR management",
+        "description": "The HR dataset is a comprehensive collection of employee-related data gathered over time to help the HR team make informed decisions about workforce management, recruitment, retention, and performance improvement. This dataset captures various aspects of an employee\u2019s lifecycle within the organization, from hiring to exit, and includes key metrics and performance indicators.",
+        "goal": "Reduce Employee Turnover and Improve Retention Strategies.",
+        "indicator_list": [],
+        "persona": "HR Data Analyst."
+    },
+    "n_retries": 0,
+    "output_folder": "static/users/issam/human_resources/insight_card_6",
+    "plot": {
+        "name": "static/users/issam/human_resources/insight_card_6/plot.jpg",
+        "type": "plot"
+    },
+    "prompt": "Given the schema:\\n\nColumn: employee_id (object)\n  missing_count: 0\n  unique_count: 1000\n  top5_unique_values: ['E10000', 'E10671', 'E10658', 'E10659', 'E10660']\nColumn: name (object)\n  missing_count: 0\n  unique_count: 989\n  top5_unique_values: ['Matthew Myers', 'Jennifer Johnson', 'Nancy Williams', 'Michael Wilson', 'Alexander Lewis']\nColumn: age (float64)\n  missing_count: 0\n  unique_count: 47\n  min: 18.0\n  max: 64.0\n  mean: 41.648\n  std: 13.53770162787485\nColumn: department (object)\n  missing_count: 0\n  unique_count: 9\n  top5_unique_values: ['HR', 'Legal', 'Operations', 'R&D', 'Admin']\nColumn: job_level (object)\n  missing_count: 0\n  unique_count: 9\n  top5_unique_values: ['Intern', 'Senior', 'Junior', 'Manager', 'VP']\nColumn: location (object)\n  missing_count: 0\n  unique_count: 7\n  top5_unique_values: ['New York', 'San Francisco', 'Berlin', 'London', 'Tokyo']\nColumn: salary (float64)\n  missing_count: 0\n  unique_count: 998\n  min: -95290.0\n  max: 375039.0\n  mean: 97315.342\n  std: 83671.00977320343\nColumn: years_with_company (float64)\n  missing_count: 0\n  unique_count: 44\n  min: -8.0\n  max: 39.0\n  mean: 18.412\n  std: 11.669894705713604\nColumn: last_performance_rating (float64)\n  missing_count: 0\n  unique_count: 5\n  min: 1.0\n  max: 5.0\n  mean: 3.182\n  std: 1.2784797653895468\nColumn: is_remote (float64)\n  missing_count: 0\n  unique_count: 2\n  min: 0.0\n  max: 1.0\n  mean: 0.502\n  std: 0.5002461856388775\nColumn: promotion_last_2_years (float64)\n  missing_count: 0\n  unique_count: 2\n  min: 0.0\n  max: 1.0\n  mean: 0.323\n  std: 0.46785669802824226\nColumn: left_company (float64)\n  missing_count: 0\n  unique_count: 2\n  min: 0.0\n  max: 1.0\n  mean: 0.482\n  std: 0.49992592043814443\nColumn: gender (object)\n  missing_count: 0\n  unique_count: 4\n  top5_unique_values: ['Male', 'Female', 'Non-binary', 'Other']\n\n\nColumn 'employee_id' examples\n    E10000\n    E10001\n\nColumn 'name' examples\n    Mia Smith\n    Stefanie Castro\n\nColumn 'age' examples\n    29.0\n    47.0\n\nColumn 'department' examples\n    HR\n    Admin\n\nColumn 'job_level' examples\n    VP\n    Manager\n\nColumn 'location' examples\n    Bangalore\n    Tokyo\n\nColumn 'salary' examples\n    126881.0\n    91175.0\n\nColumn 'years_with_company' examples\n    27.0\n    10.0\n\nColumn 'last_performance_rating' examples\n    3.0\n    1.0\n\nColumn 'is_remote' examples\n    0.0\n    1.0\n\nColumn 'promotion_last_2_years' examples\n    0.0\n\nColumn 'left_company' examples\n    0.0\n    1.0\n\nColumn 'gender' examples\n    Non-binary\n    Female\n\n\n\nGiven the data path:\\n\n/Users/issam.laradji/projects/agent-poirot/web/static/users/issam/human_resources/dataset.csv\n\nGive me the python code required to answer this question \"give me a cool insight\n\" and put a comment on top of each variable.\\n\\n\n\n* Make a single code block for starting with ```python\n* Do not produce code blocks for languages other than Python.\n* Do \"from agentpoirot.tools import func_tools\" at the beginning of the code. \n* Also do \"from agentpoirot.utils import save_stats_fig\" at the beginning of the code.\n* Make sure to import all needed libraries\n* Then you must load the dataframe as df using the pd.read_csv function.\n* There are two main steps you need to do, highlight them with \"# Stage Name\" in the code.\n    - Data Manipulation: \n        * You can add additional columns to the df to get what you need for the plot.\n        * You can aggregate or group data to create summary statistics or new data structures.\n        * You can subset the data to get only the columns you need.\n        * You must not create any additional variables that is not needed for the plot and is not part of the df\n        * Each line here should start with 'df ...'\n        * never filter the number of rows in the df\n        * Use the conditions given by the question to create a new column that satisfies those conditions\n        * if you use the count_column, it has to be numeric, and it should be a column in the df and you can create one if needed\n\n    - Plotting: \n        * save the plot and its stats using this function at the end of the code: save_stats_fig(df, fig=None)\n        * Make sure you use the plotting function signature well  with keyword matching and the correct order of arguments \n        * look at the column types from the schema (like object, int, and so on) and make sure you are using the appropriate column types for the plotting function arguments\n        * make sure you use every required argument for the plotting function\n        * make sure the plot is informative and nice looking with good labels and titles and colors\n        * use a beautiful seaborn plot function, and make sure the legend looks good\n\n* End your code with ```.\n* Avoid these common errors\n    - AttributeError: 'DataFrame' object has no attribute 'tolist'\n\nOutput code:\\n",
+    "question": "give me a cool insight\n",
+    "stat": {
+        "columns": [
+            {
+                "column_name": "employee_id",
+                "column_stats": {
+                    "most_frequent": "E10000",
+                    "unique_values": 1000
+                }
+            },
+            {
+                "column_name": "name",
+                "column_stats": {
+                    "most_frequent": "Aaron White",
+                    "unique_values": 989
+                }
+            },
+            {
+                "column_name": "age",
+                "column_stats": {
+                    "max": 64.0,
+                    "mean": 41.648,
+                    "median": 42.0,
+                    "min": 18.0,
+                    "quantile_25": 30.0,
+                    "quantile_50": 42.0,
+                    "quantile_75": 53.0,
+                    "std": 13.53770162787485
+                }
+            },
+            {
+                "column_name": "department",
+                "column_stats": {
+                    "most_frequent": "HR",
+                    "unique_values": 9
+                }
+            },
+            {
+                "column_name": "job_level",
+                "column_stats": {
+                    "most_frequent": "Intern",
+                    "unique_values": 9
+                }
+            },
+            {
+                "column_name": "location",
+                "column_stats": {
+                    "most_frequent": "New York",
+                    "unique_values": 7
+                }
+            },
+            {
+                "column_name": "salary",
+                "column_stats": {
+                    "max": 375039.0,
+                    "mean": 97315.342,
+                    "median": 78304.0,
+                    "min": -95290.0,
+                    "quantile_25": 43156.5,
+                    "quantile_50": 78304.0,
+                    "quantile_75": 137980.25,
+                    "std": 83671.00977320343
+                }
+            },
+            {
+                "column_name": "years_with_company",
+                "column_stats": {
+                    "max": 39.0,
+                    "mean": 18.412,
+                    "median": 18.0,
+                    "min": -8.0,
+                    "quantile_25": 8.0,
+                    "quantile_50": 18.0,
+                    "quantile_75": 28.0,
+                    "std": 11.669894705713604
+                }
+            },
+            {
+                "column_name": "last_performance_rating",
+                "column_stats": {
+                    "max": 5.0,
+                    "mean": 3.182,
+                    "median": 3.0,
+                    "min": 1.0,
+                    "quantile_25": 2.0,
+                    "quantile_50": 3.0,
+                    "quantile_75": 4.0,
+                    "std": 1.2784797653895468
+                }
+            },
+            {
+                "column_name": "is_remote",
+                "column_stats": {
+                    "max": 1.0,
+                    "mean": 0.502,
+                    "median": 1.0,
+                    "min": 0.0,
+                    "quantile_25": 0.0,
+                    "quantile_50": 1.0,
+                    "quantile_75": 1.0,
+                    "std": 0.5002461856388775
+                }
+            },
+            {
+                "column_name": "promotion_last_2_years",
+                "column_stats": {
+                    "max": 1.0,
+                    "mean": 0.323,
+                    "median": 0.0,
+                    "min": 0.0,
+                    "quantile_25": 0.0,
+                    "quantile_50": 0.0,
+                    "quantile_75": 1.0,
+                    "std": 0.46785669802824226
+                }
+            },
+            {
+                "column_name": "left_company",
+                "column_stats": {
+                    "max": 1.0,
+                    "mean": 0.482,
+                    "median": 0.0,
+                    "min": 0.0,
+                    "quantile_25": 0.0,
+                    "quantile_50": 0.0,
+                    "quantile_75": 1.0,
+                    "std": 0.49992592043814443
+                }
+            },
+            {
+                "column_name": "gender",
+                "column_stats": {
+                    "most_frequent": "Male",
+                    "unique_values": 4
+                }
+            },
+            {
+                "column_name": "performance_promotion_category",
+                "column_stats": {
+                    "most_frequent": "Low Performer & Not Promoted",
+                    "unique_values": 4
+                }
+            }
+        ],
+        "extra_stats": null
+    }
+}

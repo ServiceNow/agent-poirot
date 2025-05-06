@@ -1,0 +1,16 @@
+{
+    "answer": "Turnover rates vary across job levels, with Junior roles having the highest rate at 0.5446.",
+    "followup": "What factors contribute to the high turnover in Junior roles?",
+    "header": "Junior Roles Have Highest Turnover",
+    "indicator": "Turnover Rate Indicator: Junior roles exceed average turnover rate significantly.",
+    "insight": "(1) Junior roles show a turnover rate of 0.5446, the highest among all levels. (2) VP roles have the lowest turnover rate at 0.3889, indicating stability. (3) C-level roles are most frequent but not the highest in turnover.",
+    "output_folder": "static/users/ss/human_resources/insight_card_3",
+    "plot_image": "static/users/ss/human_resources/insight_card_3/plot.jpg",
+    "question": "How does turnover vary across different job levels?",
+    "score": "85",
+    "severity": "high",
+    "time_elapsed": {
+        "code_gen": 3.695641040802002,
+        "insight_gen": 5.570136070251465
+    }
+}

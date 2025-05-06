@@ -1,4 +1,5 @@
 import os
+import base64
 from together import Together
 from openai import OpenAI
 
@@ -24,9 +25,22 @@ def prompt_llm(
                     "Image input is only supported for GPT-4 vision models"
                 )
 
+            # Always treat image as a local file path
+            with open(image, "rb") as img_file:
+                encoded = base64.b64encode(img_file.read()).decode("utf-8")
+            # Infer image type from file extension
+            if image.lower().endswith(".png"):
+                image_type = "png"
+            elif image.lower().endswith((".jpg", ".jpeg")):
+                image_type = "jpeg"
+            else:
+                raise ValueError("Unsupported image type. Use PNG or JPEG.")
+
+            image_url = {"url": f"data:image/{image_type};base64,{encoded}"}
+
             messages[0]["content"] = [
                 {"type": "text", "text": prompt} if isinstance(prompt, str) else prompt,
-                {"type": "image_url", "image_url": image},
+                {"type": "image_url", "image_url": image_url},
             ]
 
         response = client.chat.completions.create(

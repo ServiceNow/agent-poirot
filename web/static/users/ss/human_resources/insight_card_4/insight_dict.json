@@ -1,0 +1,16 @@
+{
+    "answer": "The turnover rate is highest for employees with a performance rating of 4.0 at 52.8%.",
+    "followup": "What factors contribute to the high turnover at rating 4.0?",
+    "header": "High Turnover at Performance Rating 4.0",
+    "indicator": "Turnover Rate Indicator: High turnover at performance rating 4.0 is unexpected.",
+    "insight": "(1) Turnover peaks at 52.8% for rating 4.0. (2) Ratings 1.0 to 3.0 have similar turnover around 46.3%. (3) Rating 5.0 has the lowest turnover at 46.5%.",
+    "output_folder": "static/users/ss/human_resources/insight_card_4",
+    "plot_image": "static/users/ss/human_resources/insight_card_4/plot.jpg",
+    "question": "What is the turnover rate among employees with different performance ratings?",
+    "score": "85",
+    "severity": "medium",
+    "time_elapsed": {
+        "code_gen": 4.705065965652466,
+        "insight_gen": 5.127898931503296
+    }
+}

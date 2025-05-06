@@ -1,0 +1,16 @@
+{
+    "answer": "The most frequent category is \"Low Performer & Not Promoted\" with over 400 employees.",
+    "followup": "What is the average salary of high performers?",
+    "header": "Most Employees Not Promoted",
+    "indicator": "Employee Retention: High percentage of employees leaving the company.",
+    "insight": "(1) 48.2% of employees have left the company. (2) 32.3% were promoted in the last 2 years. (3) Salary ranges from -$95,290 to $375,039.",
+    "output_folder": "static/users/issam/human_resources/insight_card_6",
+    "plot_image": "static/users/issam/human_resources/insight_card_6/plot.jpg",
+    "question": "give me a cool insight\n",
+    "score": "75",
+    "severity": "medium",
+    "time_elapsed": {
+        "code_gen": 8.653329133987427,
+        "insight_gen": 5.977105379104614
+    }
+}

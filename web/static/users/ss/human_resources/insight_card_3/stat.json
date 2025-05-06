@@ -1,0 +1,25 @@
+{
+    "columns": [
+        {
+            "column_name": "job_level",
+            "column_stats": {
+                "unique_values": 9,
+                "most_frequent": "C-level"
+            }
+        },
+        {
+            "column_name": "turnover_rate",
+            "column_stats": {
+                "mean": 0.4777030010152788,
+                "median": 0.4878048780487805,
+                "std": 0.04777614166392792,
+                "min": 0.3888888888888889,
+                "max": 0.5445544554455446,
+                "quantile_25": 0.46296296296296297,
+                "quantile_50": 0.4878048780487805,
+                "quantile_75": 0.4939759036144578
+            }
+        }
+    ],
+    "extra_stats": null
+}

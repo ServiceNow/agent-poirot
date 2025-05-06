@@ -207,15 +207,30 @@ class Poirot(BaseAgent):
             question=code_output["question"],
             stat=str(code_output["stat"]),
             sample=str(self.table.iloc[:, :5].head().to_dict(orient="records")),
+            code_used=str(code_output["code"]),
         )
 
         # Get human readable answer
-        insight_dict, completions = ut.retry_on_parsing_error(
-            self.chat_model,
-            prompt,
-            parser=ut.parse_insight,
-            n_retries=n_retries,
+        # insight_dict, completions = ut.retry_on_parsing_error(
+        #     self.chat_model,
+        #     prompt,
+        #     parser=ut.parse_insight,
+        #     n_retries=n_retries,
+        # )
+        from agentpoirot.agents.llms import prompt_llm
+
+        print(code_output["plot"]["name"])
+        completions = []
+        completions.append(
+            {
+                "code": prompt_llm(
+                    prompt, model="gpt-4o", image=code_output["plot"]["name"]
+                ),
+                "prompt": prompt,
+            }
         )
+        insight_dict, _, _ = ut.parse_insight(completions[-1]["code"])
+        # print()
         # code_output["interpretation"] = out
 
         insight_dict["question"] = code_output["question"]

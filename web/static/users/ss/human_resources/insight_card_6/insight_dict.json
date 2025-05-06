@@ -1,0 +1,16 @@
+{
+    "answer": "There is no significant difference in turnover rates between remote and non-remote employees.",
+    "followup": "What is the turnover rate by department?",
+    "header": "Turnover Rates Similar for Work Modes",
+    "indicator": "Turnover Rate Consistency: Both modes show similar turnover rates.",
+    "insight": "(1) Both remote and non-remote turnover rates are approximately 48.2%. (2) The mean turnover rate is consistent with the overall mean of 0.482. (3) The data shows no unexpected variance between work modes.",
+    "output_folder": "static/users/ss/human_resources/insight_card_6",
+    "plot_image": "static/users/ss/human_resources/insight_card_6/plot.jpg",
+    "question": "Is there a difference in turnover rates between remote and non-remote employees?",
+    "score": "30",
+    "severity": "low",
+    "time_elapsed": {
+        "code_gen": 4.452401876449585,
+        "insight_gen": 4.814233064651489
+    }
+}

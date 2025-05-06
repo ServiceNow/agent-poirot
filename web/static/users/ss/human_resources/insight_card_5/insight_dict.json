@@ -1,0 +1,16 @@
+{
+    "answer": "Receiving a promotion in the last two years does not significantly affect turnover rates.",
+    "followup": "What is the turnover rate for each department?",
+    "header": "Promotion Impact on Turnover is Minimal",
+    "indicator": "Turnover Rate Consistency: Promotion does not alter turnover significantly.",
+    "insight": "(1) Turnover rate is 48.2% overall, regardless of promotion. (2) 32.3% received promotions, yet turnover remains similar. (3) Promotion does not reduce turnover as expected.",
+    "output_folder": "static/users/ss/human_resources/insight_card_5",
+    "plot_image": "static/users/ss/human_resources/insight_card_5/plot.jpg",
+    "question": "How does receiving a promotion in the last two years affect turnover?",
+    "score": "40",
+    "severity": "low",
+    "time_elapsed": {
+        "code_gen": 5.174630880355835,
+        "insight_gen": 5.239604949951172
+    }
+}

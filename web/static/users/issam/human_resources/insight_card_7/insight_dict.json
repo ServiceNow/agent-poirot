@@ -1,0 +1,16 @@
+{
+    "answer": "The average salary of high performers is approximately $97,315.",
+    "followup": "What is the salary distribution among high performers?",
+    "header": "High Performers Earn Unexpectedly High Salaries",
+    "indicator": "Salary Discrepancy: Negative minimum salary is unexpected and unusual.",
+    "insight": "(1) High performers earn an average salary of $97,315, above the overall mean salary. (2) The high performer group represents 38.2% of employees, indicating a substantial portion. (3) Despite high salaries, the minimum salary is surprisingly negative at -$95,290.",
+    "output_folder": "static/users/issam/human_resources/insight_card_7",
+    "plot_image": "static/users/issam/human_resources/insight_card_7/plot.jpg",
+    "question": "What is the average salary of high performers?",
+    "score": "85",
+    "severity": "medium",
+    "time_elapsed": {
+        "code_gen": 3.950038194656372,
+        "insight_gen": 4.805076360702515
+    }
+}

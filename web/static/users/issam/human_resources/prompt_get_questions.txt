@@ -1,0 +1,170 @@
+You are the manager of a data science team whose goal is to extract actionable insights from a given data.
+You have access to a team of highly skilled data scientists that can answer complex questions about the data.
+You call the shots and they do the work.
+Your ultimate deliverable is a report that summarizes the findings and makes hypothesis for any trend or anomaly that was found.
+
+## Given the following meta data:
+<meta>
+<description>The HR dataset is a comprehensive collection of employee-related data gathered over time to help the HR team make informed decisions about workforce management, recruitment, retention, and performance improvement. This dataset captures various aspects of an employee’s lifecycle within the organization, from hiring to exit, and includes key metrics and performance indicators.</description>
+<goal>Reduce Employee Turnover and Improve Retention Strategies.</goal>
+<persona>HR Data Analyst.</persona>
+<dataset_name>HR management</dataset_name>
+<indicator_list>[]</indicator_list>
+</meta>
+
+## Given the following schemas:
+<schemas>
+Column: employee_id (object)
+  missing_count: 0
+  unique_count: 1000
+  top5_unique_values: ['E10000', 'E10671', 'E10658', 'E10659', 'E10660']
+Column: name (object)
+  missing_count: 0
+  unique_count: 989
+  top5_unique_values: ['Matthew Myers', 'Jennifer Johnson', 'Nancy Williams', 'Michael Wilson', 'Alexander Lewis']
+Column: age (float64)
+  missing_count: 0
+  unique_count: 47
+  min: 18.0
+  max: 64.0
+  mean: 41.648
+  std: 13.53770162787485
+Column: department (object)
+  missing_count: 0
+  unique_count: 9
+  top5_unique_values: ['HR', 'Legal', 'Operations', 'R&D', 'Admin']
+Column: job_level (object)
+  missing_count: 0
+  unique_count: 9
+  top5_unique_values: ['Intern', 'Senior', 'Junior', 'Manager', 'VP']
+Column: location (object)
+  missing_count: 0
+  unique_count: 7
+  top5_unique_values: ['New York', 'San Francisco', 'Berlin', 'London', 'Tokyo']
+Column: salary (float64)
+  missing_count: 0
+  unique_count: 998
+  min: -95290.0
+  max: 375039.0
+  mean: 97315.342
+  std: 83671.00977320343
+Column: years_with_company (float64)
+  missing_count: 0
+  unique_count: 44
+  min: -8.0
+  max: 39.0
+  mean: 18.412
+  std: 11.669894705713604
+Column: last_performance_rating (float64)
+  missing_count: 0
+  unique_count: 5
+  min: 1.0
+  max: 5.0
+  mean: 3.182
+  std: 1.2784797653895468
+Column: is_remote (float64)
+  missing_count: 0
+  unique_count: 2
+  min: 0.0
+  max: 1.0
+  mean: 0.502
+  std: 0.5002461856388775
+Column: promotion_last_2_years (float64)
+  missing_count: 0
+  unique_count: 2
+  min: 0.0
+  max: 1.0
+  mean: 0.323
+  std: 0.46785669802824226
+Column: left_company (float64)
+  missing_count: 0
+  unique_count: 2
+  min: 0.0
+  max: 1.0
+  mean: 0.482
+  std: 0.49992592043814443
+Column: gender (object)
+  missing_count: 0
+  unique_count: 4
+  top5_unique_values: ['Male', 'Female', 'Non-binary', 'Other']
+
+
+Column 'employee_id' examples
+    E10000
+    E10001
+
+Column 'name' examples
+    Mia Smith
+    Stefanie Castro
+
+Column 'age' examples
+    29.0
+    47.0
+
+Column 'department' examples
+    HR
+    Admin
+
+Column 'job_level' examples
+    VP
+    Manager
+
+Column 'location' examples
+    Bangalore
+    Tokyo
+
+Column 'salary' examples
+    126881.0
+    91175.0
+
+Column 'years_with_company' examples
+    27.0
+    10.0
+
+Column 'last_performance_rating' examples
+    3.0
+    1.0
+
+Column 'is_remote' examples
+    0.0
+    1.0
+
+Column 'promotion_last_2_years' examples
+    0.0
+
+Column 'left_company' examples
+    0.0
+    1.0
+
+Column 'gender' examples
+    Non-binary
+    Female
+
+
+</schemas>
+
+## Do not repeat anything similar to these past questions:
+<past_questions>
+['Give me an overview of this dataset.']
+</past_questions>
+
+## Instructions:
+* Write a list of questions to be solved by the data scientists in your team to explore my data and reach my goal.
+* Explore diverse aspects of the data, and ask questions that are relevant to my goal.
+* You must ask the right questions to surface anything interesting (trends, anomalies, etc.)
+* Make sure these can realistically be answered based on the data schema.
+* The insights that your team will extract will be used to generate a report.
+* Each question should only have one part, that is a single '?' at the end which only require a single answer.
+* Do not number the questions.
+* You can produce at most 10 questions. Stop generation after that.
+* score should be between 0 and 100 indicating the importance of the question to extract interesting insights for the goal
+* justication should be a short sentence explaining why the question is important
+* type should be either descriptive, diagnostic, prescriptive, or predictive
+* add columns to consider for the question
+* Most importantly, each question must be enclosed within <container><columns></columns><question></question<justification></justification><score></score><type></type></container> tags. Refer to the example response below:
+
+Example response:
+<container><question>What is the average age of the customers?</question><justification>Age is an important factor in determining customer preferences.</justification><score>80</score><type>descriptive</type><columns>age,name</columns></container>
+<container><question>What is the distribution of the customers based on their age?</question><justification>Understanding the age distribution can help in targeting specific age groups.</justification><score>70</score><type>descriptive</type><columns>age,name</columns></container>
+
+### Response:

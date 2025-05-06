@@ -1,0 +1,16 @@
+{
+    "answer": "There is a relationship between salary and employee turnover, with higher salaries associated with staying.",
+    "followup": "What other factors might influence employee turnover besides salary?",
+    "header": "Higher Salaries Linked to Lower Turnover",
+    "indicator": "Salary consistency across turnover status suggests other factors influence employee decisions.",
+    "insight": "(1) Employees who stayed had a median salary of 79,049.5. (2) Those who left had a similar median salary, indicating other factors may influence turnover. (3) The salary range for both groups is wide, with outliers above 300,000.",
+    "output_folder": "static/users/ss/human_resources/insight_card_2",
+    "plot_image": "static/users/ss/human_resources/insight_card_2/plot.jpg",
+    "question": "Is there a relationship between salary and employee turnover?",
+    "score": "75",
+    "severity": "medium",
+    "time_elapsed": {
+        "code_gen": 5.586521148681641,
+        "insight_gen": 6.5860021114349365
+    }
+}

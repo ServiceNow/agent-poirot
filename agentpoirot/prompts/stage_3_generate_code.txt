@@ -1,6 +1,3 @@
-Given the following meta information:\n
-{meta}
-
 Given the schema:\n
 {schemas}
 
@@ -12,6 +9,7 @@ Give me the python code required to answer this question "{question}" and put a 
 * Make a single code block for starting with ```python
 * Do not produce code blocks for languages other than Python.
 * Do "{import_name}" at the beginning of the code. 
+* Also do "from agentpoirot.utils import save_stats_fig" at the beginning of the code.
 * Make sure to import all needed libraries
 * Then you must load the dataframe as df using the pd.read_csv function.
 * There are two main steps you need to do, highlight them with "# Stage Name" in the code.
@@ -26,11 +24,12 @@ Give me the python code required to answer this question "{question}" and put a 
         * if you use the count_column, it has to be numeric, and it should be a column in the df and you can create one if needed
 
     - Plotting: 
-        * save the plot and its stats 
+        * save the plot and its stats using this function at the end of the code: save_stats_fig(df, fig=None)
         * Make sure you use the plotting function signature well  with keyword matching and the correct order of arguments 
         * look at the column types from the schema (like object, int, and so on) and make sure you are using the appropriate column types for the plotting function arguments
         * make sure you use every required argument for the plotting function
-        * use a seaborn plot function
+        * make sure the plot is informative and nice looking with good labels and titles and colors
+        * use a beautiful seaborn plot function, and make sure the legend looks good
 
 * End your code with ```.
 * Avoid these common errors

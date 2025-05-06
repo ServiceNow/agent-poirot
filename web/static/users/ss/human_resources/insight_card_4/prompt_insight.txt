@@ -1,0 +1,80 @@
+### Instruction:
+You are trying to answer a question based on information provided by a data scientist.
+
+
+Given the stats:
+<question>What is the turnover rate among employees with different performance ratings?</question>
+
+Given the question answer stats:
+<stats>
+    {'columns': [{'column_name': 'last_performance_rating', 'column_stats': {'mean': 3.0, 'median': 3.0, 'std': 1.5811388300841898, 'min': 1.0, 'max': 5.0, 'quantile_25': 2.0, 'quantile_50': 3.0, 'quantile_75': 4.0}}, {'column_name': 'turnover', 'column_stats': {'mean': 0.48548613168630494, 'median': 0.47058823529411764, 'std': 0.028024703675237617, 'min': 0.4632352941176471, 'max': 0.5280898876404494, 'quantile_25': 0.46551724137931033, 'quantile_50': 0.47058823529411764, 'quantile_75': 0.5}}], 'extra_stats': None}
+</stats>
+
+Given the dataset sample:
+<data_sample>
+    [{'employee_id': 'E10000', 'name': 'Mia Smith', 'age': 29.0, 'department': 'HR', 'job_level': 'VP'}, {'employee_id': 'E10001', 'name': 'Stefanie Castro', 'age': 47.0, 'department': 'Admin', 'job_level': 'Manager'}, {'employee_id': 'E10002', 'name': 'Angela Dunlap', 'age': 28.0, 'department': 'HR', 'job_level': 'VP'}, {'employee_id': 'E10003', 'name': 'Keith Ruiz', 'age': 52.0, 'department': 'Finance', 'job_level': 'Senior'}, {'employee_id': 'E10004', 'name': 'Larry Perry', 'age': 62.0, 'department': 'Operations', 'job_level': 'Intern'}]
+</data_sample>
+
+Given the code used to generate the stats:
+<code_used>
+    ```python
+from agentpoirot.tools import func_tools
+from agentpoirot.utils import save_stats_fig
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load the dataset
+df = pd.read_csv('/Users/issam.laradji/projects/agent-poirot/web/static/users/ss/human_resources/dataset.csv')
+
+# Data Manipulation
+# Calculate turnover rate by performance rating
+df['turnover'] = df['left_company']
+df_turnover_rate = df.groupby('last_performance_rating')['turnover'].mean().reset_index()
+
+# Plotting
+plt.figure(figsize=(10, 6))
+sns.barplot(data=df_turnover_rate, x='last_performance_rating', y='turnover', palette='viridis')
+plt.title('Turnover Rate by Performance Rating')
+plt.xlabel('Performance Rating')
+plt.ylabel('Turnover Rate')
+plt.ylim(0, 1)
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot and its stats
+save_stats_fig(df_turnover_rate, fig=plt.gcf())
+```
+</code_used>
+
+Instructions:
+* Make sure the insights are consistent and justified with the plot image, but make sure you say the most surprising insights
+* Based on the stats, data_sample, and the plot image and other information provided above, write an answer to the question enclosed with <question></question> tags.
+* The answer should be a single sentence, but it should not be too high level and should include the key details from justification.
+* Write your answer in HTML-like tags using all the tags in the example response below.
+* Refer to the following example response for the format of the answer and justification.
+* make sure to use the descriptions provided in the Example response below
+* Each of the tags should be in a new line and should only contain one sentence
+* Make sure all generated text is concise, easy to read and understand so it should be in laymans terms
+* Make sure you are very quantitative in your responses
+* For the severity, whether it is clear, low, medium, or high, it depends on how far the insight is from a dangerous threshold
+* something surprising would be like an interesting correlation or a trend that is unexpected
+* see how factors relate to each other and whether things are consistent or out of the ordinary 
+* The output for the <insight> tag should explain an interesting, surprising discovery of a trend or insight from the data_sample and the stats
+* The output for the <insight> tag should be very specific and should use as many numbers as possible
+* The output for the <header> should summarize the biggest takeaway from the insight
+* Do not say significant when things are not statistically significant or if there is a low correlation or low p-value
+* The insight should be based on the code_used and the data_sample and the stats
+* The insight should have 3 sentences each with a mini insight prepended with a number (1), (2), (3)
+* Each mini insight should be 15 words max
+* Emphasize on any anomalies or unexpected findings in the insights
+
+Example response:
+<answer>This contains a direct answer to the given question</answer>
+<header>A 7 word max header that summarizes the insight and it should be a meaningful statement</header>
+<insight>This should explain an interesting discovery from the stats and the data_sample. Do not offer advice on what to do next</insight>
+<indicator>Specify which indicator has been triggered or almost triggered by the findings and give a one line explanation</indicator>
+<score>a score between 0 and 100 about how interesting and actionable this insight is</score>
+<followup>this should contain a follow up question to explore the insight further and should be easily answerable from the dataset through basic data analytics</followup>
+<severity>this should be a single word which is one of these (clear, low, medium, high)</severity>
+### Response:

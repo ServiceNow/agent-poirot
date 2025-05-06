@@ -1,0 +1,25 @@
+{
+    "columns": [
+        {
+            "column_name": "location",
+            "column_stats": {
+                "unique_values": 7,
+                "most_frequent": "Bangalore"
+            }
+        },
+        {
+            "column_name": "turnover_rate",
+            "column_stats": {
+                "mean": 0.481822632089227,
+                "median": 0.4900662251655629,
+                "std": 0.041768327027272505,
+                "min": 0.41605839416058393,
+                "max": 0.5474452554744526,
+                "quantile_25": 0.46643530246225556,
+                "quantile_50": 0.4900662251655629,
+                "quantile_75": 0.4931589724497394
+            }
+        }
+    ],
+    "extra_stats": null
+}

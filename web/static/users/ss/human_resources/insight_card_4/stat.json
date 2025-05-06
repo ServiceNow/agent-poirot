@@ -1,0 +1,31 @@
+{
+    "columns": [
+        {
+            "column_name": "last_performance_rating",
+            "column_stats": {
+                "mean": 3.0,
+                "median": 3.0,
+                "std": 1.5811388300841898,
+                "min": 1.0,
+                "max": 5.0,
+                "quantile_25": 2.0,
+                "quantile_50": 3.0,
+                "quantile_75": 4.0
+            }
+        },
+        {
+            "column_name": "turnover",
+            "column_stats": {
+                "mean": 0.48548613168630494,
+                "median": 0.47058823529411764,
+                "std": 0.028024703675237617,
+                "min": 0.4632352941176471,
+                "max": 0.5280898876404494,
+                "quantile_25": 0.46551724137931033,
+                "quantile_50": 0.47058823529411764,
+                "quantile_75": 0.5
+            }
+        }
+    ],
+    "extra_stats": null
+}

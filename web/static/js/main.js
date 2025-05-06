@@ -411,24 +411,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Clear and add table to frame
             tableFrame.innerHTML = '';
             tableFrame.appendChild(table);
-            
-            // Initialize DataTable
-            $(table).DataTable({
-                paging: false,
-                searching: false,
-                info: false,
-                ordering: false,
-                scrollX: true,
-                autoWidth: false,
-                scrollCollapse: true,
-                fixedHeader: true
-            });
-
-            // Adjust table wrapper width
-            const tableWrapper = tableFrame.querySelector('.dataTables_wrapper');
-            if (tableWrapper) {
-                tableWrapper.style.width = '100%';
-            }
+            // No DataTables initialization here!
         })
         .catch(error => console.error('Error loading table:', error));
 });

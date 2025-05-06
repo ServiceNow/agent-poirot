@@ -1,0 +1,165 @@
+Given the schema:\n
+Column: employee_id (object)
+  missing_count: 0
+  unique_count: 1000
+  top5_unique_values: ['E10000', 'E10671', 'E10658', 'E10659', 'E10660']
+Column: name (object)
+  missing_count: 0
+  unique_count: 989
+  top5_unique_values: ['Matthew Myers', 'Jennifer Johnson', 'Nancy Williams', 'Michael Wilson', 'Alexander Lewis']
+Column: age (float64)
+  missing_count: 0
+  unique_count: 47
+  min: 18.0
+  max: 64.0
+  mean: 41.648
+  std: 13.53770162787485
+Column: department (object)
+  missing_count: 0
+  unique_count: 9
+  top5_unique_values: ['HR', 'Legal', 'Operations', 'R&D', 'Admin']
+Column: job_level (object)
+  missing_count: 0
+  unique_count: 9
+  top5_unique_values: ['Intern', 'Senior', 'Junior', 'Manager', 'VP']
+Column: location (object)
+  missing_count: 0
+  unique_count: 7
+  top5_unique_values: ['New York', 'San Francisco', 'Berlin', 'London', 'Tokyo']
+Column: salary (float64)
+  missing_count: 0
+  unique_count: 998
+  min: -95290.0
+  max: 375039.0
+  mean: 97315.342
+  std: 83671.00977320343
+Column: years_with_company (float64)
+  missing_count: 0
+  unique_count: 44
+  min: -8.0
+  max: 39.0
+  mean: 18.412
+  std: 11.669894705713604
+Column: last_performance_rating (float64)
+  missing_count: 0
+  unique_count: 5
+  min: 1.0
+  max: 5.0
+  mean: 3.182
+  std: 1.2784797653895468
+Column: is_remote (float64)
+  missing_count: 0
+  unique_count: 2
+  min: 0.0
+  max: 1.0
+  mean: 0.502
+  std: 0.5002461856388775
+Column: promotion_last_2_years (float64)
+  missing_count: 0
+  unique_count: 2
+  min: 0.0
+  max: 1.0
+  mean: 0.323
+  std: 0.46785669802824226
+Column: left_company (float64)
+  missing_count: 0
+  unique_count: 2
+  min: 0.0
+  max: 1.0
+  mean: 0.482
+  std: 0.49992592043814443
+Column: gender (object)
+  missing_count: 0
+  unique_count: 4
+  top5_unique_values: ['Male', 'Female', 'Non-binary', 'Other']
+
+
+Column 'employee_id' examples
+    E10000
+    E10001
+
+Column 'name' examples
+    Mia Smith
+    Stefanie Castro
+
+Column 'age' examples
+    29.0
+    47.0
+
+Column 'department' examples
+    HR
+    Admin
+
+Column 'job_level' examples
+    VP
+    Manager
+
+Column 'location' examples
+    Bangalore
+    Tokyo
+
+Column 'salary' examples
+    126881.0
+    91175.0
+
+Column 'years_with_company' examples
+    27.0
+    10.0
+
+Column 'last_performance_rating' examples
+    3.0
+    1.0
+
+Column 'is_remote' examples
+    0.0
+    1.0
+
+Column 'promotion_last_2_years' examples
+    0.0
+
+Column 'left_company' examples
+    0.0
+    1.0
+
+Column 'gender' examples
+    Non-binary
+    Female
+
+
+
+Given the data path:\n
+/Users/issam.laradji/projects/agent-poirot/web/static/users/issam/human_resources/dataset.csv
+
+Give me the python code required to answer this question "give me a cool insight
+" and put a comment on top of each variable.\n\n
+
+* Make a single code block for starting with ```python
+* Do not produce code blocks for languages other than Python.
+* Do "from agentpoirot.tools import func_tools" at the beginning of the code. 
+* Also do "from agentpoirot.utils import save_stats_fig" at the beginning of the code.
+* Make sure to import all needed libraries
+* Then you must load the dataframe as df using the pd.read_csv function.
+* There are two main steps you need to do, highlight them with "# Stage Name" in the code.
+    - Data Manipulation: 
+        * You can add additional columns to the df to get what you need for the plot.
+        * You can aggregate or group data to create summary statistics or new data structures.
+        * You can subset the data to get only the columns you need.
+        * You must not create any additional variables that is not needed for the plot and is not part of the df
+        * Each line here should start with 'df ...'
+        * never filter the number of rows in the df
+        * Use the conditions given by the question to create a new column that satisfies those conditions
+        * if you use the count_column, it has to be numeric, and it should be a column in the df and you can create one if needed
+
+    - Plotting: 
+        * save the plot and its stats using this function at the end of the code: save_stats_fig(df, fig=None)
+        * Make sure you use the plotting function signature well  with keyword matching and the correct order of arguments 
+        * look at the column types from the schema (like object, int, and so on) and make sure you are using the appropriate column types for the plotting function arguments
+        * make sure you use every required argument for the plotting function
+        * make sure the plot is informative and nice looking with good labels and titles and colors
+        * use a beautiful seaborn plot function, and make sure the legend looks good
+
+* End your code with ```.
+* Avoid these common errors
+    - AttributeError: 'DataFrame' object has no attribute 'tolist'
+
+Output code:\n

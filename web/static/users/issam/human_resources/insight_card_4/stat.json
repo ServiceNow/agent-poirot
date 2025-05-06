@@ -1,0 +1,25 @@
+{
+    "columns": [
+        {
+            "column_name": "gender",
+            "column_stats": {
+                "unique_values": 4,
+                "most_frequent": "Female"
+            }
+        },
+        {
+            "column_name": "turnover_rate",
+            "column_stats": {
+                "mean": 0.5114514329895584,
+                "median": 0.5116845446584939,
+                "std": 0.04689573743193907,
+                "min": 0.4572192513368984,
+                "max": 0.5652173913043478,
+                "quantile_25": 0.4833941298219654,
+                "quantile_50": 0.5116845446584939,
+                "quantile_75": 0.5397418478260869
+            }
+        }
+    ],
+    "extra_stats": null
+}

@@ -1,0 +1,151 @@
+{
+    "columns": [
+        {
+            "column_name": "employee_id",
+            "column_stats": {
+                "unique_values": 1000,
+                "most_frequent": "E10000"
+            }
+        },
+        {
+            "column_name": "name",
+            "column_stats": {
+                "unique_values": 989,
+                "most_frequent": "Aaron White"
+            }
+        },
+        {
+            "column_name": "age",
+            "column_stats": {
+                "mean": 41.648,
+                "median": 42.0,
+                "std": 13.53770162787485,
+                "min": 18.0,
+                "max": 64.0,
+                "quantile_25": 30.0,
+                "quantile_50": 42.0,
+                "quantile_75": 53.0
+            }
+        },
+        {
+            "column_name": "department",
+            "column_stats": {
+                "unique_values": 9,
+                "most_frequent": "HR"
+            }
+        },
+        {
+            "column_name": "job_level",
+            "column_stats": {
+                "unique_values": 9,
+                "most_frequent": "Intern"
+            }
+        },
+        {
+            "column_name": "location",
+            "column_stats": {
+                "unique_values": 7,
+                "most_frequent": "New York"
+            }
+        },
+        {
+            "column_name": "salary",
+            "column_stats": {
+                "mean": 97315.342,
+                "median": 78304.0,
+                "std": 83671.00977320343,
+                "min": -95290.0,
+                "max": 375039.0,
+                "quantile_25": 43156.5,
+                "quantile_50": 78304.0,
+                "quantile_75": 137980.25
+            }
+        },
+        {
+            "column_name": "years_with_company",
+            "column_stats": {
+                "mean": 18.412,
+                "median": 18.0,
+                "std": 11.669894705713604,
+                "min": -8.0,
+                "max": 39.0,
+                "quantile_25": 8.0,
+                "quantile_50": 18.0,
+                "quantile_75": 28.0
+            }
+        },
+        {
+            "column_name": "last_performance_rating",
+            "column_stats": {
+                "mean": 3.182,
+                "median": 3.0,
+                "std": 1.2784797653895468,
+                "min": 1.0,
+                "max": 5.0,
+                "quantile_25": 2.0,
+                "quantile_50": 3.0,
+                "quantile_75": 4.0
+            }
+        },
+        {
+            "column_name": "is_remote",
+            "column_stats": {
+                "mean": 0.502,
+                "median": 1.0,
+                "std": 0.5002461856388775,
+                "min": 0.0,
+                "max": 1.0,
+                "quantile_25": 0.0,
+                "quantile_50": 1.0,
+                "quantile_75": 1.0
+            }
+        },
+        {
+            "column_name": "promotion_last_2_years",
+            "column_stats": {
+                "mean": 0.323,
+                "median": 0.0,
+                "std": 0.46785669802824226,
+                "min": 0.0,
+                "max": 1.0,
+                "quantile_25": 0.0,
+                "quantile_50": 0.0,
+                "quantile_75": 1.0
+            }
+        },
+        {
+            "column_name": "left_company",
+            "column_stats": {
+                "mean": 0.482,
+                "median": 0.0,
+                "std": 0.49992592043814443,
+                "min": 0.0,
+                "max": 1.0,
+                "quantile_25": 0.0,
+                "quantile_50": 0.0,
+                "quantile_75": 1.0
+            }
+        },
+        {
+            "column_name": "gender",
+            "column_stats": {
+                "unique_values": 4,
+                "most_frequent": "Male"
+            }
+        },
+        {
+            "column_name": "is_high_performer",
+            "column_stats": {
+                "mean": 0.382,
+                "median": 0.0,
+                "std": 0.48611964814468495,
+                "min": 0.0,
+                "max": 1.0,
+                "quantile_25": 0.0,
+                "quantile_50": 0.0,
+                "quantile_75": 1.0
+            }
+        }
+    ],
+    "extra_stats": null
+}

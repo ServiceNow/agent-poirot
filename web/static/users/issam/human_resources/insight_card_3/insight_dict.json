@@ -1,0 +1,16 @@
+{
+    "answer": "The most frequent department is HR, and the most common job level is Intern.",
+    "followup": "What is the distribution of job levels across departments?",
+    "header": "HR and Interns Dominate",
+    "indicator": "Department and Job Level Dominance",
+    "insight": "(1) HR is the most frequent department with 9 unique departments. (2) Intern is the most common job level among 9 unique levels. (3) The average salary is $97,315.34, but the median is significantly lower at $78,304.",
+    "output_folder": "static/users/issam/human_resources/insight_card_3",
+    "plot_image": "static/users/issam/human_resources/insight_card_3/plot.jpg",
+    "question": "give me an insight\n",
+    "score": "75",
+    "severity": "medium",
+    "time_elapsed": {
+        "code_gen": 6.67108678817749,
+        "insight_gen": 6.854995012283325
+    }
+}

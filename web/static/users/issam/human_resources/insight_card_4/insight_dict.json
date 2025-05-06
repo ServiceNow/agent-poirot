@@ -1,0 +1,16 @@
+{
+    "answer": "Yes, there are gender differences in employee turnover rates.",
+    "followup": "What is the turnover rate for each gender?",
+    "header": "Turnover Rates Vary by Gender",
+    "indicator": "Turnover Rate: Indicates varying rates across gender categories.",
+    "insight": "(1) The turnover rate mean is 0.511, with a small standard deviation of 0.047. (2) \"Other\" gender has the highest turnover rate at 0.565. (3) Female employees are the most frequent but not the highest turnover group.",
+    "output_folder": "static/users/issam/human_resources/insight_card_4",
+    "plot_image": "static/users/issam/human_resources/insight_card_4/plot.jpg",
+    "question": "Are there gender differences in employee turnover rates?",
+    "score": "75",
+    "severity": "medium",
+    "time_elapsed": {
+        "code_gen": 6.163511037826538,
+        "insight_gen": 11.482889175415039
+    }
+}
