@@ -1,0 +1,16 @@
+{
+    "answer": "Yes, there are properties where the gap between YearBuilt and YearRemodAdd is more than 50 years.",
+    "followup": "What is the average sale price of properties with a renovation gap of more than 50 years?",
+    "header": "Significant Renovation Gaps Detected",
+    "indicator": "age_vs_renovation_discrepancy: Properties with a gap between YearBuilt and YearRemodAdd exceeding 50 years have been flagged for review.",
+    "insight": "Out of the dataset, 10.07% of properties have a gap of more than 50 years between the YearBuilt and YearRemodAdd, which is not concerning given the threshold for review is a 50-year gap, indicating that these properties may have undergone significant renovations long after their initial construction.",
+    "output_folder": "static/users/guest/house_prices/insight_card_3",
+    "plot_image": "static/users/guest/house_prices/insight_card_3/plot.jpg",
+    "question": "Are there properties where the gap between YearBuilt and YearRemodAdd is more than 50 years?",
+    "score": "75",
+    "severity": "medium",
+    "time_elapsed": {
+        "code_gen": 2.947108268737793,
+        "insight_gen": 3.6052939891815186
+    }
+}

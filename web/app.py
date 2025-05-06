@@ -104,6 +104,11 @@ def get_insight_card(generate_question=False):
         question = response["text"]
         isValid, explanation, _ = agent.verify_question(question)
 
+        recommended_questions = get_recommended_questions(
+            user_data_folder, df, meta, n_questions=10
+        )
+        recommended_questions = [q for q in recommended_questions if q != question]
+
         if not isValid:
             return jsonify(
                 {
@@ -458,7 +463,13 @@ def first_insight():
     fname = f"{app.config['DATA_FOLDER']}/{dataset_name}/data.csv"
     assert os.path.exists(fname)
     df = pd.read_csv(fname)
-    meta = ut.load_json(f"{app.config['DATA_FOLDER']}/{dataset_name}/meta.json")
+    meta_fname = f"{app.config['DATA_FOLDER']}/{dataset_name}/meta.json"
+    if os.path.exists(meta_fname):
+        meta = ut.load_json(meta_fname)
+    else:
+        meta = {}
+        # save empty meta.json
+        ut.save_json(meta_fname, meta)
 
     user_data_folder = get_user_data_folder(request)
     insight_path = os.path.join(user_data_folder, "insight_card_1")
@@ -677,24 +688,25 @@ def submit_feedback():
     return jsonify({"status": "success", "message": "Feedback submitted successfully!"})
 
 
-@app.route("/get_dataframe", methods=["POST"])
+@app.route("/get_dataframe", methods=["GET"])
 def get_dataframe():
-    """
-    Retrieve and return a sample DataFrame from a CSV file.
+    """Get the current dataset as JSON for DataTables"""
+    try:
+        # Get dataset name from URL parameters
+        dataset_name = request.args.get("dataset", "human_resources")  # default dataset
 
-    Returns:
-        JSON response: Table data and statistics from the DataFrame.
-    """
+        # Load the CSV file
+        fname = f"{app.config['DATA_FOLDER']}/{dataset_name}/data.csv"
+        df = pd.read_csv(fname)
 
-    response = request.get_json()
-    dataset_name = response["dataset"]
-
-    fname = f"{app.config['DATA_FOLDER']}/{dataset_name}/data.csv"
-    df = pd.read_csv(fname).head()
-
-    table_data = {"headers": df.columns.tolist(), "rows": df.values.tolist()}
-
-    return jsonify({"table": table_data, "stats": {}})
+        # Convert DataFrame to dictionary format suitable for DataTables
+        data = {
+            "data": df.values.tolist(),
+            "columns": [{"title": col} for col in df.columns],
+        }
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route("/main")
@@ -783,7 +795,7 @@ if __name__ == "__main__":
     parser.add_argument("-p", "--port", type=int, default=7867)
     parser.add_argument("-s", "--starting_page", type=str, default="main")
     # model_name
-    parser.add_argument("-m", "--model_name", type=str, default="gpt-4o-mini")
+    parser.add_argument("-m", "--model_name", type=str, default="gpt-4o")
     parser.add_argument("-d", "--dataset_name", type=str, default="csm")
 
     args = parser.parse_args()

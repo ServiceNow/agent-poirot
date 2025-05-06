@@ -1,0 +1,42 @@
+Given the following meta information:\n
+{meta}
+
+Given the schema:\n
+{schemas}
+
+Given the data path:\n
+{database_path}
+
+Given the list of predefined functions in poirot.tools module and their example usage:\n\n
+{function_docs}
+
+Give me the python code required to answer this question "{question}" and put a comment on top of each variable.\n\n
+
+* Make a single code block for starting with ```python
+* Do not produce code blocks for languages other than Python.
+* Do "{import_name}" at the beginning of the code. 
+* Make sure to import all needed libraries
+* Then you must load the dataframe as df using the pd.read_csv function.
+* There are two main steps you need to do, highlight them with "# Stage Name" in the code.
+    - Data Manipulation: 
+        * You can add additional columns to the df to get what you need for the plot.
+        * You can aggregate or group data to create summary statistics or new data structures.
+        * You can subset the data to get only the columns you need.
+        * You must not create any additional variables that is not needed for the plot and is not part of the df
+        * Each line here should start with 'df ...'
+        * never filter the number of rows in the df
+        * Use the conditions given by the question to create a new column that satisfies those conditions
+        * if you use the count_column, it has to be numeric, and it should be a column in the df and you can create one if needed
+
+    - Plotting: 
+        * You must use exactly only one of the predefined plot functions mentioned above as 'func_tools.' to make and save the plot and its stats. It should be exactly one line of code
+        * Make sure you use the plotting function signature well  with keyword matching and the correct order of arguments 
+        * look at the column types from the schema (like object, int, and so on) and make sure you are using the appropriate column types for the plotting function arguments
+        * make sure you use every required argument for the plotting function
+        * the function should look like 'func_tools.*(df=df, plot_column=plot_column, ....)'
+
+* End your code with ```.
+* Avoid these common errors
+    - AttributeError: 'DataFrame' object has no attribute 'tolist'
+
+Output code:\n

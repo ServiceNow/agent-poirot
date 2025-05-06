@@ -7,9 +7,6 @@ Given the schema:\n
 Given the data path:\n
 {database_path}
 
-Given the list of predefined functions in poirot.tools module and their example usage:\n\n
-{function_docs}
-
 Give me the python code required to answer this question "{question}" and put a comment on top of each variable.\n\n
 
 * Make a single code block for starting with ```python
@@ -29,11 +26,11 @@ Give me the python code required to answer this question "{question}" and put a 
         * if you use the count_column, it has to be numeric, and it should be a column in the df and you can create one if needed
 
     - Plotting: 
-        * You must use exactly only one of the predefined plot functions mentioned above as 'func_tools.' to make and save the plot and its stats. It should be exactly one line of code
+        * save the plot and its stats 
         * Make sure you use the plotting function signature well  with keyword matching and the correct order of arguments 
         * look at the column types from the schema (like object, int, and so on) and make sure you are using the appropriate column types for the plotting function arguments
         * make sure you use every required argument for the plotting function
-        * the function should look like 'func_tools.*(df=df, plot_column=plot_column, ....)'
+        * use a seaborn plot function
 
 * End your code with ```.
 * Avoid these common errors

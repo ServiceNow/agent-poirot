@@ -1,0 +1,16 @@
+{
+    "answer": "Yes, specific requesters frequently submit certain types of requests, such as Kimberly Smith who most frequently submits Service Requests.",
+    "followup": "What is the total number of requests submitted by Kimberly Smith?",
+    "header": "Frequent Request Patterns Identified",
+    "indicator": "Most Frequent Requester: Kimberly Smith is identified as the most frequent requester for Service Requests, indicating a pattern of request submission.",
+    "insight": "The data reveals that Kimberly Smith is the most frequent requester for Service Requests, indicating a pattern where certain individuals consistently submit specific types of requests; this is not concerning as it suggests specialization or role-specific responsibilities rather than an anomaly.",
+    "output_folder": "static/users/guest/itsm/insight_card_2",
+    "plot_image": "static/users/guest/itsm/insight_card_2/plot.jpg",
+    "question": "Are there specific requesters who frequently submit certain types of requests?",
+    "score": "65",
+    "severity": "low",
+    "time_elapsed": {
+        "code_gen": 46.19934916496277,
+        "insight_gen": 3.1493382453918457
+    }
+}

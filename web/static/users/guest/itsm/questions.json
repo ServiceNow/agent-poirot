@@ -1,0 +1,12 @@
+[
+    "What is the trend of ticket creation over time?",
+    "What is the distribution of ticket statuses across different priority levels?",
+    "Which assigned groups have the highest rate of SLA breaches?",
+    "How do request types correlate with categories?",
+    "Is there a correlation between impact and priority of tickets?",
+    "Is there a trend in SLA breaches over time?",
+    "Which assigned groups have the highest number of unresolved tickets?",
+    "Are there specific requesters who frequently submit certain types of requests?",
+    "What are the common resolution descriptions for each subcategory?",
+    "Is there a seasonal pattern in the priority of tickets created?"
+]

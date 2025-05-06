@@ -1,0 +1,725 @@
+You are the manager of a data science team whose goal is to extract actionable insights from a given data.
+You have access to a team of highly skilled data scientists that can answer complex questions about the data.
+You call the shots and they do the work.
+Your ultimate deliverable is a report that summarizes the findings and makes hypothesis for any trend or anomaly that was found.
+
+## Given the following meta data:
+<meta>
+<notebook_link>https://www.kaggle.com/code/emrearslan123/house-price-prediction/input</notebook_link>
+<dataset_link>https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques</dataset_link>
+<description>Ask a home buyer to describe their dream house, and they probably won't begin with the height of the basement ceiling or the proximity to an east-west railroad. But this playground competition's dataset proves that much more influences price negotiations than the number of bedrooms or a white-picket fence. With 79 explanatory variables describing (almost) every aspect of residential homes in Ames, Iowa, this competition challenges you to predict the final price of each home.</description>
+<dataset_name>House Prices - Advanced Regression Techniques</dataset_name>
+<goal>Predict house prices based on various property features.</goal>
+<persona>Real estate price evaluator or data analyst.</persona>
+<indicator_list>[{'name': 'missing_inconsistent_data', 'description': 'Identify missing values in important fields such as LotFrontage, GarageType, and PoolQC.', 'threshold': 'Rows with more than 10% missing values in key fields should be flagged for review.'}, {'name': 'lot_size_outliers', 'description': 'Detect properties with unusually large or small lot areas compared to the average.', 'threshold': 'Properties with lot areas more than 3 standard deviations from the mean should be flagged.'}, {'name': 'year_built_inconsistencies', 'description': 'Check for properties with YearBuilt or YearRemodAdd that are inconsistent with the overall property condition.', 'threshold': 'Properties with high-quality ratings but built before 1900 should be reviewed.'}, {'name': 'sale_price_outliers', 'description': 'Identify properties with sale prices significantly higher or lower than the market average.', 'threshold': 'Properties with prices beyond 2.5 standard deviations from the mean should be flagged for investigation.'}, {'name': 'garage_and_parking_anomalies', 'description': 'Check properties for missing or inconsistent data on garage size, type, or year built.', 'threshold': 'Flag properties missing critical garage data or where the garage size is inconsistent with the property size.'}, {'name': 'age_vs_renovation_discrepancy', 'description': 'Identify properties where the age of the house and year of renovation show large discrepancies.', 'threshold': 'Review properties where the gap between YearBuilt and YearRemodAdd is more than 50 years.'}, {'name': 'neighborhood_price_trends', 'description': 'Analyze properties in neighborhoods with unusual pricing patterns.', 'threshold': 'Flag properties where the price is more than 30% above or below the neighborhood average.'}]</indicator_list>
+</meta>
+
+## Given the following schemas:
+<schemas>
+Column: Id (float64)
+  missing_count: 0
+  unique_count: 1460
+  min: 1.0
+  max: 1460.0
+  mean: 730.5
+  std: 421.6100093688479
+Column: MSSubClass (float64)
+  missing_count: 0
+  unique_count: 15
+  min: 20.0
+  max: 190.0
+  mean: 56.897260273972606
+  std: 42.300570993810425
+Column: MSZoning (object)
+  missing_count: 0
+  unique_count: 5
+  top5_unique_values: ['RL', 'RM', 'FV', 'RH', 'C (all)']
+Column: LotFrontage (float64)
+  missing_count: 259
+  unique_count: 111
+  min: 21.0
+  max: 313.0
+  mean: 70.04995836802665
+  std: 24.284751774483208
+Column: LotArea (float64)
+  missing_count: 0
+  unique_count: 1073
+  min: 1300.0
+  max: 215245.0
+  mean: 10516.828082191782
+  std: 9981.26493237915
+Column: Street (object)
+  missing_count: 0
+  unique_count: 2
+  top5_unique_values: ['Pave', 'Grvl']
+Column: LotShape (object)
+  missing_count: 0
+  unique_count: 4
+  top5_unique_values: ['Reg', 'IR1', 'IR2', 'IR3']
+Column: LandContour (object)
+  missing_count: 0
+  unique_count: 4
+  top5_unique_values: ['Lvl', 'Bnk', 'HLS', 'Low']
+Column: Utilities (object)
+  missing_count: 0
+  unique_count: 2
+  top5_unique_values: ['AllPub', 'NoSeWa']
+Column: LotConfig (object)
+  missing_count: 0
+  unique_count: 5
+  top5_unique_values: ['Inside', 'Corner', 'CulDSac', 'FR2', 'FR3']
+Column: LandSlope (object)
+  missing_count: 0
+  unique_count: 3
+  top5_unique_values: ['Gtl', 'Mod', 'Sev']
+Column: Neighborhood (object)
+  missing_count: 0
+  unique_count: 25
+  top5_unique_values: ['NAmes', 'CollgCr', 'OldTown', 'Edwards', 'Somerst']
+Column: Condition1 (object)
+  missing_count: 0
+  unique_count: 9
+  top5_unique_values: ['Norm', 'Feedr', 'Artery', 'RRAn', 'PosN']
+Column: Condition2 (object)
+  missing_count: 0
+  unique_count: 8
+  top5_unique_values: ['Norm', 'Feedr', 'Artery', 'RRNn', 'PosN']
+Column: BldgType (object)
+  missing_count: 0
+  unique_count: 5
+  top5_unique_values: ['1Fam', 'TwnhsE', 'Duplex', 'Twnhs', '2fmCon']
+Column: HouseStyle (object)
+  missing_count: 0
+  unique_count: 8
+  top5_unique_values: ['1Story', '2Story', '1.5Fin', 'SLvl', 'SFoyer']
+Column: OverallQual (float64)
+  missing_count: 0
+  unique_count: 10
+  min: 1.0
+  max: 10.0
+  mean: 6.0993150684931505
+  std: 1.3829965467415934
+Column: OverallCond (float64)
+  missing_count: 0
+  unique_count: 9
+  min: 1.0
+  max: 9.0
+  mean: 5.575342465753424
+  std: 1.1127993367127316
+Column: YearBuilt (float64)
+  missing_count: 0
+  unique_count: 112
+  min: 1872.0
+  max: 2010.0
+  mean: 1971.267808219178
+  std: 30.202904042525258
+Column: YearRemodAdd (float64)
+  missing_count: 0
+  unique_count: 61
+  min: 1950.0
+  max: 2010.0
+  mean: 1984.8657534246574
+  std: 20.645406807709413
+Column: RoofStyle (object)
+  missing_count: 0
+  unique_count: 6
+  top5_unique_values: ['Gable', 'Hip', 'Flat', 'Gambrel', 'Mansard']
+Column: RoofMatl (object)
+  missing_count: 0
+  unique_count: 8
+  top5_unique_values: ['CompShg', 'Tar&Grv', 'WdShngl', 'WdShake', 'Metal']
+Column: Exterior1st (object)
+  missing_count: 0
+  unique_count: 15
+  top5_unique_values: ['VinylSd', 'HdBoard', 'MetalSd', 'Wd Sdng', 'Plywood']
+Column: Exterior2nd (object)
+  missing_count: 0
+  unique_count: 16
+  top5_unique_values: ['VinylSd', 'MetalSd', 'HdBoard', 'Wd Sdng', 'Plywood']
+Column: MasVnrArea (float64)
+  missing_count: 8
+  unique_count: 328
+  min: 0.0
+  max: 1600.0
+  mean: 103.68526170798899
+  std: 181.0662065872166
+Column: ExterQual (object)
+  missing_count: 0
+  unique_count: 4
+  top5_unique_values: ['TA', 'Gd', 'Ex', 'Fa']
+Column: ExterCond (object)
+  missing_count: 0
+  unique_count: 5
+  top5_unique_values: ['TA', 'Gd', 'Fa', 'Ex', 'Po']
+Column: Foundation (object)
+  missing_count: 0
+  unique_count: 6
+  top5_unique_values: ['PConc', 'CBlock', 'BrkTil', 'Slab', 'Stone']
+Column: BsmtQual (object)
+  missing_count: 37
+  unique_count: 5
+  top5_unique_values: ['TA', 'Gd', 'Ex', 'Fa']
+Column: BsmtCond (object)
+  missing_count: 37
+  unique_count: 5
+  top5_unique_values: ['TA', 'Gd', 'Fa', 'Po']
+Column: BsmtExposure (object)
+  missing_count: 38
+  unique_count: 5
+  top5_unique_values: ['No', 'Av', 'Gd', 'Mn']
+Column: BsmtFinType1 (object)
+  missing_count: 37
+  unique_count: 7
+  top5_unique_values: ['Unf', 'GLQ', 'ALQ', 'BLQ', 'Rec']
+Column: BsmtFinSF1 (float64)
+  missing_count: 0
+  unique_count: 637
+  min: 0.0
+  max: 5644.0
+  mean: 443.6397260273973
+  std: 456.0980908409277
+Column: BsmtFinType2 (object)
+  missing_count: 38
+  unique_count: 7
+  top5_unique_values: ['Unf', 'Rec', 'LwQ', 'BLQ', 'ALQ']
+Column: BsmtFinSF2 (float64)
+  missing_count: 0
+  unique_count: 144
+  min: 0.0
+  max: 1474.0
+  mean: 46.54931506849315
+  std: 161.31927280654173
+Column: BsmtUnfSF (float64)
+  missing_count: 0
+  unique_count: 780
+  min: 0.0
+  max: 2336.0
+  mean: 567.2404109589041
+  std: 441.86695529243417
+Column: TotalBsmtSF (float64)
+  missing_count: 0
+  unique_count: 721
+  min: 0.0
+  max: 6110.0
+  mean: 1057.4294520547944
+  std: 438.7053244594708
+Column: Heating (object)
+  missing_count: 0
+  unique_count: 6
+  top5_unique_values: ['GasA', 'GasW', 'Grav', 'Wall', 'OthW']
+Column: HeatingQC (object)
+  missing_count: 0
+  unique_count: 5
+  top5_unique_values: ['Ex', 'TA', 'Gd', 'Fa', 'Po']
+Column: CentralAir (object)
+  missing_count: 0
+  unique_count: 2
+  top5_unique_values: ['Y', 'N']
+Column: Electrical (object)
+  missing_count: 1
+  unique_count: 6
+  top5_unique_values: ['SBrkr', 'FuseA', 'FuseF', 'FuseP', 'Mix']
+Column: 1stFlrSF (float64)
+  missing_count: 0
+  unique_count: 753
+  min: 334.0
+  max: 4692.0
+  mean: 1162.626712328767
+  std: 386.5877380410744
+Column: 2ndFlrSF (float64)
+  missing_count: 0
+  unique_count: 417
+  min: 0.0
+  max: 2065.0
+  mean: 346.99246575342465
+  std: 436.5284358862568
+Column: LowQualFinSF (float64)
+  missing_count: 0
+  unique_count: 24
+  min: 0.0
+  max: 572.0
+  mean: 5.844520547945206
+  std: 48.62308143352019
+Column: GrLivArea (float64)
+  missing_count: 0
+  unique_count: 861
+  min: 334.0
+  max: 5642.0
+  mean: 1515.463698630137
+  std: 525.4803834232025
+Column: BsmtFullBath (float64)
+  missing_count: 0
+  unique_count: 4
+  min: 0.0
+  max: 3.0
+  mean: 0.42534246575342466
+  std: 0.5189106060898065
+Column: BsmtHalfBath (float64)
+  missing_count: 0
+  unique_count: 3
+  min: 0.0
+  max: 2.0
+  mean: 0.057534246575342465
+  std: 0.23875264627921178
+Column: FullBath (float64)
+  missing_count: 0
+  unique_count: 4
+  min: 0.0
+  max: 3.0
+  mean: 1.5650684931506849
+  std: 0.5509158012954317
+Column: HalfBath (float64)
+  missing_count: 0
+  unique_count: 3
+  min: 0.0
+  max: 2.0
+  mean: 0.38287671232876713
+  std: 0.5028853810928914
+Column: BedroomAbvGr (float64)
+  missing_count: 0
+  unique_count: 8
+  min: 0.0
+  max: 8.0
+  mean: 2.8664383561643834
+  std: 0.8157780441442284
+Column: KitchenAbvGr (float64)
+  missing_count: 0
+  unique_count: 4
+  min: 0.0
+  max: 3.0
+  mean: 1.0465753424657533
+  std: 0.22033819838403068
+Column: KitchenQual (object)
+  missing_count: 0
+  unique_count: 4
+  top5_unique_values: ['TA', 'Gd', 'Ex', 'Fa']
+Column: TotRmsAbvGrd (float64)
+  missing_count: 0
+  unique_count: 12
+  min: 2.0
+  max: 14.0
+  mean: 6.517808219178082
+  std: 1.6253932905840505
+Column: Functional (object)
+  missing_count: 0
+  unique_count: 7
+  top5_unique_values: ['Typ', 'Min2', 'Min1', 'Mod', 'Maj1']
+Column: Fireplaces (float64)
+  missing_count: 0
+  unique_count: 4
+  min: 0.0
+  max: 3.0
+  mean: 0.613013698630137
+  std: 0.6446663863122295
+Column: GarageType (object)
+  missing_count: 81
+  unique_count: 7
+  top5_unique_values: ['Attchd', 'Detchd', 'BuiltIn', 'Basment', 'CarPort']
+Column: GarageYrBlt (float64)
+  missing_count: 81
+  unique_count: 98
+  min: 1900.0
+  max: 2010.0
+  mean: 1978.5061638868744
+  std: 24.689724768590242
+Column: GarageFinish (object)
+  missing_count: 81
+  unique_count: 4
+  top5_unique_values: ['Unf', 'RFn', 'Fin']
+Column: GarageCars (float64)
+  missing_count: 0
+  unique_count: 5
+  min: 0.0
+  max: 4.0
+  mean: 1.7671232876712328
+  std: 0.7473150101111095
+Column: GarageArea (float64)
+  missing_count: 0
+  unique_count: 441
+  min: 0.0
+  max: 1418.0
+  mean: 472.9801369863014
+  std: 213.80484145338042
+Column: GarageQual (object)
+  missing_count: 81
+  unique_count: 6
+  top5_unique_values: ['TA', 'Fa', 'Gd', 'Ex', 'Po']
+Column: GarageCond (object)
+  missing_count: 81
+  unique_count: 6
+  top5_unique_values: ['TA', 'Fa', 'Gd', 'Po', 'Ex']
+Column: PavedDrive (object)
+  missing_count: 0
+  unique_count: 3
+  top5_unique_values: ['Y', 'N', 'P']
+Column: WoodDeckSF (float64)
+  missing_count: 0
+  unique_count: 274
+  min: 0.0
+  max: 857.0
+  mean: 94.2445205479452
+  std: 125.3387943517241
+Column: OpenPorchSF (float64)
+  missing_count: 0
+  unique_count: 202
+  min: 0.0
+  max: 547.0
+  mean: 46.66027397260274
+  std: 66.25602767664971
+Column: EnclosedPorch (float64)
+  missing_count: 0
+  unique_count: 120
+  min: 0.0
+  max: 552.0
+  mean: 21.954109589041096
+  std: 61.1191486017286
+Column: 3SsnPorch (float64)
+  missing_count: 0
+  unique_count: 20
+  min: 0.0
+  max: 508.0
+  mean: 3.4095890410958902
+  std: 29.31733055678188
+Column: ScreenPorch (float64)
+  missing_count: 0
+  unique_count: 76
+  min: 0.0
+  max: 480.0
+  mean: 15.060958904109588
+  std: 55.757415281874174
+Column: PoolArea (float64)
+  missing_count: 0
+  unique_count: 8
+  min: 0.0
+  max: 738.0
+  mean: 2.758904109589041
+  std: 40.17730694453019
+Column: MiscVal (float64)
+  missing_count: 0
+  unique_count: 21
+  min: 0.0
+  max: 15500.0
+  mean: 43.489041095890414
+  std: 496.12302445794415
+Column: MoSold (float64)
+  missing_count: 0
+  unique_count: 12
+  min: 1.0
+  max: 12.0
+  mean: 6.321917808219178
+  std: 2.7036262083595126
+Column: YrSold (float64)
+  missing_count: 0
+  unique_count: 5
+  min: 2006.0
+  max: 2010.0
+  mean: 2007.8157534246575
+  std: 1.3280951205521099
+Column: SaleType (object)
+  missing_count: 0
+  unique_count: 9
+  top5_unique_values: ['WD', 'New', 'COD', 'ConLD', 'ConLI']
+Column: SaleCondition (object)
+  missing_count: 0
+  unique_count: 6
+  top5_unique_values: ['Normal', 'Partial', 'Abnorml', 'Family', 'Alloca']
+Column: SalePrice (float64)
+  missing_count: 0
+  unique_count: 663
+  min: 34900.0
+  max: 755000.0
+  mean: 180921.19589041095
+  std: 79442.50288288662
+
+
+Column 'Id' examples
+    1.0
+    2.0
+
+Column 'MSSubClass' examples
+    60.0
+    20.0
+
+Column 'MSZoning' examples
+    RL
+
+Column 'LotFrontage' examples
+    65.0
+    80.0
+
+Column 'LotArea' examples
+    8450.0
+    9600.0
+
+Column 'Street' examples
+    Pave
+
+Column 'LotShape' examples
+    Reg
+
+Column 'LandContour' examples
+    Lvl
+
+Column 'Utilities' examples
+    AllPub
+
+Column 'LotConfig' examples
+    Inside
+    FR2
+
+Column 'LandSlope' examples
+    Gtl
+
+Column 'Neighborhood' examples
+    CollgCr
+    Veenker
+
+Column 'Condition1' examples
+    Norm
+    Feedr
+
+Column 'Condition2' examples
+    Norm
+
+Column 'BldgType' examples
+    1Fam
+
+Column 'HouseStyle' examples
+    2Story
+    1Story
+
+Column 'OverallQual' examples
+    7.0
+    6.0
+
+Column 'OverallCond' examples
+    5.0
+    8.0
+
+Column 'YearBuilt' examples
+    2003.0
+    1976.0
+
+Column 'YearRemodAdd' examples
+    2003.0
+    1976.0
+
+Column 'RoofStyle' examples
+    Gable
+
+Column 'RoofMatl' examples
+    CompShg
+
+Column 'Exterior1st' examples
+    VinylSd
+    MetalSd
+
+Column 'Exterior2nd' examples
+    VinylSd
+    MetalSd
+
+Column 'MasVnrArea' examples
+    196.0
+    0.0
+
+Column 'ExterQual' examples
+    Gd
+    TA
+
+Column 'ExterCond' examples
+    TA
+
+Column 'Foundation' examples
+    PConc
+    CBlock
+
+Column 'BsmtQual' examples
+    Gd
+
+Column 'BsmtCond' examples
+    TA
+
+Column 'BsmtExposure' examples
+    No
+    Gd
+
+Column 'BsmtFinType1' examples
+    GLQ
+    ALQ
+
+Column 'BsmtFinSF1' examples
+    706.0
+    978.0
+
+Column 'BsmtFinType2' examples
+    Unf
+
+Column 'BsmtFinSF2' examples
+    0.0
+
+Column 'BsmtUnfSF' examples
+    150.0
+    284.0
+
+Column 'TotalBsmtSF' examples
+    856.0
+    1262.0
+
+Column 'Heating' examples
+    GasA
+
+Column 'HeatingQC' examples
+    Ex
+
+Column 'CentralAir' examples
+    Y
+
+Column 'Electrical' examples
+    SBrkr
+
+Column '1stFlrSF' examples
+    856.0
+    1262.0
+
+Column '2ndFlrSF' examples
+    854.0
+    0.0
+
+Column 'LowQualFinSF' examples
+    0.0
+
+Column 'GrLivArea' examples
+    1710.0
+    1262.0
+
+Column 'BsmtFullBath' examples
+    1.0
+    0.0
+
+Column 'BsmtHalfBath' examples
+    0.0
+    1.0
+
+Column 'FullBath' examples
+    2.0
+
+Column 'HalfBath' examples
+    1.0
+    0.0
+
+Column 'BedroomAbvGr' examples
+    3.0
+
+Column 'KitchenAbvGr' examples
+    1.0
+
+Column 'KitchenQual' examples
+    Gd
+    TA
+
+Column 'TotRmsAbvGrd' examples
+    8.0
+    6.0
+
+Column 'Functional' examples
+    Typ
+
+Column 'Fireplaces' examples
+    0.0
+    1.0
+
+Column 'GarageType' examples
+    Attchd
+
+Column 'GarageYrBlt' examples
+    2003.0
+    1976.0
+
+Column 'GarageFinish' examples
+    RFn
+
+Column 'GarageCars' examples
+    2.0
+
+Column 'GarageArea' examples
+    548.0
+    460.0
+
+Column 'GarageQual' examples
+    TA
+
+Column 'GarageCond' examples
+    TA
+
+Column 'PavedDrive' examples
+    Y
+
+Column 'WoodDeckSF' examples
+    0.0
+    298.0
+
+Column 'OpenPorchSF' examples
+    61.0
+    0.0
+
+Column 'EnclosedPorch' examples
+    0.0
+
+Column '3SsnPorch' examples
+    0.0
+
+Column 'ScreenPorch' examples
+    0.0
+
+Column 'PoolArea' examples
+    0.0
+
+Column 'MiscVal' examples
+    0.0
+
+Column 'MoSold' examples
+    2.0
+    5.0
+
+Column 'YrSold' examples
+    2008.0
+    2007.0
+
+Column 'SaleType' examples
+    WD
+
+Column 'SaleCondition' examples
+    Normal
+
+Column 'SalePrice' examples
+    208500.0
+    181500.0
+
+
+</schemas>
+
+## Do not repeat anything similar to these past questions:
+<past_questions>
+['Give me an overview of this dataset.']
+</past_questions>
+
+## Instructions:
+* Write a list of questions to be solved by the data scientists in your team to explore my data and reach my goal.
+* Explore diverse aspects of the data, and ask questions that are relevant to my goal.
+* You must ask the right questions to surface anything interesting (trends, anomalies, etc.)
+* Make sure these can realistically be answered based on the data schema.
+* The insights that your team will extract will be used to generate a report.
+* Each question should only have one part, that is a single '?' at the end which only require a single answer.
+* Do not number the questions.
+* You can produce at most 10 questions. Stop generation after that.
+* score should be between 0 and 100 indicating the importance of the question to extract interesting insights for the goal
+* justication should be a short sentence explaining why the question is important
+* type should be either descriptive, diagnostic, prescriptive, or predictive
+* add columns to consider for the question
+* Most importantly, each question must be enclosed within <container><columns></columns><question></question<justification></justification><score></score><type></type></container> tags. Refer to the example response below:
+
+Example response:
+<container><question>What is the average age of the customers?</question><justification>Age is an important factor in determining customer preferences.</justification><score>80</score><type>descriptive</type><columns>age,name</columns></container>
+<container><question>What is the distribution of the customers based on their age?</question><justification>Understanding the age distribution can help in targeting specific age groups.</justification><score>70</score><type>descriptive</type><columns>age,name</columns></container>
+
+### Response:

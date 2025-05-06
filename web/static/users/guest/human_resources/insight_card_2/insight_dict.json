@@ -1,0 +1,16 @@
+{
+    "answer": "There is a relationship between recent promotions and employee turnover, as 25.6% of employees who were promoted also left the company.",
+    "followup": "What is the average time between promotion and turnover for employees who left after being promoted?",
+    "header": "Promotions Linked to Employee Turnover",
+    "indicator": "No specific indicator has been triggered by this finding, but it suggests a potential area for further review regarding retention strategies post-promotion.",
+    "insight": "The data shows that 25.6% of employees who were promoted ended up leaving the company, which is a notable proportion given the goal to reduce turnover; however, this is not immediately concerning as it does not exceed any critical thresholds, but it does suggest a potential area for further investigation.",
+    "output_folder": "static/users/guest/human_resources/insight_card_2",
+    "plot_image": "static/users/guest/human_resources/insight_card_2/plot.jpg",
+    "question": "Is there a relationship between recent promotions and employee turnover?",
+    "score": "65",
+    "severity": "medium",
+    "time_elapsed": {
+        "code_gen": 19.82468008995056,
+        "insight_gen": 5.0030457973480225
+    }
+}

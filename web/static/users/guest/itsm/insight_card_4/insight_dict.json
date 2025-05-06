@@ -1,0 +1,16 @@
+{
+    "answer": "Request types correlate with categories by showing that 'Incident - Incident' is the most frequent combination, appearing more often than other combinations.",
+    "followup": "What percentage of the total requests does 'Incident - Incident' represent?",
+    "header": "Frequent 'Incident - Incident' Combination",
+    "indicator": "Frequency Indicator: 'Incident - Incident' appears most frequently, indicating a common pattern in request handling.",
+    "insight": "The data reveals that 'Incident - Incident' is the most frequent request type-category combination, appearing more than any other combination, which is not concerning as it aligns with typical service desk operations where incidents are commonly reported and resolved.",
+    "output_folder": "static/users/guest/itsm/insight_card_4",
+    "plot_image": "static/users/guest/itsm/insight_card_4/plot.jpg",
+    "question": "How do request types correlate with categories?",
+    "score": "65",
+    "severity": "clear",
+    "time_elapsed": {
+        "code_gen": 2.646221876144409,
+        "insight_gen": 2.9840071201324463
+    }
+}

@@ -1,0 +1,1 @@
+Is there a correlation between impact and priority of tickets?

@@ -1,0 +1,16 @@
+{
+    "answer": "Yes, there are properties where the price is more than 30% above or below the neighborhood average.",
+    "followup": "What are the specific neighborhoods with the highest number of price anomalies?",
+    "header": "Price Anomalies in Neighborhoods",
+    "indicator": "Neighborhood price trends indicator has been triggered, highlighting properties with prices more than 30% above or below the neighborhood average.",
+    "insight": "Approximately 20.6% of the properties have prices that are more than 30% above or below the neighborhood average, indicating a notable number of price anomalies, but this is not concerning as it is within expected variability for real estate markets.",
+    "output_folder": "static/users/guest/house_prices/insight_card_2",
+    "plot_image": "static/users/guest/house_prices/insight_card_2/plot.jpg",
+    "question": "Are there properties where the price is more than 30% above or below the neighborhood average?",
+    "score": "75",
+    "severity": "medium",
+    "time_elapsed": {
+        "code_gen": 6.657972812652588,
+        "insight_gen": 8.676313161849976
+    }
+}

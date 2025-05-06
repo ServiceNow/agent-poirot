@@ -1,0 +1,16 @@
+{
+    "answer": "The Network group has the highest rate of SLA breaches with a value of 409.",
+    "followup": "What factors contribute to the high SLA breach rate in the Network group?",
+    "header": "Network Group SLA Breach Concern",
+    "indicator": "The 'sla_breach_numeric' indicator shows a high breach rate for the Network group, suggesting a potential problem in meeting SLAs.",
+    "insight": "The Network group has the highest SLA breach rate at 409, which is significantly above the mean of 381.2 and the median of 376, indicating a potential issue with their SLA compliance, while the other groups have lower breach rates, with the lowest being the Support group at 357.",
+    "output_folder": "static/users/guest/itsm/insight_card_3",
+    "plot_image": "static/users/guest/itsm/insight_card_3/plot.jpg",
+    "question": "Which assigned groups have the highest rate of SLA breaches?",
+    "score": "85",
+    "severity": "high",
+    "time_elapsed": {
+        "code_gen": 3.143004894256592,
+        "insight_gen": 4.725451946258545
+    }
+}

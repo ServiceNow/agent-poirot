@@ -1600,3 +1600,55 @@ select.custom-input {
     border-color: #3498db;
     box-shadow: 0 0 0 2px rgba(52,152,219,0.25);
 }
+
+/* Add these styles for the DataTable */
+.table-container {
+    padding: 20px;
+    margin: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table-stats {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    color: #2c3e50;
+}
+
+#dataTable {
+    width: 100% !important;
+}
+
+.dataTables_wrapper .dataTables_scroll {
+    margin-bottom: 20px;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-left: 5px;
+}
+
+.dataTables_wrapper .dt-buttons {
+    margin-bottom: 10px;
+}
+
+.dataTables_wrapper .dt-button {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    margin-right: 5px;
+}
+
+.dataTables_wrapper .dt-button:hover {
+    background-color: #e9ecef;
+}

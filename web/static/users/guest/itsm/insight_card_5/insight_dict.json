@@ -1,0 +1,16 @@
+{
+    "answer": "There is a correlation between the impact and priority of tickets, as indicated by the frequent pairing of 'High' impact with 'Critical' priority.",
+    "followup": "What percentage of tickets have a 'High' impact and 'Critical' priority?",
+    "header": "Frequent High-Critical Pairing Observed",
+    "indicator": "The frequent occurrence of 'High_Critical' indicates a pattern in ticket prioritization.",
+    "insight": "The most frequent combination of impact and priority is 'Low_Medium', but 'High_Critical' appears multiple times, suggesting a pattern where high-impact tickets often receive critical priority, which is not concerning as it aligns with expected prioritization practices.",
+    "output_folder": "static/users/guest/itsm/insight_card_5",
+    "plot_image": "static/users/guest/itsm/insight_card_5/plot.jpg",
+    "question": "Is there a correlation between impact and priority of tickets?",
+    "score": "75",
+    "severity": "low",
+    "time_elapsed": {
+        "code_gen": 53.867125034332275,
+        "insight_gen": 4.266595840454102
+    }
+}

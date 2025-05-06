@@ -1,0 +1,213 @@
+Given the following meta information:\n
+
+
+Given the schema:\n
+Column: ticket_id (object)
+  missing_count: 0
+  unique_count: 8000
+  top5_unique_values: ['bca89363-dfda-4d12-9765-a5794f630dc2', '59abfcae-a4d2-43bd-9b5a-87d65c2f3b0d', '0b2803fb-f2bf-43f2-8aec-7841c2eeb4a9', '98049645-7a77-4cd2-a96f-33cc3b661c53', '67c7a56d-a3c6-468f-8507-37246dc7db28']
+Column: request_type (object)
+  missing_count: 0
+  unique_count: 2
+  top5_unique_values: ['Service Request', 'Incident']
+Column: priority (object)
+  missing_count: 0
+  unique_count: 4
+  top5_unique_values: ['Medium', 'High', 'Critical', 'Low']
+Column: status (object)
+  missing_count: 0
+  unique_count: 6
+  top5_unique_values: ['In Progress', 'Open', 'Resolved', 'Closed', 'On Hold']
+Column: created_date (object)
+  missing_count: 0
+  unique_count: 7993
+  min: 2019-12-31
+  max: 2023-09-30 19:44:09
+Column: sla_breach (object)
+  missing_count: 0
+  unique_count: 3
+  top5_unique_values: ['False', 'True', 'No']
+Column: assigned_group (object)
+  missing_count: 0
+  unique_count: 5
+  top5_unique_values: ['Database', 'Network', 'Application', 'Support', 'Security']
+Column: assignee (object)
+  missing_count: 0
+  unique_count: 7408
+  top5_unique_values: ['Robert Smith', 'Jennifer Smith', 'Jennifer Williams', 'Christopher Smith', 'David Smith']
+Column: requester (object)
+  missing_count: 0
+  unique_count: 7601
+  top5_unique_values: ['Michael Moore', 'Matthew Johnson', 'Michael Smith', 'Jessica Smith', 'Michael Ortiz']
+Column: category (object)
+  missing_count: 0
+  unique_count: 3
+  top5_unique_values: ['Incident', 'Change Request', 'Service Request']
+Column: subcategory (object)
+  missing_count: 0
+  unique_count: 5
+  top5_unique_values: ['Network', 'Access', 'Other', 'Software', 'Hardware']
+Column: impact (object)
+  missing_count: 0
+  unique_count: 3
+  top5_unique_values: ['Medium', 'Low', 'High']
+Column: resolution_description (object)
+  missing_count: 0
+  unique_count: 8000
+  top5_unique_values: ['Consider degree tend policy hotel production result.', 'Big return upon move PM.', 'Themselves laugh oil inside.', 'Might which realize security hit five board.', 'Decision name from again friend he their.']
+
+
+Column 'ticket_id' examples
+    bca89363-dfda-4d12-9765-a5794f630dc2
+    0082d31a-e7ed-4b5b-9b21-844a80748506
+
+Column 'request_type' examples
+    Incident
+
+Column 'priority' examples
+    High
+    Critical
+
+Column 'status' examples
+    Resolved
+
+Column 'created_date' examples
+    2020-07-16 15:44:47
+    2022-08-28 23:19:46
+
+Column 'sla_breach' examples
+    False
+
+Column 'assigned_group' examples
+    Security
+    Support
+
+Column 'assignee' examples
+    Richard Marshall
+    Elizabeth Simmons
+
+Column 'requester' examples
+    Karen Rodriguez
+    Sarah Harvey
+
+Column 'category' examples
+    Change Request
+
+Column 'subcategory' examples
+    Other
+    Hardware
+
+Column 'impact' examples
+    Low
+    High
+
+Column 'resolution_description' examples
+    Consider degree tend policy hotel production result.
+    Page computer sit whether.
+
+
+
+Given the data path:\n
+/Users/issam.laradji/projects/agent-poirot/web/static/users/guest/itsm/dataset.csv
+
+Given the list of predefined functions in poirot.tools module and their example usage:\n\n
+plot_bar(df: pandas.core.frame.DataFrame, plot_column: str, count_column: str, plot_title: str) -> None:
+Creates a bar plot with `plot_column` on x-axis and `count_column` on y-axis using Seaborn.
+
+This plot is useful for answering questions like:
+- "What are the counts of each category in the dataset?"
+- "How does the frequency of categories compare?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    plot_column (str): Column name for x-axis (categorical data).
+    count_column (str): Column name for y-axis (numerical counts).
+    plot_title (str): Title of the plot.
+====================
+
+plot_boxplot(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, plot_title: str) -> None:
+Generates a box plot using Seaborn to show the distribution of `y_column` values across different categories in `x_column`.
+
+This plot is useful for answering questions like:
+- "How does the distribution of values differ between categories?"
+- "Are there any outliers or variations in the data?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    x_column (str): Column name for x-axis (categories).
+    y_column (str): Column name for y-axis (numerical values).
+    plot_title (str): Title of the plot.
+====================
+
+plot_correlation_matrix(df: pandas.core.frame.DataFrame, plot_title: str) -> None:
+Creates a heatmap for the correlation matrix of numeric columns using Seaborn.
+
+This plot is useful for answering questions like:
+- "What is the correlation between different variables in the dataset?"
+- "Are there any strong relationships or dependencies between variables?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    plot_title (str): Title of the plot.
+====================
+
+plot_density_plot(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, plot_title: str) -> None:
+Generates a density plot showing the distribution of values in a 2D space defined by `x_column` and `y_column` using Seaborn.
+
+This plot is useful for answering questions like:
+- "How are two variables distributed relative to each other?"
+- "Where are the data points concentrated in the 2D space?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    x_column (str): Column name for x-axis.
+    y_column (str): Column name for y-axis.
+    plot_title (str): Title of the plot.
+====================
+
+plot_heatmap(df: pandas.core.frame.DataFrame, x_column: str, y_column: str, z_column: str, plot_title: str) -> None:
+Creates a heatmap showing the density of values across `x_column` and `y_column` with `z_column` as intensity using Seaborn.
+
+This plot is useful for answering questions like:
+- "How do values vary between two dimensions?"
+- "Where are the hotspots or patterns in the data?"
+
+Args:
+    df (pd.DataFrame): DataFrame containing the data.
+    x_column (str): Column name for x-axis.
+    y_column (str): Column name for y-axis.
+    z_column (str): Column name for intensity values (color scale).
+    plot_title (str): Title of the plot.
+====================
+
+
+Give me the python code required to answer this question "How do request types correlate with categories?" and put a comment on top of each variable.\n\n
+
+* Make a single code block for starting with ```python
+* Do not produce code blocks for languages other than Python.
+* Do "from agentpoirot.tools import func_tools" at the beginning of the code. 
+* Make sure to import all needed libraries
+* Then you must load the dataframe as df using the pd.read_csv function.
+* There are two main steps you need to do, highlight them with "# Stage Name" in the code.
+    - Data Manipulation: 
+        * You can add additional columns to the df to get what you need for the plot.
+        * You can aggregate or group data to create summary statistics or new data structures.
+        * You can subset the data to get only the columns you need.
+        * You must not create any additional variables that is not needed for the plot and is not part of the df
+        * Each line here should start with 'df ...'
+        * never filter the number of rows in the df
+        * Use the conditions given by the question to create a new column that satisfies those conditions
+        * if you use the count_column, it has to be numeric, and it should be a column in the df and you can create one if needed
+
+    - Plotting: 
+        * You must use exactly only one of the predefined plot functions mentioned above as 'func_tools.' to make and save the plot and its stats. It should be exactly one line of code
+        * Make sure you use the plotting function signature well  with keyword matching and the correct order of arguments 
+        * look at the column types from the schema (like object, int, and so on) and make sure you are using the appropriate column types for the plotting function arguments
+        * make sure you use every required argument for the plotting function
+        * the function should look like 'func_tools.*(df=df, plot_column=plot_column, ....)'
+
+* End your code with ```.
+* Avoid these common errors
+    - AttributeError: 'DataFrame' object has no attribute 'tolist'
+
+Output code:\n
